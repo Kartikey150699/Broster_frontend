@@ -35,7 +35,7 @@ export default function AdminLayout({ title = "B-ROSTER", children }) {
         <div className="footer-below">
           <div className="container">
             <div className="row">
-              <div className="col-lg-12 text-left">
+              <div className="col-lg-12 text-right">
                 <a href="http://www.ifnt.co.jp" target="_blank" rel="noreferrer">
                   © 2023 IFNET
                 </a>

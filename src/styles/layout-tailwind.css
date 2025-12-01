@@ -1,0 +1,44 @@
+/* ---------------------------------------------------
+   layout-tailwind.css
+   Tailwind migration of layout.css (Part 1: Global + Typography)
+   --------------------------------------------------- */
+
+/* GLOBAL PAGE STRUCTURE */
+html, body {
+  @apply min-h-screen relative;
+}
+
+body {
+  @apply font-sans overflow-x-hidden mb-12 mt-12;
+}
+
+/* TYPOGRAPHY */
+p {
+  @apply text-xl;
+}
+
+p.small {
+  @apply text-base;
+}
+
+/* LINKS */
+a {
+  @apply text-[#FBA848] no-underline;
+}
+
+a:hover,
+a:focus,
+a:active,
+a.active {
+  @apply text-[#FBA848] outline-none;
+}
+
+/* HEADINGS */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply uppercase font-bold text-[#0E7AC4] font-sans;
+}
