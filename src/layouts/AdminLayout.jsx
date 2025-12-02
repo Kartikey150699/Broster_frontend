@@ -13,10 +13,13 @@ export default function AdminLayout({ title = "B-ROSTER", children }) {
       {/* NAVBAR (same as JSP) */}
       <nav className="navbar navbar-default navbar-fixed-top navbar-custom">
         <div className="container">
-          <div className="navbar-header page-scroll">
-            <Link className="navbar-brand" to="/admin/list">
-              B-ROSTER
-            </Link>
+          <div
+            className="navbar-header page-scroll"
+            style={{ marginLeft: "171px" }}
+          >
+          <Link className="navbar-brand" to="/admin/list">
+          B-ROSTER
+          </Link>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -35,9 +38,9 @@ export default function AdminLayout({ title = "B-ROSTER", children }) {
         <div className="footer-below">
           <div className="container">
             <div className="row">
-              <div className="col-lg-12 text-right">
-                <a href="http://www.ifnt.co.jp" target="_blank" rel="noreferrer">
-                  © 2023 IFNET
+              <div className="col-lg-12 text-right" style={{ paddingRight: "186px" }}>
+                <a href="http://www.ifnt.co.jp" target="_blank" rel="noreferrer" style={{ color: "white" }}>
+                  © 2023 IFNET v1.4.19
                 </a>
               </div>
             </div>

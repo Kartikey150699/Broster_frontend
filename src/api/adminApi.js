@@ -1,10 +1,11 @@
 import axios from "axios";
 
-const API_BASE = "http://localhost:8081/broster/v2/api";
+const API_BASE = "http://localhost:8081/broster/v2/api/userManage";
 
-export const fetchAdminList = async () => {
-  const response = await axios.get(`${API_BASE}/admin/list`, {
-    withCredentials: true,
-  });
-  return response.data;
+export const fetchAdminList = async (companyId, adminId = "") => {
+  return axios.post(
+    `${API_BASE}/getAdminList`,
+    { companyId, adminId },
+    { withCredentials: true }
+  ).then(res => res.data);
 };

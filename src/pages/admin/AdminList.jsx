@@ -11,6 +11,8 @@ export default function AdminList() {
   const [errorMessages, setErrorMessages] = useState([]);
   const [records, setRecords] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [targetAdmin, setTargetAdmin] = useState(null);
 
   // ------- API CALL (REAL DATA) -------
   useEffect(() => {
@@ -55,6 +57,35 @@ export default function AdminList() {
       setLoading(false);
     }
   };
+
+  const deleteAdmin = async () => {
+  if (!targetAdmin) return;
+
+  try {
+    const payload = {
+      companyId: targetAdmin.companyId,
+      adminId: targetAdmin.adminId
+    };
+
+    const res = await axios.delete(
+      "http://localhost:8081/broster/v2/api/userManage/deleteAdmin",
+      {
+        data: payload,
+        withCredentials: true
+      }
+    );
+
+    if (res.data.resultCode === "00000") {
+      setShowDeleteModal(false); // close modal
+      fetchAdminList();          // reload table
+    } else {
+      alert("削除に失敗しました。");
+    }
+  } catch (err) {
+    console.error("DELETE ERROR:", err);
+    alert("サーバーエラーが発生しました。");
+  }
+};
 
   return (
     <AdminLayout title="管理者一覧">
@@ -178,8 +209,11 @@ export default function AdminList() {
                         </a>
 
                         <a
-                          href={`/admin/delete/${e.companyId}/${e.adminId}`}
-                          style={{ paddingRight: 8 }}
+                          onClick={() => {
+                            setTargetAdmin({ companyId: e.companyId, adminId: e.adminId, adminName: e.adminName });
+                            setShowDeleteModal(true);
+                          }}
+                          style={{ paddingRight: 8, cursor: "pointer" }}
                         >
                           <i className="fa fa-ban fa-fw"></i> 削除
                         </a>
@@ -203,6 +237,101 @@ export default function AdminList() {
         </div>
       )}
 
+      {showDeleteModal && (
+  <div
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      background: "rgba(0,0,0,0.45)",
+      zIndex: 2000,
+    }}
+  >
+    <div
+      className="modal-dialog"
+      style={{
+        width: "380px",
+        margin: "180px auto",
+      }}
+    >
+      <div
+        className="modal-content"
+        style={{
+          borderRadius: "4px",
+          boxShadow: "0 2px 12px rgba(0,0,0,0.3)",
+        }}
+      >
+
+        {/* HEADER */}
+        <div
+          className="modal-header"
+          style={{
+            background: "#d9534f",
+            color: "white",
+            borderTopLeftRadius: "4px",
+            borderTopRightRadius: "4px",
+          }}
+        >
+          <button
+            type="button"
+            className="close"
+            onClick={() => setShowDeleteModal(false)}
+            style={{ color: "white", opacity: 1 }}
+          >
+            ×
+          </button>
+          <h4 className="modal-title" style={{ color: "white" }}>
+            <i className="fa fa-exclamation-triangle"></i> 削除確認
+          </h4>
+        </div>
+
+        {/* BODY */}
+        <div className="modal-body text-center" style={{ padding: "25px" }}>
+          <p style={{ fontSize: "15px", marginBottom: "10px" }}>
+            この管理者を削除しますか？
+          </p>
+
+          <p style={{ fontWeight: "bold", fontSize: "16px", color: "#d9534f" }}>
+            {targetAdmin?.adminName}
+          </p>
+
+          <p style={{ fontSize: "12px", color: "#777" }}>
+            （ID: {targetAdmin?.adminId}）
+          </p>
+        </div>
+
+        {/* FOOTER */}
+        <div
+          className="modal-footer"
+          style={{
+            textAlign: "center",
+            padding: "15px",
+            borderTop: "1px solid #eee",
+          }}
+        >
+          <button
+            className="btn btn-default"
+            onClick={() => setShowDeleteModal(false)}
+            style={{ width: "100px" }}
+          >
+            いいえ
+          </button>
+
+          <button
+            className="btn btn-danger"
+            onClick={deleteAdmin}
+            style={{ width: "120px", marginLeft: "10px" }}
+          >
+            はい、削除する
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+)}
     </AdminLayout>
   );
 }
