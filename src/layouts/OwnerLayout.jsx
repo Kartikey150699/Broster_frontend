@@ -1,21 +1,15 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import LogoutModal from "../components/LogoutModal";
 
-/**
- * AdminLayout
- * Used by:
- *  - Admin List
- *  - Admin Create / Edit
- *  - Group Master
- *  - Employee Master
- *  - All admin-side pages
- */
-export default function AdminLayout({ title = "B-ROSTER", children }) {
+export default function OwnerLayout({ title = "B-ROSTER", children }) {
   document.title = title;
 
   const [showLogout, setShowLogout] = useState(false);
+  const navigate = useNavigate();
 
   /** Close modal when pressing ESC */
   useEffect(() => {
@@ -26,10 +20,16 @@ export default function AdminLayout({ title = "B-ROSTER", children }) {
     return () => window.removeEventListener("keydown", handler);
   }, []);
 
+  /** When user clicks "Logout" */
+  const handleLogout = () => {
+    setShowLogout(false);
+    navigate("/admin/login"); // Redirect
+  };
+
   return (
     <div>
 
-      {/* HEADER — Logout icon triggers logout modal */}
+      {/* HEADER (Logout button triggers modal) */}
       <Header onLogoutClick={() => setShowLogout(true)} />
 
       {/* MAIN CONTENT */}
@@ -40,8 +40,12 @@ export default function AdminLayout({ title = "B-ROSTER", children }) {
       {/* FOOTER */}
       <Footer />
 
-      {/* LOGOUT MODAL (Shared Component) */}
-      <LogoutModal show={showLogout} onClose={() => setShowLogout(false)} />
+      {/* LOGOUT MODAL (React component) */}
+      <LogoutModal
+        show={showLogout}
+        onClose={() => setShowLogout(false)}
+        onLogout={handleLogout}
+      />
 
     </div>
   );

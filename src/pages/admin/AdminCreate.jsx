@@ -76,14 +76,6 @@ export default function AdminCreate() {
   return (
     <AdminLayout title="管理者登録">
       
-      {/* TITLE */}
-      <div className="row row-padding-top-1">
-        <div className="col-md-12">
-          <h2><i className="fa fa-plus"></i> 管理者登録</h2>
-          <hr className="star-primary" />
-        </div>
-      </div>
-
       {/* SUCCESS MESSAGE */}
       {infoMessages.length > 0 && (
         <div className="alert alert-info text-center">
@@ -97,6 +89,14 @@ export default function AdminCreate() {
           {errorMessages.map((m, i) => <div key={i}>{m}</div>)}
         </div>
       )}
+      
+      {/* TITLE */}
+      <div className="row row-padding-top-1">
+        <div className="col-md-12">
+          <h2><i className="fa fa-plus"></i> 管理者登録</h2>
+          <hr className="star-primary" />
+        </div>
+      </div>
 
       {/* FORM */}
       <div className="row">

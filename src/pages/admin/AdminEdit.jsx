@@ -149,15 +149,6 @@ export default function AdminEdit() {
   return (
     <AdminLayout title="管理者更新">
 
-      <div className="row row-padding-top-1">
-        <div className="col-md-12">
-          <h2>
-            <i className="fa fa-pencil"></i> 管理者更新
-          </h2>
-          <hr className="star-primary" />
-        </div>
-      </div>
-
       {/* SUCCESS */}
       {infoMessages.length > 0 && (
         <div className="alert alert-info text-center">
@@ -171,6 +162,15 @@ export default function AdminEdit() {
           {errorMessages.map((msg, i) => <div key={i}>{msg}</div>)}
         </div>
       )}
+
+      <div className="row row-padding-top-1">
+        <div className="col-md-12">
+          <h2>
+            <i className="fa fa-pencil"></i> 管理者更新
+          </h2>
+          <hr className="star-primary" />
+        </div>
+      </div>
 
       <div className="row">
         <div className="col-md-6 col-md-offset-3">

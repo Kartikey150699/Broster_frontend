@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import AdminList from "../pages/admin/AdminList";
 import AdminEdit from "../pages/admin/AdminEdit";
 import AdminCreate from "../pages/admin/AdminCreate";
+import ApplyGroupList from "../pages/apply/ApplyGroupList";
+
 
 // ========================================================
 //   Application Routes
@@ -23,6 +25,9 @@ export default function AppRoutes() {
 
         {/* ADMIN EDIT */}
         <Route path="/admin/edit/:companyId/:adminId" element={<AdminEdit />} />
+
+        {/* APPLY GROUP LIST */}
+        <Route path="/apply-group/list" element={<ApplyGroupList />} />
 
         {/* DEFAULT REDIRECT */}
         <Route path="*" element={<Navigate to="/admin/list" replace />} />

@@ -287,3 +287,25 @@ label.input-label {
 	color: rgba(102, 81, 44, 1);
 }
 
+/* Reduce icon–text spacing for all menu items */
+.navbar-custom .navbar-nav > li > a > i.fa-fw {
+    margin-right: 2px !important;
+    width: auto !important;    
+}
+
+/* Force dropdown menu background to match header */
+.navbar-custom .dropdown-menu {
+  background-color: #0E7AC4 !important;
+  border: none;
+}
+
+/* Dropdown text color */
+.navbar-custom .dropdown-menu > li > a {
+  color: white !important;
+}
+
+/* Hover color */
+.navbar-custom .dropdown-menu > li > a:hover {
+  background-color: #18BC9C !important;
+  color: white !important;
+}
