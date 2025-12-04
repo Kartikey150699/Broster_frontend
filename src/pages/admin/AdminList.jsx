@@ -83,7 +83,7 @@ export default function AdminList() {
 
       // Show success notification
       setDeleteSuccess(`管理者「${targetAdmin.adminName}」を削除しました。`);
-      setTimeout(() => setDeleteSuccess(""), 4000);
+      setTimeout(() => setDeleteSuccess(""), 3000);
 
       fetchAdminList();
       return;
@@ -91,14 +91,14 @@ export default function AdminList() {
 
     // ===== FAILURE (HTTP OK but backend error) =====
     setDeleteError("削除に失敗しました。");
-    setTimeout(() => setDeleteError(""), 4000);
+    setTimeout(() => setDeleteError(""), 3000);
 
   } catch (err) {
     console.error("DELETE ERROR:", err);
 
     // ===== SERVER ERROR =====
     setDeleteError("サーバーエラーが発生しました。");
-    setTimeout(() => setDeleteError(""), 4000);
+    setTimeout(() => setDeleteError(""), 3000);
   }
 };
 
@@ -275,14 +275,14 @@ export default function AdminList() {
       )}
 
       <DeleteModal
-      visible={showDeleteModal}
-  title="削除確認"
-  message="この管理者を削除しますか？"
-  targetName={targetAdmin?.adminName}
-  targetId={targetAdmin?.adminId}
-  onCancel={() => setShowDeleteModal(false)}
-  onConfirm={deleteAdmin}
-/>
+        visible={showDeleteModal}
+        title="削除確認"
+        message="この管理者を削除しますか？"
+        targetName={targetAdmin?.adminName}
+        targetId={targetAdmin?.adminId}
+        onCancel={() => setShowDeleteModal(false)}
+        onConfirm={deleteAdmin}
+      />
     </AdminLayout>
   );
 }

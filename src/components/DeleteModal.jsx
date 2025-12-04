@@ -54,7 +54,7 @@ export default function DeleteModal({
               ×
             </button>
 
-            {/* ⭐ TITLE VISIBLE NOW ⭐ */}
+            {/* TITLE */}
             <h4 className="modal-title" style={{ color: "white" }}>
               <i className="fa fa-exclamation-triangle"></i> {title}
             </h4>
