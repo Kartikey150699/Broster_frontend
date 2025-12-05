@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AdminLayout from "../../layouts/AdminLayout";
 import axios from "axios";
-import DeleteModal from "../../components/DeleteModal";
+import UniversalModal from "../../components/UniversalModal";
 
 /**
  * Fetches real data from Spring Boot API
@@ -182,7 +182,7 @@ export default function AdminList() {
       {/* ADD BUTTON */}
       <div className="row row-padding-top-1">
         <div className="col-sm-8 col-md-8"></div>
-        <div className="col-sm-4 col-md-4 text-right">
+        <div className="col-sm-4 col-md-4 text-right admin-add-btn">
           <a href="/admin/create" className="btn btn-primary">
             <i className="fa fa-plus fa-fw"></i> 管理者追加
           </a>
@@ -193,11 +193,11 @@ export default function AdminList() {
       {!loading && (
         <div className="row row-padding-top-1" style={{ padding: "10px 10px" }}>
           <div
-            className="col-md-12"
+            className="col-md-12 table-responsive-mobile"
             style={{
-              overflowX: "scroll",
+              overflowX: "visible",
               padding: "0 0",
-              height: "500px",
+              height: "auto",
             }}
           >
             <div className="panel panel-default">
@@ -206,7 +206,7 @@ export default function AdminList() {
                 style={{
                   width: "100%",
                   borderCollapse: "collapse",
-                  whiteSpace: "nowrap",
+                  whiteSpace: "normal",
                 }}
               >
                 <thead>
@@ -274,15 +274,20 @@ export default function AdminList() {
         </div>
       )}
 
-      <DeleteModal
-        visible={showDeleteModal}
-        title="削除確認"
-        message="この管理者を削除しますか？"
-        targetName={targetAdmin?.adminName}
-        targetId={targetAdmin?.adminId}
-        onCancel={() => setShowDeleteModal(false)}
-        onConfirm={deleteAdmin}
-      />
+      <UniversalModal
+      visible={showDeleteModal}
+      title="削除確認"
+      message="この管理者を削除しますか？"
+      targetName={targetAdmin?.adminName}
+      targetId={targetAdmin?.adminId}
+      confirmText="はい、削除する"
+      cancelText="いいえ"
+      confirmColor="btn-danger"   // red delete button
+      cancelColor="btn-default"
+      iconClass="fa fa-exclamation-triangle"
+      onCancel={() => setShowDeleteModal(false)}
+      onConfirm={deleteAdmin}
+    />
     </AdminLayout>
   );
 }

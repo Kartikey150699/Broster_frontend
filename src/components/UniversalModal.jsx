@@ -1,11 +1,23 @@
-export default function DeleteModal({
+export default function UniversalModal({
   visible,
   title = "確認",
-  message = "削除しますか？",
+  message = "",
   targetName,
   targetId,
+
+  // Custom button text
+  confirmText = "OK",
+  cancelText = "キャンセル",
+
+  // Custom button colors: btn-danger / btn-primary / btn-warning / btn-default
+  confirmColor = "btn-danger",
+  cancelColor = "btn-default",
+
+  // Icon for header
+  iconClass = "fa fa-exclamation-triangle",
+
   onCancel,
-  onConfirm
+  onConfirm,
 }) {
   if (!visible) return null;
 
@@ -35,6 +47,7 @@ export default function DeleteModal({
             boxShadow: "0 2px 12px rgba(0,0,0,0.3)",
           }}
         >
+
           {/* HEADER */}
           <div
             className="modal-header"
@@ -54,15 +67,16 @@ export default function DeleteModal({
               ×
             </button>
 
-            {/* TITLE */}
             <h4 className="modal-title" style={{ color: "white" }}>
-              <i className="fa fa-exclamation-triangle"></i> {title}
+              <i className={iconClass}></i> {title}
             </h4>
           </div>
 
           {/* BODY */}
           <div className="modal-body text-center" style={{ padding: "25px" }}>
-            <p style={{ fontSize: "15px", marginBottom: "10px" }}>{message}</p>
+            {message && (
+              <p style={{ fontSize: "15px", marginBottom: "10px" }}>{message}</p>
+            )}
 
             {targetName && (
               <p style={{ fontWeight: "bold", fontSize: "16px", color: "#d9534f" }}>
@@ -84,12 +98,20 @@ export default function DeleteModal({
               borderTop: "1px solid #eee",
             }}
           >
-            <button className="btn btn-default" onClick={onCancel} style={{ width: "100px" }}>
-              いいえ
+            <button
+              className={`btn ${cancelColor}`}
+              onClick={onCancel}
+              style={{ width: "100px" }}
+            >
+              {cancelText}
             </button>
 
-            <button className="btn btn-danger" onClick={onConfirm} style={{ width: "120px", marginLeft: "10px" }}>
-              はい、削除する
+            <button
+              className={`btn ${confirmColor}`}
+              onClick={onConfirm}
+              style={{ width: "120px", marginLeft: "10px" }}
+            >
+              {confirmText}
             </button>
           </div>
 

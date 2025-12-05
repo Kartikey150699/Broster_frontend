@@ -309,3 +309,329 @@ label.input-label {
   background-color: #18BC9C !important;
   color: white !important;
 }
+
+
+/* GLOBAL RESPONSIVE RULES */
+
+/* Make the container scale on all screens */
+.responsive-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* Generic table scroll for mobile */
+.responsive-table-wrapper {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+/* Sticky table header */
+.table-sticky th {
+  position: sticky;
+  top: 0;
+  background: #f5f5f5;
+  z-index: 5;
+}
+
+/* Inputs expand automatically */
+.input-full {
+  width: 100%;
+}
+
+/* Mobile-first buttons */
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Fixed header responsiveness */
+.header-responsive {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0E7AC4;
+  padding: 10px 20px;
+  flex-wrap: wrap;
+}
+
+/* Make header vertical on small screens */
+@media (max-width: 768px) {
+  .header-responsive {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Responsive modal */
+.modal-dialog-responsive {
+  width: 95%;
+  max-width: 380px;
+  margin: 10vh auto;
+}
+
+/* ------------------------------------------------------
+   Global Responsiveness
+-------------------------------------------------------*/
+@media (min-width: 769px) {
+  #owner-navbar {
+    display: block !important;
+    height: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Dropdown menus behave normally on PC */
+  #owner-navbar .dropdown-menu {
+    position: absolute !important;
+    display: none;
+  }
+
+  #owner-navbar .dropdown:hover > .dropdown-menu {
+    display: block !important;
+  }
+}
+
+/* ------------------------------------------------------
+   MOBILE MENU
+-------------------------------------------------------*/
+@media (max-width: 768px) {
+
+  /* Remove desktop margins on mobile */
+  .navbar-header {
+    margin-left: 0 !important;
+  }
+
+  .navbar-nav.navbar-right {
+    margin-right: 0 !important;
+  }
+
+  /* Make menu items readable */
+  .navbar-nav li a {
+    padding: 10px 15px !important;
+    font-size: 14px !important;
+  }
+
+  /* Dropdown full width */
+  .navbar-nav .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+  }
+
+  /* Mobile menu background */
+  #owner-navbar {
+    background: #0E7AC4 !important;
+  }
+
+  /* Hamburger visible */
+  .navbar-toggle {
+    display: block !important;
+    margin-right: 10px !important;
+  }
+
+  /* MENU CLOSED */
+  #owner-navbar.collapse {
+    display: none !important;
+  }
+
+  /* MENU OPEN */
+  #owner-navbar.collapse.in {
+    display: block !important;
+    height: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* No flicker */
+  #owner-navbar.collapsing {
+    height: auto !important;
+    display: block !important;
+    transition: none !important;
+  }
+}
+
+/* dropdown background always blue */
+.navbar-custom .dropdown-menu {
+  background-color: #0E7AC4 !important;
+}
+/* Dropdown items normal state */
+.navbar-custom .dropdown-menu > li > a {
+  background-color: transparent !important;
+  color: white !important;
+}
+/* Hover green */
+.navbar-custom .dropdown-menu > li > a:hover {
+  background-color: #18BC9C !important;
+  color: white !important;
+}
+/* Active in dropdown should NOT turn white/green */
+.navbar-custom .dropdown-menu > li.active > a {
+  background-color: transparent !important;
+  color: white !important;
+}
+
+/* ------------------------------------------------------
+   MOBILE DROPDOWN ANIMATION (STRONG OVERRIDE)
+-------------------------------------------------------*/
+@media (max-width: 768px) {
+
+  /* Force dropdowns to be collapsible */
+  #owner-navbar .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+
+    max-height: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+
+    transition: max-height 0.4s ease, opacity 0.3s ease !important;
+  }
+
+  /* When React adds .open */
+  #owner-navbar .dropdown.open > .dropdown-menu {
+    max-height: 400px !important;  /* enough for all items */
+    opacity: 1 !important;
+  }
+
+}
+
+/* -----------------------------------------
+   RESPONSIVE FOOTER
+----------------------------------------- */
+@media (max-width: 768px) {
+  /* Footer container becomes centered */
+  #footer .row {
+    text-align: center !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Remove PC padding on mobile */
+  #footer .col-lg-8,
+  #footer .col-lg-4 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-bottom: 5px;
+  }
+
+  /* Make text slightly smaller for mobile */
+  #footer {
+    font-size: 14px;
+  }
+}
+
+/* -----------------------------------------
+   RESPONSIVE UNIVERSAL MODAL
+----------------------------------------- */
+@media (max-width: 768px) {
+
+  /* Dark background stays same */
+
+  /* Modal dialog becomes smaller */
+  .modal-dialog {
+    width: 90% !important;        /* from 380px → responsive */
+    max-width: 360px !important;
+    margin: 120px auto !important;
+  }
+
+  /* Modal content spacing */
+  .modal-content {
+    border-radius: 6px !important;
+  }
+
+  /* Header */
+  .modal-header h4 {
+    font-size: 16px !important;
+  }
+
+  .modal-header {
+    padding: 10px 15px !important;
+  }
+
+  .modal-header .close {
+    font-size: 22px !important;
+  }
+
+  /* Body */
+  .modal-body {
+    padding: 18px !important;
+  }
+
+  .modal-body p {
+    font-size: 14px !important;
+  }
+
+  /* Footer buttons */
+  .modal-footer {
+    padding: 10px !important;
+  }
+
+  .modal-footer .btn {
+    width: 100% !important;         /* full width buttons */
+    margin: 5px 0 !important;       /* vertical spacing */
+  }
+}
+
+
+/* MOBILE TABLE */
+@media (max-width: 768px) {
+
+  /* OUTER WRAPPER */
+  .table-responsive-mobile {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid #ccc !important;
+    border-radius: 6px;
+    padding: 0 !important;
+  }
+
+  /* TABLE RESET */
+  .table-responsive-mobile table {
+    width: max-content !important;
+    min-width: 600px !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    border: none !important;
+  }
+
+  /* HEADERS & CELLS — NO BORDER, USE SHADOW INSTEAD */
+  .table-responsive-mobile th,
+  .table-responsive-mobile td {
+    border: none !important;
+    padding: 8px !important;
+    white-space: nowrap !important;
+
+    /* INTERNAL CELL BORDER */
+    box-shadow: 0 0 0 1px #ccc inset !important;
+  }
+
+  /* HEADER COLOR */
+  .table-responsive-mobile th.primary {
+    background: #0E7AC4 !important;
+    color: #fff !important;
+    font-size: 12px !important;
+  }
+
+  /* REMOVE LAST CELL DOUBLE SHADOW */
+  .table-responsive-mobile td:last-child,
+  .table-responsive-mobile th:last-child {
+    box-shadow:
+      -1px 0 0 0 #ccc inset,  /* left border */
+       0 -1px 0 0 #ccc inset, /* top border */
+       0  1px 0 0 #ccc inset; /* bottom border */
+  }
+
+  /* REMOVE LAST ROW DOUBLE SHADOW */
+  .table-responsive-mobile tr:last-child td {
+    box-shadow:
+      -1px 0 0 0 #ccc inset,
+       1px 0 0 0 #ccc inset,
+       0 -1px 0 0 #ccc inset;
+  }
+}

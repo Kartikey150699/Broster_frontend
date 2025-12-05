@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import LogoutModal from "../components/LogoutModal";
+import UniversalModal from "../components/UniversalModal";
 
 export default function OwnerLayout({ title = "B-ROSTER", children }) {
   document.title = title;
@@ -33,18 +33,30 @@ export default function OwnerLayout({ title = "B-ROSTER", children }) {
       <Header onLogoutClick={() => setShowLogout(true)} />
 
       {/* MAIN CONTENT */}
-      <div className="container-fluid" style={{ marginTop: "70px" }}>
+      <div
+        className="container-fluid"
+        style={{
+          marginTop: window.innerWidth < 768 ? "110px" : "70px",
+        }}
+      >
         {children}
       </div>
 
       {/* FOOTER */}
       <Footer />
 
-      {/* LOGOUT MODAL (React component) */}
-      <LogoutModal
-        show={showLogout}
-        onClose={() => setShowLogout(false)}
-        onLogout={handleLogout}
+      {/* UNIVERSAL LOGOUT MODAL */}
+      <UniversalModal
+        visible={showLogout}
+        title="ログアウト確認"
+        message="ログアウトしてもよろしいですか？"
+        confirmText="ログアウト"
+        cancelText="キャンセル"
+        confirmColor="btn-danger"
+        cancelColor="btn-default"
+        iconClass="fa fa-sign-out"
+        onCancel={() => setShowLogout(false)}
+        onConfirm={handleLogout}
       />
 
     </div>
