@@ -309,7 +309,7 @@ export default function ApplyGroupCreate() {
           className="btn btn-default"
           style={{ marginLeft: 10 }}
         >
-          <i className="fa fa-ban fa-fw"></i> 戻る
+          <i className="fa fa-chevron-left fa-fw"></i> 戻る
         </a>
       </div>
 

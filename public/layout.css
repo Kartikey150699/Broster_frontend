@@ -635,3 +635,344 @@ label.input-label {
        0 -1px 0 0 #ccc inset;
   }
 }
+
+/* ---------------------------------
+   ADMIN CREATE — MOBILE RESPONSIVE
+   --------------------------------- */
+@media (max-width: 768px) {
+
+  /* Reduce padding above title */
+  .row-padding-top-1 {
+    padding-top: 10px !important;
+  }
+
+  /* Title smaller & well spaced */
+  h2 {
+    font-size: 20px !important;
+    text-align: center !important;
+  }
+
+  /* Alerts smaller */
+  .alert {
+    font-size: 14px !important;
+    padding: 10px !important;
+  }
+
+  /* Center form & remove PC offset */
+  .col-md-6.col-md-offset-3 {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 12px !important;
+  }
+
+  /* Make labels wrap properly */
+  .form-group label {
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+    display: block !important;
+  }
+
+  /* Make all inputs look good on mobile */
+  .form-control {
+    width: 100% !important;
+    font-size: 14px !important;
+    padding: 8px 10px !important;
+  }
+
+  /* Company ID row fix */
+  .form-group[style] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .form-group[style] label {
+    margin-bottom: 5px !important;
+    width: auto !important;
+  }
+
+  /* Buttons stacked on mobile */
+  .text-center .btn {
+    width: 100% !important;
+    margin-top: 10px !important;
+    font-size: 15px !important;
+  }
+
+  .text-center a.btn {
+    margin-left: 0 !important; /* remove side margin */
+  }
+}
+
+/* ---------------------------------
+   ADMIN EDIT — MOBILE RESPONSIVE
+   ---------------------------------*/
+@media (max-width: 768px) {
+
+  /* Reduce top padding */
+  .row-padding-top-1 {
+    padding-top: 10px !important;
+  }
+
+  /* Title */
+  h2 {
+    font-size: 20px !important;
+    text-align: center !important;
+  }
+
+  /* Alerts */
+  .alert {
+    font-size: 14px !important;
+    padding: 10px !important;
+  }
+
+  /* Remove PC offset */
+  .col-md-6.col-md-offset-3 {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 12px !important;
+  }
+
+  /* Labels readable on mobile */
+  .form-group label {
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+    display: block !important;
+  }
+
+  /* Inputs full-width */
+  .form-control {
+    width: 100% !important;
+    font-size: 14px !important;
+    padding: 8px 10px !important;
+  }
+
+  /* Company ID / Admin ID Row */
+  .form-group span {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 14px !important;
+  }
+
+  /* Password section title */
+  h4 {
+    font-size: 16px !important;
+    margin-top: 20px !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* Buttons full width on mobile */
+  .text-center .btn {
+    width: 100% !important;
+    font-size: 15px !important;
+    margin-top: 10px !important;
+  }
+
+  /* Remove horizontal spacing */
+  .text-center a.btn {
+    margin-left: 0 !important;
+  }
+}
+/* Reduce top empty space for admin pages only */
+@media (max-width: 1024px) {
+  body {
+    margin-top: 20px !important; /* from 50px → smaller */
+  }
+}
+
+/* ------------------------------------
+   APPLY GROUP LIST — MOBILE RESPONSIVE
+   ------------------------------------ */
+@media (max-width: 768px) {
+
+  /* Reduce top padding */
+  .row-padding-top-1 {
+    padding-top: 10px !important;
+  }
+
+  /* Page title */
+  h2 {
+    font-size: 20px !important;
+    text-align: center !important;
+  }
+
+  .alert {
+    font-size: 13px !important;
+    padding: 8px !important;
+  }
+
+  /* Filter section stacked on mobile */
+  .form-inline {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+  }
+
+  .form-inline label {
+    font-size: 14px !important;
+  }
+
+  .form-inline select.form-control {
+    width: 100% !important;
+    font-size: 14px !important;
+  }
+
+  /* Create button moves below */
+  .col-sm-4.text-right {
+    text-align: center !important;
+    margin-top: 10px !important;
+  }
+
+  .col-sm-4.text-right .btn {
+    width: 100% !important;
+  }
+
+  /* Table wrapper scrollable */
+  .table-responsive-mobile {
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+    max-height: 70vh !important;
+    border: 1px solid #ccc !important;
+    border-radius: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Table formatting */
+  .table-responsive-mobile table {
+    width: max-content !important;
+    min-width: 700px !important;
+    white-space: nowrap !important;
+    border-collapse: collapse !important;
+  }
+
+  /* Cell fonts */
+  .table-responsive-mobile th,
+  .table-responsive-mobile td {
+    font-size: 12px !important;
+    padding: 6px !important;
+    border: 1px solid #ccc !important;
+  }
+
+  /* Badge */
+  .label {
+    font-size: 11px !important;
+    padding: 3px 6px !important;
+  }
+
+  /* Link wrap fix */
+  .table-responsive-mobile td a {
+    white-space: nowrap !important;
+    display: inline-block;
+  }
+}
+
+/* --------------------------------------
+   APPLY GROUP CREATE — MOBILE RESPONSIVE
+   -------------------------------------- */
+@media (max-width: 768px) {
+
+  /* Reduce top space */
+  .row-padding-top-1 {
+    padding-top: 10px !important;
+  }
+
+  /* Page title */
+  h2 {
+    font-size: 20px !important;
+    text-align: center !important;
+  }
+
+  .alert {
+    font-size: 14px !important;
+    padding: 10px !important;
+  }
+
+  /* FORM AREA */
+
+  /* Remove offset for mobile */
+  .col-md-offset-2.col-md-2,
+  .col-md-offset-2.col-md-8,
+  .col-md-4 {
+    margin: 0 !important;
+    padding: 0 12px !important;
+    width: 100% !important;
+  }
+
+  /* Label + input stack vertically */
+  .input-label {
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+    display: block !important;
+  }
+
+  .form-control {
+    width: 100% !important;
+    font-size: 14px !important;
+    padding: 8px 10px !important;
+  }
+
+  /* TABLE WRAPPER */
+  .table-responsive-mobile,
+  .col-md-offset-2.col-md-8 {
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+    max-height: 70vh !important;
+    border: 1px solid #ccc !important;
+    border-radius: 6px;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 !important;
+  }
+
+  /* Table inside */
+  .table-responsive-mobile table,
+  .col-md-offset-2.col-md-8 table {
+    width: max-content !important;
+    min-width: 650px !important;
+    border-collapse: collapse !important;
+    white-space: nowrap !important;
+  }
+
+  /* Sticky header fix */
+  .table-responsive-mobile th,
+  .col-md-offset-2.col-md-8 th {
+    position: sticky !important;
+    top: 0 !important;
+    background: #0E7AC4 !important;
+    color: white !important;
+    z-index: 5 !important;
+    font-size: 12px !important;
+    padding: 6px !important;
+    border: 1px solid #ccc !important;
+  }
+
+  /* Body cells */
+  .table-responsive-mobile td,
+  .col-md-offset-2.col-md-8 td {
+    font-size: 12px !important;
+    padding: 6px !important;
+    border: 1px solid #ccc !important;
+    vertical-align: middle !important;
+  }
+
+  /* Radio options readable */
+  td label {
+    display: block !important;
+    font-size: 12px !important;
+    margin-bottom: 5px !important;
+  }
+
+  /* Dropdowns inside table */
+  td select.form-control {
+    font-size: 12px !important;
+    padding: 6px !important;
+  }
+
+  /* BUTTONS FULL WIDTH */
+  .text-center .btn {
+    width: 100% !important;
+    font-size: 16px !important;
+    margin-top: 10px !important;
+  }
+
+  .text-center a.btn {
+    margin-left: 0 !important;
+  }
+}

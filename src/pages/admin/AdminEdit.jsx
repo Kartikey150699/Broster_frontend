@@ -255,7 +255,7 @@ export default function AdminEdit() {
             </button>
 
             <a href="/admin/list" className="btn btn-default" style={{ marginLeft: 10 }}>
-              戻る
+              <i className="fa fa-chevron-left fa-fw"></i>戻る
             </a>
           </div>
 

@@ -94,11 +94,11 @@ export default function ApplyGroupList() {
       {/* TABLE */}
       <div className="row row-padding-top-1" style={{ padding: "10px 10px" }}>
         <div
-          className="col-md-12"
+          className="col-md-12 table-responsive-mobile"
           style={{
-            overflowX: "scroll",
-            padding: 0,
-            height: "500px",
+            overflowX: "visible",
+            padding: "0 0",
+            height: "auto",
           }}
         >
           <div className="panel panel-default">
