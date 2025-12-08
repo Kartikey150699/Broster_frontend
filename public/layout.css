@@ -580,13 +580,14 @@ label.input-label {
 
 
 /* MOBILE TABLE */
+/* MOBILE TABLE */
 @media (max-width: 768px) {
 
   /* OUTER WRAPPER */
   .table-responsive-mobile {
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch;
-    border: 1px solid #ccc !important;
+    border: 1px solid #ccc !important; /* outer border only */
     border-radius: 6px;
     padding: 0 !important;
   }
@@ -595,44 +596,24 @@ label.input-label {
   .table-responsive-mobile table {
     width: max-content !important;
     min-width: 600px !important;
-    border-collapse: separate !important;
-    border-spacing: 0 !important;
+    border-collapse: collapse !important;
     border: none !important;
   }
 
-  /* HEADERS & CELLS — NO BORDER, USE SHADOW INSTEAD */
+  /* HEADERS & CELLS — NO INTERNAL BORDERS */
   .table-responsive-mobile th,
   .table-responsive-mobile td {
     border: none !important;
-    padding: 8px !important;
+    padding: 10px !important;
     white-space: nowrap !important;
-
-    /* INTERNAL CELL BORDER */
-    box-shadow: 0 0 0 1px #ccc inset !important;
+    box-shadow: none !important; /* REMOVE GRAY LINES */
   }
 
-  /* HEADER COLOR */
+  /* HEADER STYLE */
   .table-responsive-mobile th.primary {
     background: #0E7AC4 !important;
     color: #fff !important;
     font-size: 12px !important;
-  }
-
-  /* REMOVE LAST CELL DOUBLE SHADOW */
-  .table-responsive-mobile td:last-child,
-  .table-responsive-mobile th:last-child {
-    box-shadow:
-      -1px 0 0 0 #ccc inset,  /* left border */
-       0 -1px 0 0 #ccc inset, /* top border */
-       0  1px 0 0 #ccc inset; /* bottom border */
-  }
-
-  /* REMOVE LAST ROW DOUBLE SHADOW */
-  .table-responsive-mobile tr:last-child td {
-    box-shadow:
-      -1px 0 0 0 #ccc inset,
-       1px 0 0 0 #ccc inset,
-       0 -1px 0 0 #ccc inset;
   }
 }
 
@@ -974,5 +955,27 @@ label.input-label {
 
   .text-center a.btn {
     margin-left: 0 !important;
+  }
+}
+
+/* --------------------------------------
+   GROUP LIST — MOBILE RESPONSIVE
+   -------------------------------------- */
+@media (max-width: 768px) {
+
+  /* Fix missing table borders on mobile */
+  table.table {
+    border-collapse: collapse !important;
+    border: 1px solid #ccc !important;
+  }
+
+  table.table th,
+  table.table td {
+    border: 1px solid #ccc !important;
+  }
+
+  /* Also ensure the panel wrapper keeps border visible */
+  .panel {
+    border: 1px solid #ccc !important;
   }
 }
