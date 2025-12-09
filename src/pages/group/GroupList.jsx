@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import OwnerLayout from "../../layouts/OwnerLayout";
+import NotificationBar from "../../components/NotificationBar";
 import UniversalModal from "../../components/UniversalModal";
 
 export default function GroupList() {
   const [groups, setGroups] = useState([]);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState(null);
+  const [infoMessages, setInfoMessages] = useState([]);
+  const [errorMessages, setErrorMessages] = useState([]);
+  const [deleteSuccess, setDeleteSuccess] = useState("");
+  const [deleteError, setDeleteError] = useState("");
 
   useEffect(() => {
     loadGroups();
@@ -52,8 +57,47 @@ export default function GroupList() {
     },
   ];
 
+  // DELETE API 
+  const deleteGroup = async () => {
+  if (!selectedGroup) return;
+
+  try {
+    // TODO: Replace with real API call later
+    // await axios.post("API_URL/delete", { companyId: selectedGroup.companyId, groupId: selectedGroup.groupId });
+
+    setDeleteModalVisible(false);
+
+    // SUCCESS notification
+    setDeleteSuccess(`グループ「${selectedGroup.groupName}」を削除しました。`);
+    setDeleteError("");
+
+    // Clear message after 3 sec
+    setTimeout(() => setDeleteSuccess(""), 3000);
+
+    loadGroups();
+
+  } catch (err) {
+    console.error(err);
+
+    setDeleteModalVisible(false);
+
+    // ERROR notification
+    setDeleteError("削除に失敗しました。");
+    setDeleteSuccess("");
+
+    setTimeout(() => setDeleteError(""), 3000);
+  }
+};
+
   return (
     <OwnerLayout title="グループ一覧">
+
+      {/* Notification Bar */}
+      <NotificationBar 
+      infoMessages={[...infoMessages, deleteSuccess ? deleteSuccess : null].filter(Boolean)}
+      errorMessages={[...errorMessages, deleteError ? deleteError : null].filter(Boolean)}
+      />
+
       {/* TITLE */}
       <div className="row row-padding-top-1">
         <div className="col-md-12">
@@ -160,10 +204,7 @@ export default function GroupList() {
 
         onCancel={() => setDeleteModalVisible(false)}
 
-        onConfirm={() => {
-            console.log("DELETE CONFIRMED:", selectedGroup);
-            setDeleteModalVisible(false);
-        }}
+        onConfirm={deleteGroup}
         />
 
     </OwnerLayout>

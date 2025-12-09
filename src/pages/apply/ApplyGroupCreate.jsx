@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import OwnerLayout from "../../layouts/OwnerLayout";
+import NotificationBar from "../../components/NotificationBar";
 
 export default function ApplyGroupCreate() {
   const companyId = "11018"; // TODO: replace with real companyId from login session
@@ -91,19 +92,8 @@ export default function ApplyGroupCreate() {
   return (
     <OwnerLayout title="承認グループ登録">
 
-      {/* SUCCESS */}
-      {successMsg && (
-        <div className="alert alert-info text-center" style={{ marginTop: 10 }}>
-          <i className="fa fa-info-circle"></i> {successMsg}
-        </div>
-      )}
-
-      {/* ERROR */}
-      {errorMsg && (
-        <div className="alert alert-danger text-center" style={{ marginTop: 10 }}>
-          <i className="fa fa-exclamation-triangle"></i> {errorMsg}
-        </div>
-      )}
+    {/* Notification Bar */}
+    <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
 
       {/* TITLE */}
       <div className="row row-padding-top-1">

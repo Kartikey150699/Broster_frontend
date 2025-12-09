@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AdminLayout from "../../layouts/AdminLayout";
 import axios from "axios";
 import UniversalModal from "../../components/UniversalModal";
+import NotificationBar from "../../components/NotificationBar";
 
 /**
  * Fetches real data from Spring Boot API
@@ -105,27 +106,11 @@ export default function AdminList() {
   return (
     <AdminLayout title="管理者一覧">
 
-      {/* ===== TOP NOTIFICATION BAR ===== */}
-
-      {deleteSuccess && (
-        <div className="row" style={{ marginTop: "15px" }}>
-          <div className="col-md-12">
-            <div className="alert alert-info text-center">
-              <i className="fa fa-check-circle"></i> {deleteSuccess}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {deleteError && (
-        <div className="row" style={{ marginTop: "15px" }}>
-          <div className="col-md-12">
-            <div className="alert alert-danger text-center">
-              <i className="fa fa-exclamation-triangle"></i> {deleteError}
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Notification Bar */}
+      <NotificationBar
+      infoMessages={[...infoMessages, deleteSuccess].filter(Boolean)}
+      errorMessages={[...errorMessages, deleteError].filter(Boolean)}
+      />
 
       {/* PAGE TITLE */}
       <div className="row row-padding-top-1">
@@ -142,40 +127,6 @@ export default function AdminList() {
         <div className="text-center text-muted" style={{ padding: 20 }}>
           <i className="fa fa-spinner fa-spin fa-2x"></i>
           <p>読み込み中…</p>
-        </div>
-      )}
-
-      {/* INFO MESSAGES */}
-      {infoMessages.length > 0 && (
-        <div className="row row-padding-top-1">
-          <div className="col-sm-12 text-center">
-            <div
-              className="alert alert-info alert-dismissible fade in"
-              role="alert"
-            >
-              <span className="fa fa-info-circle fa-fw"></span>
-              {infoMessages.map((msg, i) => (
-                <div key={i}>{msg}</div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ERROR MESSAGES */}
-      {errorMessages.length > 0 && (
-        <div className="row row-padding-top-1">
-          <div className="col-sm-12 text-center">
-            <div
-              className="alert alert-danger alert-dismissible fade in"
-              role="alert"
-            >
-              <span className="fa fa-exclamation-triangle fa-fw"></span>
-              {errorMessages.map((msg, i) => (
-                <div key={i}>{msg}</div>
-              ))}
-            </div>
-          </div>
         </div>
       )}
 

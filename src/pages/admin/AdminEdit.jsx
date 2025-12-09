@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 import AdminLayout from "../../layouts/AdminLayout";
+import NotificationBar from "../../components/NotificationBar";
+import axios from "axios";
 
 export default function AdminEdit() {
   const { companyId, adminId } = useParams();
@@ -149,19 +150,8 @@ export default function AdminEdit() {
   return (
     <AdminLayout title="管理者更新">
 
-      {/* SUCCESS */}
-      {infoMessages.length > 0 && (
-        <div className="alert alert-info text-center">
-          {infoMessages.map((msg, i) => <div key={i}>{msg}</div>)}
-        </div>
-      )}
-
-      {/* ERROR */}
-      {errorMessages.length > 0 && (
-        <div className="alert alert-danger text-center">
-          {errorMessages.map((msg, i) => <div key={i}>{msg}</div>)}
-        </div>
-      )}
+    {/* Notification Bar */}
+    <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
 
       <div className="row row-padding-top-1">
         <div className="col-md-12">
@@ -254,8 +244,8 @@ export default function AdminEdit() {
               <i className="fa fa-check"></i> 更新
             </button>
 
-            <a href="/admin/list" className="btn btn-default" style={{ marginLeft: 10 }}>
-              <i className="fa fa-chevron-left fa-fw"></i>戻る
+            <a href="/admin/list" className="btn btn-primary" style={{ marginLeft: 10 }}>
+              <i className="fa fa-ban fa-fw"></i>戻る
             </a>
           </div>
 

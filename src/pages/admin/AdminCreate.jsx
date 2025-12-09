@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import AdminLayout from "../../layouts/AdminLayout";
+import NotificationBar from "../../components/NotificationBar";
 import { useNavigate } from "react-router-dom";
 
 export default function AdminCreate() {
@@ -76,19 +77,8 @@ export default function AdminCreate() {
   return (
     <AdminLayout title="管理者登録">
       
-      {/* SUCCESS MESSAGE */}
-      {infoMessages.length > 0 && (
-        <div className="alert alert-info text-center">
-          {infoMessages.map((m, i) => <div key={i}>{m}</div>)}
-        </div>
-      )}
-
-      {/* ERROR MESSAGE */}
-      {errorMessages.length > 0 && (
-        <div className="alert alert-danger text-center">
-          {errorMessages.map((m, i) => <div key={i}>{m}</div>)}
-        </div>
-      )}
+    {/* Notification Bar */}
+    <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
       
       {/* TITLE */}
       <div className="row row-padding-top-1">
@@ -173,10 +163,10 @@ export default function AdminCreate() {
 
             <a
               href="/admin/list"
-              className="btn btn-default"
+              className="btn btn-primary"
               style={{ marginLeft: 10 }}
             >
-              <i className="fa fa-chevron-left fa-fw"></i>戻る
+              <i className="fa fa-ban fa-fw"></i>戻る
             </a>
           </div>
 

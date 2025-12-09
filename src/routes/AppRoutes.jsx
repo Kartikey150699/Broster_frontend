@@ -9,6 +9,8 @@ import AdminCreate from "../pages/admin/AdminCreate";
 import ApplyGroupList from "../pages/apply/ApplyGroupList";
 import ApplyGroupCreate from "../pages/apply/ApplyGroupCreate";
 import GroupList from "../pages/group/GroupList";
+import GroupCreate from "../pages/group/GroupCreate";
+import GroupEdit from "../pages/group/GroupEdit";
 
 
 // ========================================================
@@ -36,6 +38,12 @@ export default function AppRoutes() {
 
         {/* GROUP LIST */}
         <Route path="/group/list" element={<GroupList />} />
+
+        {/* GROUP CREATE */}
+        <Route path="/group/create" element={<GroupCreate />} />
+
+        {/* GROUP EDIT */}
+        <Route path="/group/edit/:companyId/:groupId" element={<GroupEdit />} />
 
         {/* DEFAULT REDIRECT */}
         <Route path="*" element={<Navigate to="/admin/list" replace />} />

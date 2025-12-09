@@ -136,7 +136,7 @@ export default function ApplyGroupList() {
                 {filteredRows.map((row, idx) => (
                   <tr key={idx} className="text-center">
 
-                    {/* Group Name (Clickable link like JSP) */}
+                    {/* Group Name */}
                     <td>
                       <a href={`/apply-group/edit/${row.applyGroupId}`}>
                         {row.applyGroupName}

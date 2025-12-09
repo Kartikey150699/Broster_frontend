@@ -18,6 +18,7 @@ export default function UniversalModal({
 
   onCancel,
   onConfirm,
+  hideCancel = false 
 }) {
   if (!visible) return null;
 
@@ -98,13 +99,15 @@ export default function UniversalModal({
               borderTop: "1px solid #eee",
             }}
           >
-            <button
-              className={`btn ${cancelColor}`}
-              onClick={onCancel}
-              style={{ width: "100px" }}
-            >
-              {cancelText}
-            </button>
+            {!hideCancel && (
+              <button
+                className={`btn ${cancelColor}`}
+                onClick={onCancel}
+                style={{ width: "100px" }}
+              >
+                {cancelText}
+              </button>
+            )}
 
             <button
               className={`btn ${confirmColor}`}
