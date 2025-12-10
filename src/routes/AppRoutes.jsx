@@ -8,9 +8,15 @@ import AdminEdit from "../pages/admin/AdminEdit";
 import AdminCreate from "../pages/admin/AdminCreate";
 import ApplyGroupList from "../pages/apply/ApplyGroupList";
 import ApplyGroupCreate from "../pages/apply/ApplyGroupCreate";
+import ApplyGroupEdit from "../pages/apply/ApplyGroupEdit";
 import GroupList from "../pages/group/GroupList";
 import GroupCreate from "../pages/group/GroupCreate";
 import GroupEdit from "../pages/group/GroupEdit";
+import CompanyCreate from "../pages/company/CompanyCreate";
+import EmployeeList from "../pages/employee/EmployeeList";
+import EmployeeCreate from "../pages/employee/EmployeeCreate";
+import EmployeeEdit from "../pages/employee/EmployeeEdit";
+import ShiftList from "../pages/shift/ShiftList";
 
 
 // ========================================================
@@ -36,6 +42,9 @@ export default function AppRoutes() {
         {/* APPLY GROUP CREATE */}
         <Route path="/apply-group/create" element={<ApplyGroupCreate />} />
 
+        {/* APPLY GROUP EDIT */}
+        <Route path="/apply-group/edit/:applyGroupId" element={<ApplyGroupEdit />} />
+
         {/* GROUP LIST */}
         <Route path="/group/list" element={<GroupList />} />
 
@@ -44,6 +53,24 @@ export default function AppRoutes() {
 
         {/* GROUP EDIT */}
         <Route path="/group/edit/:companyId/:groupId" element={<GroupEdit />} />
+
+        {/* COMPANY CREATE */}
+        <Route path="/company/create" element={<CompanyCreate />} />
+
+        {/* COMPANY EDIT */}
+        <Route path="/company/edit" element={<CompanyCreate />} />
+
+        {/* EMPLOYEE LIST */}
+        <Route path="/employee/list" element={<EmployeeList />} />
+
+        {/* EMPLOYEE CREATE */}
+        <Route path="/employee/create" element={<EmployeeCreate />} />
+
+        {/* EMPLOYEE EDIT */}
+        <Route path="/employee/edit/:companyId/:groupId/:employeeId" element={<EmployeeEdit />}/>
+
+        {/* SHIFT LIST */}
+        <Route path="/shift/list" element={<ShiftList />} />
 
         {/* DEFAULT REDIRECT */}
         <Route path="*" element={<Navigate to="/admin/list" replace />} />

@@ -7,6 +7,8 @@ export default function ApplyGroupCreate() {
   const companyId = "11018"; // TODO: replace with real companyId from login session
 
   const [groupName, setGroupName] = useState("");
+  const [infoMessages, setInfoMessages] = useState([]);
+  const [errorMessages, setErrorMessages] = useState([]);
 
   const [rows, setRows] = useState(
     Array.from({ length: 10 }).map((_, i) => ({
@@ -296,10 +298,10 @@ export default function ApplyGroupCreate() {
 
         <a
           href="/apply-group/list"
-          className="btn btn-default"
+          className="btn btn-primary"
           style={{ marginLeft: 10 }}
         >
-          <i className="fa fa-chevron-left fa-fw"></i> 戻る
+          <i className="fa fa-ban fa-fw"></i> 戻る
         </a>
       </div>
 

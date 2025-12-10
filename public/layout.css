@@ -979,3 +979,36 @@ label.input-label {
     border: 1px solid #ccc !important;
   }
 }
+
+/* ApplyGroupEdit mobile button alignment */
+@media (max-width: 768px) {
+
+  /* Remove Bootstrap column padding that pushes content left */
+  .mobile-button-group {
+    padding: 0 !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;     /* Center horizontally */
+    justify-content: center !important;
+    gap: 12px !important;
+  }
+
+  /* Ensure each button is centered and equal width */
+  .mobile-button-group .btn {
+    display: block !important;
+    width: 80% !important;
+    max-width: 300px !important;
+
+    margin-left: auto !important;       
+    margin-right: auto !important;      
+  }
+
+  /* Remove any inline margins added in JSX */
+  .mobile-button-group .btn-primary,
+  .mobile-button-group .btn-danger {
+    margin: 0 auto !important;
+  }
+}

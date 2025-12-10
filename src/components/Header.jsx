@@ -116,7 +116,7 @@ export default function OwnerHeader({ onLogoutClick }) {
               {drop === "plan" && (
                 <ul className="dropdown-menu" style={{ display: "block" }}>
                   <li><Link to="/workplan/list"><i className="fa fa-calendar fa-fw"></i> 勤務予定一覧</Link></li>
-                  <li><Link to="/shift/show"><i className="fa fa-calendar fa-fw"></i> シフト一覧</Link></li>
+                  <li><Link to="/shift/list"><i className="fa fa-calendar fa-fw"></i> シフト一覧</Link></li>
                   <li><Link to="/template/show"><i className="fa fa-calendar fa-fw"></i> テンプレート一覧</Link></li>
                 </ul>
               )}
