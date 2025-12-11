@@ -1012,3 +1012,36 @@ label.input-label {
     margin: 0 auto !important;
   }
 }
+
+select.form-control {
+  text-align-last: center;
+}
+
+select.form-control option {
+  text-align: center;
+}
+
+/* Remove the clock icon from input[type=time] */
+input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+/* make it look cleaner */
+input[type="time"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.react-time-picker-lite input {
+  width: 68px !important;
+  height: 32px !important;
+  font-size: 13px;
+  text-align: center;
+  padding: 2px 4px;
+  border: 1px solid #ccc;
+}
+
+.react-time-picker-lite {
+  display: inline-block;
+  margin-right: 4px;
+}

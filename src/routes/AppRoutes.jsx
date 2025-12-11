@@ -17,6 +17,7 @@ import EmployeeList from "../pages/employee/EmployeeList";
 import EmployeeCreate from "../pages/employee/EmployeeCreate";
 import EmployeeEdit from "../pages/employee/EmployeeEdit";
 import ShiftList from "../pages/shift/ShiftList";
+import ShiftCreate from "../pages/shift/ShiftCreate";
 
 
 // ========================================================
@@ -71,6 +72,9 @@ export default function AppRoutes() {
 
         {/* SHIFT LIST */}
         <Route path="/shift/list" element={<ShiftList />} />
+
+        {/* SHIFT CREATE */}
+        <Route path="/shift/create" element={<ShiftCreate />} />
 
         {/* DEFAULT REDIRECT */}
         <Route path="*" element={<Navigate to="/admin/list" replace />} />
