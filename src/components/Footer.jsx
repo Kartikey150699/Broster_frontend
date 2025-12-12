@@ -16,7 +16,7 @@ export default function OwnerFooter() {
             {/* Right side copyright */}
             <div
               className="col-lg-4 text-right"
-              style={{ paddingRight: "186px" }}
+              style={{ paddingRight: "170px" }}
             >
               <a
                 href="http://www.ifnt.co.jp"

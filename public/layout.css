@@ -1045,3 +1045,155 @@ input[type="time"] {
   display: inline-block;
   margin-right: 4px;
 }
+
+/* =======================================================
+   MOBILE: Center all labels and form items
+   ======================================================= */
+@media (max-width: 768px) {
+
+  /* Center the label text like シフト名 / テンプレート */
+  .input-label {
+    text-align: center !important;
+    width: 100% !important;
+    display: block !important;
+    margin-bottom: 5px !important;
+  }
+
+  /* Reset the Bootstrap offset column */
+  .col-md-offset-2.col-md-2 {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+  }
+
+  /* Make the input/select fields full width */
+  .col-md-3 {
+    width: 100% !important;
+    text-align: center !important;
+    margin-top: 3px !important;
+  }
+
+  /* Center the checkbox row (休日 / 一括チェック) */
+  .col-md-offset-2.col-md-8,
+  .col-md-8 {
+    width: 100% !important;
+    text-align: center !important;
+  }
+}
+
+/* =======================================================
+   MOBILE DESIGN FOR SHIFT CREATE + EDIT TABLE
+   ======================================================= */
+@media (max-width: 768px) {
+
+  /* Force table wrapper to allow horizontal scroll */
+  .col-md-12[style*="overflowX"],
+  .col-md-12[style*="overflow-x"] {
+    overflow-x: auto !important;
+    overflow-y: scroll !important;
+    -webkit-overflow-scrolling: touch;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* Prevent table from shrinking — make it wide */
+  table.table-condensed {
+    min-width: 950px !important;   /* Now visible & scrollable */
+    width: auto !important;        /* Remove 100% shrink */
+    white-space: nowrap !important;
+  }
+
+  /* Make cells readable */
+  table.table-condensed td,
+  table.table-condensed th {
+    padding: 6px !important;
+    font-size: 13px !important;
+  }
+
+  /* Make MiniTimePicker visible */
+  .react-time-picker__wrapper {
+    min-width: 70px !important;
+    width: 70px !important;
+    height: 28px !important;
+  }
+
+  .react-time-picker__inputGroup__input {
+    font-size: 12px !important;
+    padding: 2px !important;
+  }
+
+  /* Dropdown sizing */
+  select.form-control.input-sm {
+    min-width: 70px !important;
+    height: 30px !important;
+    font-size: 12px !important;
+  }
+}
+
+/* =======================================================
+   BOTTOM BUTTON ALIGNMENT - Shift pages
+   ======================================================= */
+@media (max-width: 768px) {
+
+  /* Center the whole button row */
+  .row.row-padding-top-2 .col-md-12 {
+    text-align: center !important;
+    width: 100% !important;
+    display: block !important;
+  }
+
+  /* Make buttons appear in one line and centered */
+  .row.row-padding-top-2 .btn {
+    display: inline-block !important;
+    margin: 8px 6px !important;
+    float: none !important;
+  }
+
+  /* Prevent any bootstrap column float issues */
+  .row.row-padding-top-2 * {
+    float: none !important;
+  }
+}
+
+/* Make popup small */
+.react-time-picker__clock {
+  display: none !important; /* remove big clock */
+}
+
+.react-time-picker__wrapper {
+  height: 26px !important;
+  border: 1px solid #ccc !important;
+}
+
+.react-time-picker__inputGroup__input {
+  padding: 3px !important;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Enable arrows inside input */
+.react-time-picker__inputGroup__input::-webkit-inner-spin-button {
+  opacity: 1 !important;
+  height: 20px;
+}
+
+/* Template list button responsiveness */
+@media (max-width: 768px) {
+
+  .template-add-btn {
+    float: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    text-align: center !important;
+    width: 100% !important;
+    display: block !important;
+  }
+
+  .template-add-btn .btn {
+    margin: 0 auto !important;
+    display: inline-block !important;
+    width: 90%;
+    max-width: 300px;
+  }
+}

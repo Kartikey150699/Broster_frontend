@@ -114,62 +114,6 @@ export default function ShiftCreate() {
   };
 
   // ------------------------------------------
-  // Autofill feature (rows / columns)
-  // ------------------------------------------
-  const autoFillRow = () => {
-  if (!selectedCell) return;
-  const { weekIndex, dayIndex, shiftIndex } = selectedCell;
-
-  const src = recordTable[weekIndex][dayIndex];
-  const startKey = `startTime${shiftIndex + 1}`;
-  const endKey   = `endTime${shiftIndex + 1}`;
-  const breakKey = `breakTime${shiftIndex + 1}`;
-
-  const set = {
-    start: src[startKey],
-    end: src[endKey],
-    break: src[breakKey]
-  };
-
-  const updated = [...recordTable];
-  for (let i = 0; i < 5; i++) {
-    updated[weekIndex][dayIndex][`startTime${i+1}`] = set.start;
-    updated[weekIndex][dayIndex][`endTime${i+1}`] = set.end;
-    updated[weekIndex][dayIndex][`breakTime${i+1}`] = set.break;
-  }
-
-  setRecordTable(updated);
-};
-
-const autoFillColumn = () => {
-  if (!selectedCell) return;
-  const { weekIndex, dayIndex, shiftIndex } = selectedCell;
-
-  const src = recordTable[weekIndex][dayIndex];
-  const startKey = `startTime${shiftIndex + 1}`;
-  const endKey   = `endTime${shiftIndex + 1}`;
-  const breakKey = `breakTime${shiftIndex + 1}`;
-
-  const set = {
-    start: src[startKey],
-    end: src[endKey],
-    break: src[breakKey]
-  };
-
-  const updated = [...recordTable];
-
-  for (let w = 0; w < 6; w++) {
-    for (let d = 0; d < 7; d++) {
-      updated[w][d][startKey] = set.start;
-      updated[w][d][endKey] = set.end;
-      updated[w][d][breakKey] = set.break;
-    }
-  }
-
-  setRecordTable(updated);
-};
-
-  // ------------------------------------------
   // Drag Feature
   // ------------------------------------------
  const handleDragStart = (w, d, shiftIndex) => {
@@ -186,6 +130,8 @@ const handleDragEnter = (w, d, shiftIndex) => {
 const handleDragEnd = () => {
   if (!dragStart || !dragEnd) {
     setIsDragging(false);
+    setDragStart(null);
+    setDragEnd(null);
     return;
   }
 
@@ -221,11 +167,13 @@ const handleDragEnd = () => {
 
   setRecordTable(updated);
   setIsDragging(false);
+  setDragStart(null);
+  setDragEnd(null);
 };
 
-  // ------------------------------------------
-  // cell Highlighting
-  // ------------------------------------------
+// ------------------------------------------
+// cell Highlighting
+// ------------------------------------------
 const isCellHighlighted = (w, d, shiftIndex) => {
   if (!isDragging || !dragStart || !dragEnd) return false;
 
@@ -250,7 +198,7 @@ const isCellHighlighted = (w, d, shiftIndex) => {
 };
 
   // ------------------------------------------
-  // RENDER PAGE
+  // UI RENDER
   // ------------------------------------------
   return (
     <OwnerLayout title="シフト登録">
@@ -339,18 +287,18 @@ const isCellHighlighted = (w, d, shiftIndex) => {
 
 
       {/* MAIN TABLE */}
-<div ref={tableRef}>
+    <div ref={tableRef}>
     <AutoFillControls
-      selectedCell={selectedCell}
-      onAutoFillRow={autoFillRow}
-      onAutoFillColumn={autoFillColumn}
-  />
+        selectedCell={selectedCell}
+        recordTable={recordTable}
+        setRecordTable={setRecordTable}
+    />
       <div className="row row-padding-top-1" style={{ padding: "10px 20px" }}>
         <div className="col-md-12" style={{ overflowX: "scroll", height: "500px", padding: 0 }}>
           <div className="panel panel-default">
             <table
               className="table table-bordered table-condensed"
-              style={{ width: "100%", whiteSpace: "nowrap", borderCollapse: "collapse" }}
+              style={{ width: "100%", borderCollapse: "collapse" }}
             >
               <thead>
                 <tr className="primary" style={{ position: "sticky", top: 0, zIndex: 1 }}>
@@ -398,32 +346,28 @@ const isCellHighlighted = (w, d, shiftIndex) => {
                                 onDragEnter={handleDragEnter}
                                 onDragEnd={handleDragEnd}
                             >
-                                <div className="form-inline">
-
+                                <div className="form-inline" style={{ whiteSpace: "nowrap", display: "flex", alignItems: "center" }}>
                                 <MiniTimePicker
                                     value={cell[startKey]}
                                     onChange={(val) => updateCell(w, d, startKey, val)}
                                     onSelect={() => setSelectedCell({ weekIndex: w, dayIndex: d, shiftIndex })}
+                                    style={{ marginRight: "5px" }}
                                 />
-
-                                ～
-
+                                <span style={{ marginRight: "5px", marginLeft: "5px" }}>〜</span>
                                 <MiniTimePicker
                                     value={cell[endKey]}
                                     onChange={(val) => updateCell(w, d, endKey, val)}
                                     onSelect={() => setSelectedCell({ weekIndex: w, dayIndex: d, shiftIndex })}
+                                    style={{ marginRight: "5px" }}
                                 />
-
                                 <select
                                     className="form-control input-sm"
-                                    style={{ height: 34 }}
+                                    style={{ height: "34px", marginLeft: "5px" }}
                                     value={cell[breakKey]}
                                     onChange={(e) => updateCell(w, d, breakKey, e.target.value)}
                                 >
                                     {Object.entries(BREAKTIME_MAP).map(([k, v]) => (
-                                    <option key={k} value={k}>
-                                        {v}
-                                    </option>
+                                    <option key={k} value={k}>{v}</option>
                                     ))}
                                 </select>
 
