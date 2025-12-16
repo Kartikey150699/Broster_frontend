@@ -5,13 +5,11 @@ import { useNavigate } from "react-router-dom";
 import MiniTimePicker from "../../components/MiniTimePicker";
 import AutoFillControls from "../../components/AutoFillControls";
 import ShiftCell from "../../components/ShiftCell";
+import useGridDragSelection from "../../components/grid/useGridDragSelection";
 
 export default function ShiftCreate() {
   const navigate = useNavigate();
   const [selectedCell, setSelectedCell] = useState(null);
-  const [dragStart, setDragStart] = useState(null);
-  const [dragEnd, setDragEnd] = useState(null);
-  const [isDragging, setIsDragging] = useState(false);
 
   const tableRef = useRef(null);
 
@@ -81,6 +79,13 @@ export default function ShiftCreate() {
 
   const [recordTable, setRecordTable] = useState(initialRecord);
 
+  const {
+    handleDragStart,
+    handleDragEnter,
+    handleDragEnd,
+    isCellHighlighted
+  } = useGridDragSelection(recordTable, setRecordTable);
+
   // ------------------------------------------
   // Helper functions
   // ------------------------------------------
@@ -112,90 +117,6 @@ export default function ShiftCreate() {
       recordTable,
     });
   };
-
-  // ------------------------------------------
-  // Drag Feature
-  // ------------------------------------------
- const handleDragStart = (w, d, shiftIndex) => {
-  setDragStart({ w, d, shiftIndex });
-  setDragEnd({ w, d, shiftIndex });
-  setIsDragging(true);
-};
-
-const handleDragEnter = (w, d, shiftIndex) => {
-  if (!isDragging) return;
-  setDragEnd({ w, d, shiftIndex });
-};
-
-const handleDragEnd = () => {
-  if (!dragStart || !dragEnd) {
-    setIsDragging(false);
-    setDragStart(null);
-    setDragEnd(null);
-    return;
-  }
-
-  const { w: sw, d: sd, shiftIndex: ss } = dragStart;
-  const { w: ew, d: ed, shiftIndex: es } = dragEnd;
-
-  const minW = Math.min(sw, ew);
-  const maxW = Math.max(sw, ew);
-  const minD = Math.min(sd, ed);
-  const maxD = Math.max(sd, ed);
-  const minS = Math.min(ss, es);
-  const maxS = Math.max(ss, es);
-
-  // values to copy
-  const src = recordTable[sw][sd];
-  
-  const updated = [...recordTable];
-
-  for (let w = minW; w <= maxW; w++) {
-    for (let d = minD; d <= maxD; d++) {
-      for (let s = minS; s <= maxS; s++) {
-
-        const startKey = `startTime${s + 1}`;
-        const endKey   = `endTime${s + 1}`;
-        const breakKey = `breakTime${s + 1}`;
-
-        updated[w][d][startKey] = src[`startTime${ss + 1}`];
-        updated[w][d][endKey]   = src[`endTime${ss + 1}`];
-        updated[w][d][breakKey] = src[`breakTime${ss + 1}`];
-      }
-    }
-  }
-
-  setRecordTable(updated);
-  setIsDragging(false);
-  setDragStart(null);
-  setDragEnd(null);
-};
-
-// ------------------------------------------
-// cell Highlighting
-// ------------------------------------------
-const isCellHighlighted = (w, d, shiftIndex) => {
-  if (!isDragging || !dragStart || !dragEnd) return false;
-
-  const { w: sw, d: sd, shiftIndex: ss } = dragStart;
-  const { w: ew, d: ed, shiftIndex: es } = dragEnd;
-
-  const minW = Math.min(sw, ew);
-  const maxW = Math.max(sw, ew);
-  const minD = Math.min(sd, ed);
-  const maxD = Math.max(sd, ed);
-  const minS = Math.min(ss, es);
-  const maxS = Math.max(ss, es);
-
-  return (
-    w >= minW &&
-    w <= maxW &&
-    d >= minD &&
-    d <= maxD &&
-    shiftIndex >= minS &&
-    shiftIndex <= maxS
-  );
-};
 
   // ------------------------------------------
   // UI RENDER
