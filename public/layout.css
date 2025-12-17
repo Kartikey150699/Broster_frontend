@@ -1197,3 +1197,71 @@ input[type="time"] {
     max-width: 300px;
   }
 }
+
+/* ===================================================
+   SEARCH AREA responsivness in the Paid holidays list
+===================================================== */
+.search-area {
+  margin: 0;
+  padding-left: 0;
+}
+
+.search-controls .form-control {
+  margin-left: 10px;
+}
+
+/* Buttons on desktop stay inline */
+.search-btn,
+.csv-btn {
+  margin-left: 10px;
+}
+
+/* Toggle button */
+.toggle-btn {
+  width: 30%;
+}
+
+/* MOBILE RESPONSIVENESS - Paid holidays list */
+@media (max-width: 767px) {
+
+  /* stack search items vertically */
+  .search-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .search-controls label {
+    margin-bottom: 5px;
+  }
+
+  .search-controls .form-control {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .search-btn,
+  .csv-btn {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+
+  .toggle-area {
+    margin-top: 15px;
+    text-align: center;
+  }
+
+  .toggle-btn {
+    width: 100% !important;
+  }
+}
+
+/* TABLE RESPONSIVE */
+@media (max-width: 767px) {
+  /* reduce horizontal padding */
+  .table {
+    font-size: 12px;
+  }
+}

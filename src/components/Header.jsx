@@ -93,7 +93,7 @@ export default function OwnerHeader({ onLogoutClick }) {
               {drop === "apply" && (
                 <ul className="dropdown-menu" style={{ display: "block" }}>
                   <li><Link to="/apply/list"><i className="fa fa-file fa-fw"></i> 勤務申請一覧</Link></li>
-                  <li><Link to="/paid/show"><i className="fa fa-file fa-fw"></i> 有休取得履歴</Link></li>
+                  <li><Link to="/paid/list"><i className="fa fa-file fa-fw"></i> 有休取得履歴</Link></li>
                   <li><Link to="/apply-group/list"><i className="fa fa-file fa-fw"></i> 承認グループ一覧</Link></li>
                 </ul>
               )}

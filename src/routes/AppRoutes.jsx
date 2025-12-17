@@ -20,6 +20,10 @@ import ShiftList from "../pages/shift/ShiftList";
 import ShiftCreate from "../pages/shift/ShiftCreate";
 import ShiftEdit from "../pages/shift/ShiftEdit";
 import TemplateList from "../pages/template/TemplateList";
+import TemplateCreate from "../pages/template/TemplateCreate";
+import TemplateEdit from "../pages/template/TemplateEdit";
+import PaidLeaveList from "../pages/paidleave/PaidLeaveList";
+import PaidLeaveEdit from "../pages/paidleave/PaidLeaveEdit";
 
 
 // ========================================================
@@ -83,6 +87,18 @@ export default function AppRoutes() {
 
         {/* TEMPLATE LIST */}
         <Route path="/template/list" element={<TemplateList />} />
+
+        {/* TEMPLATE CREATE */}
+        <Route path="/template/create" element={<TemplateCreate />} />
+
+        {/* TEMPLATE EDIT */}
+        <Route path="/template/edit/:templateId" element={<TemplateEdit />} />
+
+        {/* PAID LEAVE LIST */}
+        <Route path="/paid/list" element={<PaidLeaveList />} />
+
+        {/* PAID LEAVE EDIT */}
+        <Route path="/paid/edit/:companyId/:employeeId/:targetYear" element={<PaidLeaveEdit />} />
 
         {/* DEFAULT REDIRECT */}
         <Route path="*" element={<Navigate to="/admin/list" replace />} />
