@@ -1,24 +1,25 @@
 export default function UniversalModal({
   visible,
+  mode = "confirm", // "confirm" | "details"
+
   title = "確認",
   message = "",
   targetName,
   targetId,
 
-  // Custom button text
+  detailList = [], // for mode="details"
+
+  // Buttons (confirm mode)
   confirmText = "OK",
   cancelText = "キャンセル",
-
-  // Custom button colors: btn-danger / btn-primary / btn-warning / btn-default
   confirmColor = "btn-danger",
   cancelColor = "btn-default",
 
-  // Icon for header
   iconClass = "fa fa-exclamation-triangle",
 
   onCancel,
   onConfirm,
-  hideCancel = false 
+  hideCancel = false
 }) {
   if (!visible) return null;
 
@@ -37,8 +38,8 @@ export default function UniversalModal({
       <div
         className="modal-dialog"
         style={{
-          width: "380px",
-          margin: "180px auto",
+          width: mode === "details" ? "420px" : "380px",
+          margin: "160px auto",
         }}
       >
         <div
@@ -69,24 +70,71 @@ export default function UniversalModal({
             </button>
 
             <h4 className="modal-title" style={{ color: "white" }}>
-              <i className={iconClass}></i> {title}
+              {mode === "confirm" && <i className={iconClass}></i>} {title}
             </h4>
           </div>
 
           {/* BODY */}
-          <div className="modal-body text-center" style={{ padding: "25px" }}>
-            {message && (
-              <p style={{ fontSize: "15px", marginBottom: "10px" }}>{message}</p>
+          <div
+            className="modal-body"
+            style={{
+              padding: "20px",
+              textAlign: mode === "details" ? "left" : "center",
+            }}
+          >
+            {mode === "confirm" && (
+              <>
+                {message && (
+                  <p style={{ fontSize: "15px", marginBottom: "10px" }}>{message}</p>
+                )}
+
+                {targetName && (
+                  <p style={{ fontWeight: "bold", fontSize: "16px", color: "#d9534f" }}>
+                    {targetName}
+                  </p>
+                )}
+
+                {targetId && (
+                  <p style={{ fontSize: "12px", color: "#777" }}>（ID: {targetId}）</p>
+                )}
+              </>
             )}
 
-            {targetName && (
-              <p style={{ fontWeight: "bold", fontSize: "16px", color: "#d9534f" }}>
-                {targetName}
-              </p>
-            )}
+            {mode === "details" && (
+              <>
+                {detailList.map((d, i) => (
+                  <div key={i} style={{ marginBottom: 8, display: "flex", alignItems: "center" }}>
+                    <span
+                      className={`label ${
+                        d.detailApplyStatus === 0
+                          ? "label-info"
+                          : d.detailApplyStatus === 1
+                          ? "label-default"
+                          : "label-danger"
+                      }`}
+                      style={{
+                        fontSize: 12,
+                        width: 60,
+                        textAlign: "center",
+                        marginRight: 10,
+                      }}
+                    >
+                      {d.detailApplyStatusLabel}
+                    </span>
 
-            {targetId && (
-              <p style={{ fontSize: "12px", color: "#777" }}>（ID: {targetId}）</p>
+                    <span style={{ fontSize: 14 }}>{d.employeeName}</span>
+
+                    {d.applyLevel === 1 && (
+                      <span
+                        className="label label-danger"
+                        style={{ marginLeft: 8, fontSize: 12 }}
+                      >
+                        必
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </>
             )}
           </div>
 
@@ -99,23 +147,39 @@ export default function UniversalModal({
               borderTop: "1px solid #eee",
             }}
           >
-            {!hideCancel && (
+            {/* DETAILS MODE - ONLY CLOSE */}
+            {mode === "details" && (
               <button
-                className={`btn ${cancelColor}`}
+                className="btn btn-default"
                 onClick={onCancel}
-                style={{ width: "100px" }}
+                style={{ width: "120px" }}
               >
-                {cancelText}
+                閉じる
               </button>
             )}
 
-            <button
-              className={`btn ${confirmColor}`}
-              onClick={onConfirm}
-              style={{ width: "120px", marginLeft: "10px" }}
-            >
-              {confirmText}
-            </button>
+            {/* CONFIRM MODE - NORMAL BUTTONS */}
+            {mode === "confirm" && (
+              <>
+                {!hideCancel && (
+                  <button
+                    className={`btn ${cancelColor}`}
+                    onClick={onCancel}
+                    style={{ width: "100px" }}
+                  >
+                    {cancelText}
+                  </button>
+                )}
+
+                <button
+                  className={`btn ${confirmColor}`}
+                  onClick={onConfirm}
+                  style={{ width: "120px", marginLeft: "10px" }}
+                >
+                  {confirmText}
+                </button>
+              </>
+            )}
           </div>
 
         </div>

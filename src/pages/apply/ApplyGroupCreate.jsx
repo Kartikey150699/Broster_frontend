@@ -198,7 +198,7 @@ export default function ApplyGroupCreate() {
                     一括承認
                     </th>
                 </tr>
-            </thead>
+              </thead>
 
               <tbody>
                 {rows.map((row, idx) => (

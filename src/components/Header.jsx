@@ -70,7 +70,7 @@ export default function OwnerHeader({ onLogoutClick }) {
 
             {/* ------------------ 勤務状況 ------------------ */}
             <li className={location.pathname.startsWith("/status") ? "active" : ""}>
-              <Link to="/status/show">
+              <Link to="/status/list">
                 <i className="fa fa-users fa-fw" style={{ marginRight: "2px" }}></i>
                 勤務状況
               </Link>

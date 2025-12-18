@@ -1,0 +1,216 @@
+import { useState, useEffect } from "react";
+import OwnerLayout from "../../layouts/OwnerLayout";
+import NotificationBar from "../../components/NotificationBar";
+import MiniTimePicker from "../../components/MiniTimePicker";
+
+export default function ApplyEdit() {
+  const [infoMessages, setInfoMessages] = useState([]);
+  const [errorMessages, setErrorMessages] = useState([]);
+
+  // ======================
+  // MOCK: Existing data (will come from API)
+  // ======================
+  const mockApplyData = {
+    requestId: "R001",
+    groupName: "営業部",
+    employeeName: "田中 太郎",
+    employeeId: "E001",
+    applyCode: "110",
+    requestDateFrom: "2025-02-01",
+    requestDateTo: "2025-02-01",
+    requestBiko: "私用のため",
+    requestTimeFrom: "09:00",
+    requestTimeTo: "10:00",
+  };
+
+  const mockApplyCodeMap = {
+    "100": "有給休暇（全日）",
+    "110": "有給休暇（半日）",
+    "120": "慶弔休暇",
+    "130": "欠勤",
+    "140": "直行",
+    "150": "直帰",
+    "160": "直行直帰",
+    "170": "出張",
+    "180": "遅刻",
+    "190": "早退",
+    "200": "振替休日",
+    "210": "早出",
+  };
+
+  // Form filled with existing data
+  const [form, setForm] = useState({ ...mockApplyData });
+
+  const updateForm = (key, value) => {
+    setForm((p) => ({ ...p, [key]: value }));
+  };
+
+  // END date auto-fill
+  useEffect(() => {
+    if (form.requestDateFrom) {
+      updateForm("requestDateTo", form.requestDateFrom);
+    }
+  }, [form.requestDateFrom]);
+
+  // Auto hide messages
+  useEffect(() => {
+    if (infoMessages.length || errorMessages.length) {
+      const t = setTimeout(() => {
+        setInfoMessages([]);
+        setErrorMessages([]);
+      }, 2500);
+      return () => clearTimeout(t);
+    }
+  }, [infoMessages, errorMessages]);
+
+  // Submit mock
+  const submitForm = (e) => {
+    e.preventDefault();
+    setInfoMessages(["申請更新（モック）成功しました"]);
+  };
+
+  return (
+    <OwnerLayout title="申請更新">
+      <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+
+      {/* TITLE */}
+      <div className="row row-padding-top-1">
+        <div className="col-md-12">
+          <h2>
+            <i className="fa fa-file fa-fw"></i> 申請更新
+          </h2>
+          <hr className="star-primary" />
+        </div>
+      </div>
+
+      {/* FORM */}
+      <form className="form-horizontal" onSubmit={submitForm}>
+
+        {/* GROUP (READ-ONLY) */}
+        <div className="row row-padding-top-1">
+          <div className="col-md-offset-2 col-md-2">
+            <label className="input-label">グループ</label>
+          </div>
+          <div className="col-md-6">
+            <label className="input-label" style={{ color: "red" }}>
+              {form.groupName}
+            </label>
+          </div>
+        </div>
+
+        {/* EMPLOYEE NAME (READ-ONLY) */}
+        <div className="row form-inline row-padding-top-1">
+          <div className="col-md-offset-2 col-md-2">
+            <label className="input-label">従業員名</label>
+          </div>
+          <div className="col-md-6">
+            <label className="input-label" style={{ color: "red" }}>
+              {form.employeeName}
+            </label>
+          </div>
+        </div>
+
+        {/* APPLY CODE */}
+        <div className="row row-padding-top-1 form-inline">
+          <div className="col-md-offset-2 col-md-2">
+            <label className="input-label">申請項目</label>
+          </div>
+          <div className="col-md-3">
+            <select
+              className="form-control"
+              value={form.applyCode}
+              onChange={(e) => updateForm("applyCode", e.target.value)}
+            >
+              <option value="">未選択</option>
+              {Object.entries(mockApplyCodeMap).map(([k, v]) => (
+                <option key={k} value={k}>
+                  {v}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        {/* START DATE */}
+        <div className="row row-padding-top-1">
+          <div className="col-md-offset-2 col-md-2">
+            <label className="input-label">開始日</label>
+          </div>
+          <div className="col-md-3">
+            <input
+              type="date"
+              className="form-control"
+              value={form.requestDateFrom}
+              onChange={(e) => updateForm("requestDateFrom", e.target.value)}
+            />
+          </div>
+        </div>
+
+        {/* END DATE */}
+        <div className="row row-padding-top-1">
+          <div className="col-md-offset-2 col-md-2">
+            <label className="input-label">終了日</label>
+          </div>
+          <div className="col-md-3">
+            <input
+              type="date"
+              className="form-control"
+              value={form.requestDateTo}
+              onChange={(e) => updateForm("requestDateTo", e.target.value)}
+            />
+          </div>
+        </div>
+
+        {/* REASON */}
+        <div className="row row-padding-top-1">
+          <div className="col-md-offset-2 col-md-2">
+            <label className="input-label">申請理由</label>
+          </div>
+          <div className="col-md-4">
+            <textarea
+              rows="3"
+              className="form-control"
+              value={form.requestBiko}
+              onChange={(e) => updateForm("requestBiko", e.target.value)}
+            />
+          </div>
+        </div>
+
+        {/* TIME */}
+        <div className="row row-padding-top-1 form-inline">
+          <div className="col-md-offset-2 col-md-2">
+            <label className="input-label">申請時間</label>
+          </div>
+          <div className="col-md-6">
+            <MiniTimePicker
+              value={form.requestTimeFrom}
+              onChange={(val) => updateForm("requestTimeFrom", val)}
+            />
+            ～
+            <MiniTimePicker
+              value={form.requestTimeTo}
+              onChange={(val) => updateForm("requestTimeTo", val)}
+            />
+          </div>
+        </div>
+
+        {/* ACTION BUTTONS */}
+        <div className="row row-padding-top-2">
+          <div className="col-md-12 text-center">
+            <button className="btn btn-primary">
+              <i className="fa fa-refresh fa-fw"></i> 更新
+            </button>
+
+            <a
+              href="/apply/list"
+              className="btn btn-primary"
+              style={{ marginLeft: 10 }}
+            >
+              <i className="fa fa-ban fa-fw"></i> 戻る
+            </a>
+          </div>
+        </div>
+      </form>
+    </OwnerLayout>
+  );
+}

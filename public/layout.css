@@ -1265,3 +1265,82 @@ input[type="time"] {
     font-size: 12px;
   }
 }
+
+/* ============================== */
+/* ApplyList — label borders */
+/* ============================== */
+.label,
+.label-info,
+.label-default,
+.label-danger {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ==========================================================
+   MOBILE RESPONSIVE FOR StatusList PAGE
+   ==========================================================*/
+@media (max-width: 768px) {
+
+  /* Search form block stacking */
+  #form1 .form-inline {
+    display: block !important;
+    width: 100%;
+  }
+
+  #form1 label.input-label {
+    display: inline-block;
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+
+  /* Group select + date field */
+  #form1 select.form-control,
+  #form1 input[type="date"] {
+    width: 100% !important;
+    margin: 6px 0 !important;
+  }
+
+  /* Search button */
+  #form1 button.btn.btn-primary {
+    width: 100%;
+    margin-top: 8px !important;
+  }
+
+  /* CSV text block */
+  .csv-label {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: left !important;
+  }
+
+  /* CSV buttons */
+  .csv-buttons button {
+    width: 100%;
+    margin: 6px 0 !important;
+  }
+
+  /* Table wrapper */
+  .status-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0;
+  }
+
+  /* Table adjustments */
+  table.table {
+    font-size: 12px;
+  }
+
+  table.table th,
+  table.table td {
+    padding: 6px !important;
+  }
+
+  /* Employee name link icon spacing */
+  table.table td a i.fa {
+    margin-left: 4px;
+  }
+}
