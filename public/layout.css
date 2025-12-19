@@ -1344,3 +1344,86 @@ input[type="time"] {
     margin-left: 4px;
   }
 }
+
+/* ------------------------------
+   Bigger React DatePicker Calendar
+   ------------------------------ */
+
+/* Make calendar font bigger */
+.react-datepicker {
+  font-size: 1.25rem !important;
+}
+
+/* Bigger container */
+.react-datepicker__month-container {
+  width: 340px !important;
+}
+
+/* Header spacing */
+.react-datepicker__header {
+  padding: 15px !important;
+}
+
+/* Month/Year picker improved layout */
+.react-datepicker__month-year-dropdown,
+.react-datepicker__year-dropdown {
+  font-size: 1.3rem !important;
+}
+
+/* Grid for Month-Year picker */
+.react-datepicker__month-picker {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px !important;
+  padding: 10px !important;
+}
+
+/* Bigger Month selection buttons */
+.react-datepicker__month-text {
+  padding: 12px 0 !important;
+  font-size: 1.25rem !important;
+}
+
+/* Bigger Year picker */
+.react-datepicker__year-option {
+  font-size: 1.25rem !important;
+  padding: 8px 0 !important;
+}
+
+/* Increase clickable area */
+.react-datepicker__navigation {
+  top: 18px !important;
+}
+
+/* Input box style */
+.react-datepicker-wrapper input {
+  height: 38px !important;
+  font-size: 1.1rem !important;
+}
+
+/* Make DatePicker input text larger */
+.react-datepicker-wrapper .form-control,
+.react-datepicker__input-container input {
+    font-size: 16px !important;
+    height: 40px !important;
+    padding: 6px 10px !important;
+}
+
+body {
+  overflow-y: scroll !important;
+}
+
+/* Prevent page shifting when datepicker opens */
+.react-datepicker-popper {
+  z-index: 2000 !important;
+}
+
+.react-datepicker {
+  font-size: 14px;
+}
+
+body.react-datepicker-open {
+  overflow: auto !important;
+  padding-right: 0 !important;
+  margin-right: 0 !important;
+}

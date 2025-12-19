@@ -24,7 +24,13 @@ import TemplateCreate from "../pages/template/TemplateCreate";
 import TemplateEdit from "../pages/template/TemplateEdit";
 import PaidLeaveList from "../pages/paidleave/PaidLeaveList";
 import PaidLeaveEdit from "../pages/paidleave/PaidLeaveEdit";
-
+import ApplyList from "../pages/apply/ApplyList";
+import ApplyCreate from "../pages/apply/ApplyCreate";
+import ApplyEdit from "../pages/apply/ApplyEdit";
+import StatusList from "../pages/status/StatusList";
+import AttendanceBookOutputSearch from "../pages/print/AttendanceBookOutputSearch";
+import AttendanceBookOutputShow from "../pages/print/AttendanceBookOutputShow";
+import SummaryAttendance from "../pages/summary/SummaryAttendance";
 
 // ========================================================
 //   Application Routes
@@ -99,6 +105,27 @@ export default function AppRoutes() {
 
         {/* PAID LEAVE EDIT */}
         <Route path="/paid/edit/:companyId/:employeeId/:targetYear" element={<PaidLeaveEdit />} />
+
+        {/* APPLY LIST */}
+        <Route path="/apply/list" element={<ApplyList />} />
+
+        {/* APPLY CREATE */}
+        <Route path="/apply/create" element={<ApplyCreate />} />
+
+        {/* APPLY EDIT */}
+        <Route path="/apply/edit/:requestId" element={<ApplyEdit />} />
+
+        {/* STATUS LIST */}
+        <Route path="/status/list" element={<StatusList />} />
+
+        {/* PRINT SEARCH */}
+        <Route path="/print/search" element={<AttendanceBookOutputSearch />} />
+
+        {/* PRINT SHOW */}
+        <Route path="/print/show" element={<AttendanceBookOutputShow />} />
+
+        {/* SUMMARY ATTENDANCE */}
+        <Route path="/summary/show" element={<SummaryAttendance />} />
 
         {/* DEFAULT REDIRECT */}
         <Route path="*" element={<Navigate to="/admin/list" replace />} />
