@@ -5,7 +5,7 @@ html {
   min-height: 100%;
 }
 body {
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow-x: hidden;
   margin-bottom: 50px;
   margin-top: 50px;
@@ -21,7 +21,7 @@ a:hover,
 a:focus,
 a:active,
 a.active {
-  color: #FBA848;
+  color: #fba848;
   outline: none;
 }
 h1,
@@ -33,8 +33,7 @@ h6 {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
-  color: #0E7AC4;
-
+  color: #0e7ac4;
 }
 hr.star-light,
 hr.star-primary {
@@ -54,21 +53,21 @@ hr.star-light {
   border-color: white;
 }
 hr.star-light:after {
-  background-color: #18BC9C;
+  background-color: #18bc9c;
   color: white;
 }
 hr.star-primary {
-  border-color: #0E7AC4;
+  border-color: #0e7ac4;
 }
 hr.star-primary:after {
   background-color: white;
-  color: #0E7AC4;
+  color: #0e7ac4;
 }
 .img-centered {
   margin: 0 auto;
 }
 .navbar-custom {
-  background: #0E7AC4;
+  background: #0e7ac4;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
@@ -93,7 +92,7 @@ hr.star-primary:after {
   color: white;
 }
 .navbar-custom .navbar-nav li a:hover {
-  color: #18BC9C;
+  color: #18bc9c;
   outline: none;
 }
 .navbar-custom .navbar-nav li a:focus,
@@ -102,13 +101,13 @@ hr.star-primary:after {
 }
 .navbar-custom .navbar-nav li.active a {
   color: white;
-  background: #18BC9C;
+  background: #18bc9c;
 }
 .navbar-custom .navbar-nav li.active a:hover,
 .navbar-custom .navbar-nav li.active a:focus,
 .navbar-custom .navbar-nav li.active a:active {
   color: white;
-  background: #18BC9C;
+  background: #18bc9c;
 }
 .navbar-custom .navbar-toggle {
   color: white;
@@ -118,9 +117,9 @@ hr.star-primary:after {
 }
 .navbar-custom .navbar-toggle:hover,
 .navbar-custom .navbar-toggle:focus {
-  background-color: #18BC9C;
+  background-color: #18bc9c;
   color: white;
-  border-color: #18BC9C;
+  border-color: #18bc9c;
 }
 @media (min-width: 768px) {
   .navbar-custom {
@@ -151,151 +150,148 @@ footer {
 }
 footer .footer-below {
   padding: 10px 0;
-  background-color: #0E7AC4;
+  background-color: #0e7ac4;
 }
 tr.primary {
-  background-color: #0E7AC4;
+  background-color: #0e7ac4;
   color: #fff;
 }
 td.primary {
-  background-color: #0E7AC4;
+  background-color: #0e7ac4;
   color: #fff;
 }
 th.primary {
-  background-color: #0E7AC4;
+  background-color: #0e7ac4;
   color: #fff;
 }
 
-
-.table>tbody>tr>td,
-.table>tbody>tr>th,
-.table>tfoot>tr>td,
-.table>tfoot>tr>th,
-.table>thead>tr>td,
-.table>thead>tr>th {
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
   vertical-align: middle;
 }
 
 .form-group {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 thead tr th {
-	font-size: 16px;
+  font-size: 16px;
 }
 
 .bootstrap-timepicker-hour,
 .bootstrap-timepicker-minute,
 .separator {
-	font-size: 20px;
-	font-weight: bold;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 div.row-padding-top-1 {
-	padding-top: 15px;
+  padding-top: 15px;
 }
 
 div.row-padding-top-2 {
-	padding-top: 30px;
+  padding-top: 30px;
 }
 
 div.row-padding-top-3 {
-	padding-top: 60px;
+  padding-top: 60px;
 }
 
 div.row-padding-top-4 {
-	padding-top: 120px;
+  padding-top: 120px;
 }
-
 
 /**************************************************************
  * ログイン
  **************************************************************/
 
 .infomation-line {
-	padding: 20px 0px 0px 0px;
-	border-bottom: 2px solid #08233E;
-	font-size: 30px;
+  padding: 20px 0px 0px 0px;
+  border-bottom: 2px solid #08233e;
+  font-size: 30px;
 }
 
 .infomation-sub-line {
-	border-bottom: 1px dotted #08233E;
-	margin-left: 50px;
-	margin-right: 50px;
+  border-bottom: 1px dotted #08233e;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 section {
-	margin-left: 50px;
-	margin-right: 50px;
-	text-align: left;
+  margin-left: 50px;
+  margin-right: 50px;
+  text-align: left;
 }
 
 section header {
-	font-weight: normal;
-	position: relative;
-	clear: both;
+  font-weight: normal;
+  position: relative;
+  clear: both;
 }
 
 section header h2 {
-	font-size: 25px;
-	color: #666;
-	font-weight: bold;
-	padding-bottom: 15px;
+  font-size: 25px;
+  color: #666;
+  font-weight: bold;
+  padding-bottom: 15px;
 }
 
 section header h2:before {
-	content: "";
-	display: block;
-	width: 20px;
-	height: 20px;
-	position: absolute;
-	left: 0;
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 0;
 }
 
 section article header time {
-	font-size: 12px;
-	color: #594E44;
-	position: absolute;
-	bottom: 0;
-	right: 10px;
+  font-size: 12px;
+  color: #594e44;
+  position: absolute;
+  bottom: 0;
+  right: 10px;
 }
 
-
 .modal-body {
-	padding-bottom: 30px;
-	text-align: center;
+  padding-bottom: 30px;
+  text-align: center;
 }
 
 .modal-header-custom {
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .label-finger-infomation {
-	font-size:130%;
+  font-size: 130%;
 }
 
 /* 入力項目ラベル*/
 label.input-label {
-	font-size: 18px;
-	color: #0E7AC4;
-	vertical-align: middle;
-	margin-bottom: 0px;
+  font-size: 18px;
+  color: #0e7ac4;
+  vertical-align: middle;
+  margin-bottom: 0px;
 }
 
 .input-label > .fa-pencil {
-	color: rgba(102, 81, 44, 1);
+  color: rgba(102, 81, 44, 1);
 }
 
 /* Reduce icon–text spacing for all menu items */
 .navbar-custom .navbar-nav > li > a > i.fa-fw {
-    margin-right: 2px !important;
-    width: auto !important;    
+  margin-right: 2px !important;
+  width: auto !important;
 }
 
 /* Force dropdown menu background to match header */
 .navbar-custom .dropdown-menu {
-  background-color: #0E7AC4 !important;
+  background-color: #0e7ac4 !important;
   border: none;
 }
 
@@ -306,10 +302,9 @@ label.input-label {
 
 /* Hover color */
 .navbar-custom .dropdown-menu > li > a:hover {
-  background-color: #18BC9C !important;
+  background-color: #18bc9c !important;
   color: white !important;
 }
-
 
 /* GLOBAL RESPONSIVE RULES */
 
@@ -355,7 +350,7 @@ label.input-label {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #0E7AC4;
+  background: #0e7ac4;
   padding: 10px 20px;
   flex-wrap: wrap;
 }
@@ -401,7 +396,6 @@ label.input-label {
    MOBILE MENU
 -------------------------------------------------------*/
 @media (max-width: 768px) {
-
   /* Remove desktop margins on mobile */
   .navbar-header {
     margin-left: 0 !important;
@@ -425,7 +419,7 @@ label.input-label {
 
   /* Mobile menu background */
   #owner-navbar {
-    background: #0E7AC4 !important;
+    background: #0e7ac4 !important;
   }
 
   /* Hamburger visible */
@@ -457,7 +451,7 @@ label.input-label {
 
 /* dropdown background always blue */
 .navbar-custom .dropdown-menu {
-  background-color: #0E7AC4 !important;
+  background-color: #0e7ac4 !important;
 }
 /* Dropdown items normal state */
 .navbar-custom .dropdown-menu > li > a {
@@ -466,7 +460,7 @@ label.input-label {
 }
 /* Hover green */
 .navbar-custom .dropdown-menu > li > a:hover {
-  background-color: #18BC9C !important;
+  background-color: #18bc9c !important;
   color: white !important;
 }
 /* Active in dropdown should NOT turn white/green */
@@ -479,7 +473,6 @@ label.input-label {
    MOBILE DROPDOWN ANIMATION (STRONG OVERRIDE)
 -------------------------------------------------------*/
 @media (max-width: 768px) {
-
   /* Force dropdowns to be collapsible */
   #owner-navbar .dropdown-menu {
     position: static !important;
@@ -489,15 +482,16 @@ label.input-label {
     opacity: 0 !important;
     overflow: hidden !important;
 
-    transition: max-height 0.4s ease, opacity 0.3s ease !important;
+    transition:
+      max-height 0.4s ease,
+      opacity 0.3s ease !important;
   }
 
   /* When React adds .open */
   #owner-navbar .dropdown.open > .dropdown-menu {
-    max-height: 400px !important;  /* enough for all items */
+    max-height: 400px !important; /* enough for all items */
     opacity: 1 !important;
   }
-
 }
 
 /* -----------------------------------------
@@ -530,12 +524,11 @@ label.input-label {
    RESPONSIVE UNIVERSAL MODAL
 ----------------------------------------- */
 @media (max-width: 768px) {
-
   /* Dark background stays same */
 
   /* Modal dialog becomes smaller */
   .modal-dialog {
-    width: 90% !important;        /* from 380px → responsive */
+    width: 90% !important; /* from 380px → responsive */
     max-width: 360px !important;
     margin: 120px auto !important;
   }
@@ -573,16 +566,14 @@ label.input-label {
   }
 
   .modal-footer .btn {
-    width: 100% !important;         /* full width buttons */
-    margin: 5px 0 !important;       /* vertical spacing */
+    width: 100% !important; /* full width buttons */
+    margin: 5px 0 !important; /* vertical spacing */
   }
 }
-
 
 /* MOBILE TABLE */
 /* MOBILE TABLE */
 @media (max-width: 768px) {
-
   /* OUTER WRAPPER */
   .table-responsive-mobile {
     overflow-x: auto !important;
@@ -611,7 +602,7 @@ label.input-label {
 
   /* HEADER STYLE */
   .table-responsive-mobile th.primary {
-    background: #0E7AC4 !important;
+    background: #0e7ac4 !important;
     color: #fff !important;
     font-size: 12px !important;
   }
@@ -621,7 +612,6 @@ label.input-label {
    ADMIN CREATE — MOBILE RESPONSIVE
    --------------------------------- */
 @media (max-width: 768px) {
-
   /* Reduce padding above title */
   .row-padding-top-1 {
     padding-top: 10px !important;
@@ -686,7 +676,6 @@ label.input-label {
    ADMIN EDIT — MOBILE RESPONSIVE
    ---------------------------------*/
 @media (max-width: 768px) {
-
   /* Reduce top padding */
   .row-padding-top-1 {
     padding-top: 10px !important;
@@ -762,7 +751,6 @@ label.input-label {
    APPLY GROUP LIST — MOBILE RESPONSIVE
    ------------------------------------ */
 @media (max-width: 768px) {
-
   /* Reduce top padding */
   .row-padding-top-1 {
     padding-top: 10px !important;
@@ -849,7 +837,6 @@ label.input-label {
    APPLY GROUP CREATE — MOBILE RESPONSIVE
    -------------------------------------- */
 @media (max-width: 768px) {
-
   /* Reduce top space */
   .row-padding-top-1 {
     padding-top: 10px !important;
@@ -916,7 +903,7 @@ label.input-label {
   .col-md-offset-2.col-md-8 th {
     position: sticky !important;
     top: 0 !important;
-    background: #0E7AC4 !important;
+    background: #0e7ac4 !important;
     color: white !important;
     z-index: 5 !important;
     font-size: 12px !important;
@@ -962,7 +949,6 @@ label.input-label {
    GROUP LIST — MOBILE RESPONSIVE
    -------------------------------------- */
 @media (max-width: 768px) {
-
   /* Fix missing table borders on mobile */
   table.table {
     border-collapse: collapse !important;
@@ -982,7 +968,6 @@ label.input-label {
 
 /* ApplyGroupEdit mobile button alignment */
 @media (max-width: 768px) {
-
   /* Remove Bootstrap column padding that pushes content left */
   .mobile-button-group {
     padding: 0 !important;
@@ -991,7 +976,7 @@ label.input-label {
 
     display: flex !important;
     flex-direction: column !important;
-    align-items: center !important;     /* Center horizontally */
+    align-items: center !important; /* Center horizontally */
     justify-content: center !important;
     gap: 12px !important;
   }
@@ -1002,8 +987,8 @@ label.input-label {
     width: 80% !important;
     max-width: 300px !important;
 
-    margin-left: auto !important;       
-    margin-right: auto !important;      
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   /* Remove any inline margins added in JSX */
@@ -1050,7 +1035,6 @@ input[type="time"] {
    MOBILE: Center all labels and form items
    ======================================================= */
 @media (max-width: 768px) {
-
   /* Center the label text like シフト名 / テンプレート */
   .input-label {
     text-align: center !important;
@@ -1086,7 +1070,6 @@ input[type="time"] {
    MOBILE DESIGN FOR SHIFT CREATE + EDIT TABLE
    ======================================================= */
 @media (max-width: 768px) {
-
   /* Force table wrapper to allow horizontal scroll */
   .col-md-12[style*="overflowX"],
   .col-md-12[style*="overflow-x"] {
@@ -1099,8 +1082,8 @@ input[type="time"] {
 
   /* Prevent table from shrinking — make it wide */
   table.table-condensed {
-    min-width: 950px !important;   /* Now visible & scrollable */
-    width: auto !important;        /* Remove 100% shrink */
+    min-width: 950px !important; /* Now visible & scrollable */
+    width: auto !important; /* Remove 100% shrink */
     white-space: nowrap !important;
   }
 
@@ -1135,7 +1118,6 @@ input[type="time"] {
    BOTTOM BUTTON ALIGNMENT - Shift pages
    ======================================================= */
 @media (max-width: 768px) {
-
   /* Center the whole button row */
   .row.row-padding-top-2 .col-md-12 {
     text-align: center !important;
@@ -1180,7 +1162,6 @@ input[type="time"] {
 
 /* Template list button responsiveness */
 @media (max-width: 768px) {
-
   .template-add-btn {
     float: none !important;
     margin-left: 0 !important;
@@ -1223,7 +1204,6 @@ input[type="time"] {
 
 /* MOBILE RESPONSIVENESS - Paid holidays list */
 @media (max-width: 767px) {
-
   /* stack search items vertically */
   .search-controls {
     display: flex;
@@ -1281,7 +1261,6 @@ input[type="time"] {
    MOBILE RESPONSIVE FOR StatusList PAGE
    ==========================================================*/
 @media (max-width: 768px) {
-
   /* Search form block stacking */
   #form1 .form-inline {
     display: block !important;
@@ -1404,9 +1383,9 @@ input[type="time"] {
 /* Make DatePicker input text larger */
 .react-datepicker-wrapper .form-control,
 .react-datepicker__input-container input {
-    font-size: 16px !important;
-    height: 40px !important;
-    padding: 6px 10px !important;
+  font-size: 16px !important;
+  height: 40px !important;
+  padding: 6px 10px !important;
 }
 
 body {
@@ -1426,4 +1405,108 @@ body.react-datepicker-open {
   overflow: auto !important;
   padding-right: 0 !important;
   margin-right: 0 !important;
+}
+
+/* ============================================
+   WorkPlanList – Mobile Responsiveness
+   ============================================ */
+@media (max-width: 767px) {
+  /* FORCE entire row to behave like centered flex-box */
+  .workplan-mobile-center-row,
+  .form-horizontal .row.row-padding-top-1 {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* HORIZONTAL CENTERING */
+    justify-content: center !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    gap: 14px !important;
+  }
+
+  /* OVERRIDE all Bootstrap column widths */
+  .form-horizontal .row.row-padding-top-1 > div {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* CENTER INSIDE COLUMN */
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* CENTER & STANDARDIZE width of dropdown */
+  .form-horizontal select.form-control {
+    width: 85% !important; /* ADJUSTABLE WIDTH */
+    max-width: 360px !important;
+    margin: 0 auto !important;
+    display: block !important;
+    height: 42px !important;
+    font-size: 15px !important;
+  }
+
+  /* CENTER & STANDARDIZE width of buttons */
+  .form-horizontal button.btn-primary {
+    width: 85% !important;
+    max-width: 360px !important;
+    margin: 0 auto !important;
+    display: block !important;
+    padding: 11px !important;
+    font-size: 15px !important;
+    text-align: center !important;
+  }
+
+  /* Add spacing between buttons */
+  .form-horizontal .btn-primary + .btn-primary {
+    margin-top: 10px !important;
+  }
+}
+
+/* ============================================================
+   WorkPlanView – Mobile Button / Arrow Responsiveness
+   ============================================================ */
+@media (max-width: 767px) {
+  /* Center all non-arrow button rows */
+  .workplanview-btn-row,
+  .row .col-sm-12.text-right {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+
+  /* Style all normal buttons full width (except arrows) */
+  .row .col-sm-12.text-right button.btn-primary {
+    width: 85% !important;
+    max-width: 360px !important;
+    margin: 6px auto !important;
+    padding: 11px !important;
+    font-size: 15px !important;
+    text-align: center !important;
+  }
+
+  /* =======================
+      ARROW BUTTON ROW ONLY
+     ======================= */
+  .row .col-sm-12:has(> button.btn-primary:nth-child(2)) {
+    display: flex !important;
+    flex-direction: row !important; /* ← force one row */
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding: 0 !important;
+    gap: 10px !important;
+    margin: 10px 0 !important;
+  }
+
+  /* Arrow buttons = half width */
+  .row .col-sm-12:has(> button.btn-primary:nth-child(2)) > button.btn-primary {
+    width: 48% !important;
+    max-width: 180px !important;
+    margin: 0 !important;
+    padding: 10px !important;
+  }
 }
