@@ -5,7 +5,7 @@ import NotificationBar from "../../components/NotificationBar";
 
 export default function WorkPlanView() {
   const navigate = useNavigate();
-  const { month } = useParams();
+  const { month, companyId, groupId, employeeId } = useParams();
   const targetMonth = month || "202503";
 
   // =========================================================
@@ -103,7 +103,7 @@ export default function WorkPlanView() {
 
   // Edit is always open now (as per request)
   const handleEdit = () => {
-    setInfoMessages(["編集ページへ遷移（モック）"]);
+    navigate(`/workPlan/edit/${month}/${companyId}/${groupId}/${employeeId}`);
   };
 
   // =========================================================
@@ -201,10 +201,10 @@ export default function WorkPlanView() {
                   zIndex: 10,
                 }}
               >
-                <th className="text-center" style={{ width: 90 }}>
+                <th className="text-center" style={{ width: 60 }}>
                   日
                 </th>
-                <th className="text-center" style={{ width: 150 }}>
+                <th className="text-center" style={{ width: 180 }}>
                   シフト
                 </th>
                 <th className="text-center" style={{ width: 120 }}>
@@ -233,7 +233,7 @@ export default function WorkPlanView() {
               {form.recordViewDtoList.map((row, idx) => (
                 <tr
                   key={idx}
-                  style={{ background: "#FFF8DC" }}
+                  style={{ background: "#fdf8e3ff" }}
                   className="text-center"
                 >
                   {/* 日 */}

@@ -33,6 +33,7 @@ import AttendanceBookOutputShow from "../pages/print/AttendanceBookOutputShow";
 import SummaryAttendance from "../pages/summary/SummaryAttendance";
 import WorkPlanList from "../pages/plan/WorkPlanList";
 import WorkPlanView from "../pages/plan/WorkPlanView";
+import WorkPlanEdit from "../pages/plan/WorkPlanEdit";
 
 // ========================================================
 //   Application Routes
@@ -134,6 +135,9 @@ export default function AppRoutes() {
 
         {/* WORK PLAN VIEW */}
         <Route path="/workPlan/view/:month/:companyId/:groupId/:employeeId" element={<WorkPlanView />} />
+
+        {/* WORK PLAN EDIT */}
+        <Route path="/workPlan/edit/:month/:companyId/:groupId/:employeeId" element={<WorkPlanEdit />} />
 
         {/* DEFAULT REDIRECT */}
         <Route path="*" element={<Navigate to="/admin/list" replace />} />
