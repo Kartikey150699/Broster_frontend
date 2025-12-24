@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import OwnerLayout from "../../layouts/OwnerLayout";
 import NotificationBar from "../../components/NotificationBar";
+import CommonButton from "../../components/CommonButton";
 
 export default function ApplyGroupCreate() {
   const companyId = "11018"; // TODO: replace with real companyId from login session
@@ -93,9 +94,11 @@ export default function ApplyGroupCreate() {
 
   return (
     <OwnerLayout title="承認グループ登録">
-
-    {/* Notification Bar */}
-    <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      {/* Notification Bar */}
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* TITLE */}
       <div className="row row-padding-top-1">
@@ -132,7 +135,7 @@ export default function ApplyGroupCreate() {
             overflowY: "scroll",
             height: "400px",
             padding: 0,
-            position: "relative"
+            position: "relative",
           }}
         >
           <div className="panel panel-default">
@@ -142,61 +145,61 @@ export default function ApplyGroupCreate() {
             >
               <thead>
                 <tr className="primary">
-                    <th
+                  <th
                     className="text-center"
                     style={{
-                        width: "15%",
-                        position: "sticky",
-                        top: 0,
-                        background: "#0E7AC4",
-                        color: "white",
-                        zIndex: 3,
+                      width: "15%",
+                      position: "sticky",
+                      top: 0,
+                      background: "#0E7AC4",
+                      color: "white",
+                      zIndex: 3,
                     }}
-                    >
+                  >
                     優先度
-                    </th>
+                  </th>
 
-                    <th
+                  <th
                     className="text-center"
                     style={{
-                        width: "45%",
-                        position: "sticky",
-                        top: 0,
-                        background: "#0E7AC4",
-                        color: "white",
-                        zIndex: 3,
+                      width: "45%",
+                      position: "sticky",
+                      top: 0,
+                      background: "#0E7AC4",
+                      color: "white",
+                      zIndex: 3,
                     }}
-                    >
+                  >
                     従業員名
-                    </th>
+                  </th>
 
-                    <th
+                  <th
                     className="text-center"
                     style={{
-                        width: "20%",
-                        position: "sticky",
-                        top: 0,
-                        background: "#0E7AC4",
-                        color: "white",
-                        zIndex: 3,
+                      width: "20%",
+                      position: "sticky",
+                      top: 0,
+                      background: "#0E7AC4",
+                      color: "white",
+                      zIndex: 3,
                     }}
-                    >
+                  >
                     承認権限
-                    </th>
+                  </th>
 
-                    <th
+                  <th
                     className="text-center"
                     style={{
-                        width: "20%",
-                        position: "sticky",
-                        top: 0,
-                        background: "#0E7AC4",
-                        color: "white",
-                        zIndex: 3,
+                      width: "20%",
+                      position: "sticky",
+                      top: 0,
+                      background: "#0E7AC4",
+                      color: "white",
+                      zIndex: 3,
                     }}
-                    >
+                  >
                     一括承認
-                    </th>
+                  </th>
                 </tr>
               </thead>
 
@@ -284,7 +287,6 @@ export default function ApplyGroupCreate() {
                   </tr>
                 ))}
               </tbody>
-
             </table>
           </div>
         </div>
@@ -292,19 +294,23 @@ export default function ApplyGroupCreate() {
 
       {/* BUTTONS */}
       <div className="text-center" style={{ marginTop: 20 }}>
-        <button className="btn btn-primary" onClick={handleCreate}>
-          <i className="fa fa-plus fa-fw"></i> 登録
-        </button>
+        {/* REGISTER */}
+        <CommonButton
+          icon="plus"
+          label="登録"
+          size="md"
+          onClick={handleCreate}
+          style={{ marginRight: "10px" }}
+        />
 
-        <a
-          href="/apply-group/list"
-          className="btn btn-primary"
-          style={{ marginLeft: 10 }}
-        >
-          <i className="fa fa-ban fa-fw"></i> 戻る
-        </a>
+        {/* BACK */}
+        <CommonButton
+          icon="ban"
+          label="戻る"
+          size="md"
+          onClick={() => (window.location.href = "/apply-group/list")}
+        />
       </div>
-
     </OwnerLayout>
   );
 }

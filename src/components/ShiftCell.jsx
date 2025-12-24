@@ -8,7 +8,7 @@ export default function ShiftCell({
   isHighlighted,
   onDragStart,
   onDragEnter,
-  onDragEnd
+  onDragEnd,
 }) {
   return (
     <div
@@ -17,7 +17,7 @@ export default function ShiftCell({
         position: "relative",
         padding: 4,
         background: isHighlighted ? "#cce5ff" : "white",
-        border: isHighlighted ? "2px solid #3399ff" : "1px solid #ddd"
+        border: isHighlighted ? "2px solid #3399ff" : "1px solid #ddd",
       }}
       onMouseEnter={() => onDragEnter(w, d, shiftIndex)}
       onMouseUp={onDragEnd}
@@ -37,7 +37,7 @@ export default function ShiftCell({
           position: "absolute",
           bottom: 2,
           right: 2,
-          cursor: "crosshair"
+          cursor: "crosshair",
         }}
       ></div>
     </div>

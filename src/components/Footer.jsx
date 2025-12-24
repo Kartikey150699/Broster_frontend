@@ -4,7 +4,6 @@ export default function OwnerFooter() {
       <div className="footer-below">
         <div className="container">
           <div className="row">
-
             {/* Left side text (login info) */}
             <div
               className="col-lg-8 text-left"
@@ -27,7 +26,6 @@ export default function OwnerFooter() {
                 © 2023 IFNET v1.4.19
               </a>
             </div>
-
           </div>
         </div>
       </div>

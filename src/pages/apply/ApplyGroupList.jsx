@@ -1,5 +1,6 @@
 import { useState } from "react";
 import OwnerLayout from "../../layouts/OwnerLayout";
+import CommonButton from "../../components/CommonButton";
 
 export default function ApplyGroupList() {
   const [selectedGroup, setSelectedGroup] = useState("");
@@ -23,7 +24,7 @@ export default function ApplyGroupList() {
       applyLevel: 1,
       applyLevelLabel: "承認者",
       allApplyLabel: "〇",
-      createDate: "2024/01/05"
+      createDate: "2024/01/05",
     },
     {
       applyGroupId: "G002",
@@ -35,8 +36,8 @@ export default function ApplyGroupList() {
       applyLevel: 2,
       applyLevelLabel: "確認者",
       allApplyLabel: "×",
-      createDate: "2024/01/10"
-    }
+      createDate: "2024/01/10",
+    },
   ];
 
   // Filter table by dropdown
@@ -47,7 +48,6 @@ export default function ApplyGroupList() {
 
   return (
     <OwnerLayout title="承認グループ一覧">
-
       {/* PAGE TITLE */}
       <div className="row row-padding-top-1">
         <div className="col-md-12">
@@ -60,7 +60,6 @@ export default function ApplyGroupList() {
 
       {/* FILTER + CREATE BUTTON */}
       <div className="row row-padding-top-1">
-
         {/* FILTER */}
         <div className="col-sm-8 col-md-8">
           <div className="form-inline">
@@ -84,10 +83,13 @@ export default function ApplyGroupList() {
         </div>
 
         {/* CREATE BUTTON */}
-        <div className="col-sm-4 col-md-4 text-right">
-          <a href="/apply-group/create" className="btn btn-primary">
-            <i className="fa fa-plus fa-fw"></i> 承認グループ登録
-          </a>
+        <div className="col-sm-4 col-md-4 text-right mobile-button-col">
+          <CommonButton
+            label="承認グループ登録"
+            icon="plus"
+            size="md"
+            onClick={() => (window.location.href = "/apply-group/create")}
+          />
         </div>
       </div>
 
@@ -102,7 +104,6 @@ export default function ApplyGroupList() {
           }}
         >
           <div className="panel panel-default">
-
             <table
               className="table table-bordered table-condensed table-hover"
               style={{
@@ -113,14 +114,30 @@ export default function ApplyGroupList() {
             >
               <thead>
                 <tr className="primary">
-                  <th className="text-center primary" style={{ width: "10%" }}>承認グループ名</th>
-                  <th className="text-center primary" style={{ width: "8%" }}>従業員ID</th>
-                  <th className="text-center primary" style={{ width: "10%" }}>従業員名</th>
-                  <th className="text-center primary" style={{ width: "15%" }}>メールアドレス</th>
-                  <th className="text-center primary" style={{ width: "8%" }}>優先度</th>
-                  <th className="text-center primary" style={{ width: "10%" }}>承認権限</th>
-                  <th className="text-center primary" style={{ width: "8%" }}>一括承認</th>
-                  <th className="text-center primary" style={{ width: "10%" }}>登録日</th>
+                  <th className="text-center primary" style={{ width: "10%" }}>
+                    承認グループ名
+                  </th>
+                  <th className="text-center primary" style={{ width: "8%" }}>
+                    従業員ID
+                  </th>
+                  <th className="text-center primary" style={{ width: "10%" }}>
+                    従業員名
+                  </th>
+                  <th className="text-center primary" style={{ width: "15%" }}>
+                    メールアドレス
+                  </th>
+                  <th className="text-center primary" style={{ width: "8%" }}>
+                    優先度
+                  </th>
+                  <th className="text-center primary" style={{ width: "10%" }}>
+                    承認権限
+                  </th>
+                  <th className="text-center primary" style={{ width: "8%" }}>
+                    一括承認
+                  </th>
+                  <th className="text-center primary" style={{ width: "10%" }}>
+                    登録日
+                  </th>
                 </tr>
               </thead>
 
@@ -135,7 +152,6 @@ export default function ApplyGroupList() {
 
                 {filteredRows.map((row, idx) => (
                   <tr key={idx} className="text-center">
-
                     {/* Group Name */}
                     <td>
                       <a href={`/apply-group/edit/${row.applyGroupId}`}>
@@ -151,12 +167,18 @@ export default function ApplyGroupList() {
                     {/* Approval Level Badge */}
                     <td>
                       {row.applyLevel === 1 && (
-                        <span className="label label-danger" style={{ fontSize: 12 }}>
+                        <span
+                          className="label label-danger"
+                          style={{ fontSize: 12 }}
+                        >
                           {row.applyLevelLabel}
                         </span>
                       )}
                       {row.applyLevel === 2 && (
-                        <span className="label label-info" style={{ fontSize: 12 }}>
+                        <span
+                          className="label label-info"
+                          style={{ fontSize: 12 }}
+                        >
                           {row.applyLevelLabel}
                         </span>
                       )}
@@ -167,13 +189,10 @@ export default function ApplyGroupList() {
                   </tr>
                 ))}
               </tbody>
-
             </table>
-
           </div>
         </div>
       </div>
-
     </OwnerLayout>
   );
 }

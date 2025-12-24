@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import OwnerLayout from "../../layouts/OwnerLayout";
 import NotificationBar from "../../components/NotificationBar";
 import { useNavigate } from "react-router-dom";
+import CommonButton from "../../components/CommonButton";
 
-export default function PaidLeaveList() {const navigate = useNavigate();
+export default function PaidLeaveList() {
+  const navigate = useNavigate();
 
   const [showDetails, setShowDetails] = useState(false);
   const [targetYear, setTargetYear] = useState(2024);
@@ -16,9 +18,10 @@ export default function PaidLeaveList() {const navigate = useNavigate();
   // ============================
   const mockYears = [2021, 2022, 2023, 2024, 2025];
 
-  const requestHeaders = Array.from({ length: 40 }, (_, i) =>
-    `申請${String(i + 1).padStart(2, "0")}`
-    );
+  const requestHeaders = Array.from(
+    { length: 40 },
+    (_, i) => `申請${String(i + 1).padStart(2, "0")}`
+  );
 
   const mockEmployees = [
     {
@@ -154,12 +157,17 @@ export default function PaidLeaveList() {const navigate = useNavigate();
 
   return (
     <OwnerLayout title="有休取得履歴">
-      <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* TITLE */}
       <div className="row row-padding-top-1">
         <div className="col-md-12">
-          <h2><i className="fa fa-file fa-fw"></i> 有休取得履歴</h2>
+          <h2>
+            <i className="fa fa-file fa-fw"></i> 有休取得履歴
+          </h2>
           <hr className="star-primary" />
         </div>
       </div>
@@ -167,173 +175,327 @@ export default function PaidLeaveList() {const navigate = useNavigate();
       {/* SEARCH AREA */}
       <div className="row row-padding-top-1 search-area">
         <div className="col-md-8 col-sm-8 col-xs-12 search-left">
-            <div className="form-inline search-controls">
+          <div className="form-inline search-controls">
             <label className="input-label">年度</label>
 
             <select
-                className="form-control"
-                value={targetYear}
-                onChange={(e) => setTargetYear(e.target.value)}
+              className="form-control"
+              value={targetYear}
+              onChange={(e) => setTargetYear(e.target.value)}
             >
-                {mockYears.map((y) => (
-                <option key={y} value={y}>{y}</option>
-                ))}
+              {mockYears.map((y) => (
+                <option key={y} value={y}>
+                  {y}
+                </option>
+              ))}
             </select>
 
             <button
-                className="btn btn-primary search-btn"
-                onClick={() => setInfoMessages(["検索しました。（モック）"])}
+              className="btn btn-primary search-btn"
+              onClick={() => setInfoMessages(["検索しました。（モック）"])}
             >
-                <i className="fa fa-search"></i> 検索
+              <i className="fa fa-search"></i> 検索
             </button>
 
             <button
-                className="btn btn-primary csv-btn"
-                onClick={() => setInfoMessages(["CSVをダウンロードしました。（モック）"])}
+              className="btn btn-primary csv-btn"
+              onClick={() =>
+                setInfoMessages(["CSVをダウンロードしました。（モック）"])
+              }
             >
-                <i className="fa fa-file-text-o"></i> CSV
+              <i className="fa fa-file-text-o"></i> CSV
             </button>
-            </div>
+          </div>
         </div>
 
         <div className="col-md-4 col-sm-4 col-xs-12 text-right toggle-area">
-            <div
-                className="btn btn-info btn-lg toggle-btn"
-                onClick={() => setShowDetails(!showDetails)}
-            >
-                表示切替
-            </div>
+          <div
+            className="btn btn-info btn-lg toggle-btn"
+            onClick={() => setShowDetails(!showDetails)}
+          >
+            表示切替
+          </div>
         </div>
       </div>
 
       {/* TABLE */}
       <div className="row row-padding-top-1" style={{ padding: "10px" }}>
-        <div className="col-md-12" style={{
+        <div
+          className="col-md-12"
+          style={{
             overflowX: "auto",
-            overflowY: "hidden",  
+            overflowY: "hidden",
             height: 500,
             position: "relative",
             background: "white",
             paddingLeft: "0",
             clipPath: "inset(0 0 0 0)",
-        }}
+          }}
         >
-          <table className="table table-bordered table-condensed table-hover" style={{ width: "100%", whiteSpace: "nowrap", position: "relative" }}>
+          <table
+            className="table table-bordered table-condensed table-hover"
+            style={{
+              width: "100%",
+              whiteSpace: "nowrap",
+              position: "relative",
+            }}
+          >
             <thead>
-                <tr className="primary">
+              <tr className="primary">
+                {/* Headers */}
+                <th
+                  className="text-center primary"
+                  style={{
+                    position: "sticky",
+                    left: 0,
+                    top: 0,
+                    zIndex: 5,
+                    width: "18%",
+                    background: "inherit",
+                    borderLeft: "1px solid #ddd",
+                    boxShadow: "2px 0 2px rgba(0,0,0,0.1)",
+                  }}
+                >
+                  従業員
+                </th>
 
-                    {/* Headers */}
-                    <th className="text-center primary" style={{ 
-                            position: "sticky",
-                            left: 0,
-                            top: 0,
-                            zIndex: 5,
-                            width: "18%",
-                            background: "inherit",
-                            borderLeft: "1px solid #ddd",
-                            boxShadow: "2px 0 2px rgba(0,0,0,0.1)"
-                        }}
-                    >
-                        従業員
-                    </th>
+                <th
+                  className="text-center primary"
+                  style={{
+                    position: "sticky",
+                    top: 0,
+                    width: "13%",
+                    zIndex: 2,
+                  }}
+                >
+                  グループ
+                </th>
+                <th
+                  className="text-center primary"
+                  style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}
+                >
+                  入社日
+                </th>
+                <th
+                  className="text-center primary"
+                  style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}
+                >
+                  週所定
+                  <br />
+                  労働
+                  <br />
+                  日数
+                </th>
 
-                    <th className="text-center primary" style={{ position: "sticky", top: 0, width: "13%", zIndex: 2 }}>グループ</th>
-                    <th className="text-center primary" style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}>入社日</th>
-                    <th className="text-center primary" style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}>週所定<br/>労働<br/>日数</th>
+                <th
+                  className="text-center primary"
+                  style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}
+                >
+                  初回
+                  <br />
+                  基準日
+                </th>
+                <th
+                  className="text-center primary"
+                  style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}
+                >
+                  初回
+                  <br />
+                  基準日
+                  <br />
+                  付与
+                  <br />
+                  日数
+                </th>
+                <th
+                  className="text-center primary"
+                  style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}
+                >
+                  初回
+                  <br />
+                  基準日
+                  <br />
+                  付与
+                  <br />
+                  残日数
+                </th>
+                <th
+                  className="text-center primary"
+                  style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}
+                >
+                  繰越
+                  <br />
+                  初回付与
+                  <br />
+                  残日数
+                </th>
 
-                    <th className="text-center primary" style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}>初回<br/>基準日</th>
-                    <th className="text-center primary" style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}>初回<br/>基準日<br/>付与<br/>日数</th>
-                    <th className="text-center primary" style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}>初回<br/>基準日<br/>付与<br/>残日数</th>
-                    <th className="text-center primary" style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}>繰越<br/>初回付与<br/>残日数</th>
+                <th
+                  className="text-center primary"
+                  style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}
+                >
+                  前回
+                  <br />
+                  基準日
+                  <br />
+                  付与
+                  <br />
+                  日数
+                </th>
+                <th
+                  className="text-center primary"
+                  style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}
+                >
+                  前回
+                  <br />
+                  基準日
+                  <br />
+                  付与
+                  <br />
+                  残日数
+                </th>
+                <th
+                  className="text-center primary"
+                  style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}
+                >
+                  繰越
+                  <br />
+                  前期付与
+                  <br />
+                  残日数
+                </th>
 
-                    <th className="text-center primary" style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}>前回<br/>基準日<br/>付与<br/>日数</th>
-                    <th className="text-center primary" style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}>前回<br/>基準日<br/>付与<br/>残日数</th>
-                    <th className="text-center primary" style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}>繰越<br/>前期付与<br/>残日数</th>
+                <th
+                  className="text-center primary"
+                  style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}
+                >
+                  今期
+                  <br />
+                  基準日
+                  <br />
+                  付与
+                  <br />
+                  日数
+                </th>
+                <th
+                  className="text-center primary"
+                  style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}
+                >
+                  今期
+                  <br />
+                  基準日
+                  <br />
+                  付与
+                  <br />
+                  残日数
+                </th>
 
-                    <th className="text-center primary" style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}>今期<br/>基準日<br/>付与<br/>日数</th>
-                    <th className="text-center primary" style={{ position: "sticky", top: 0, width: "5%", zIndex: 2 }}>今期<br/>基準日<br/>付与<br/>残日数</th>
+                <th
+                  className="text-center primary"
+                  style={{ position: "sticky", top: 0, width: "7%", zIndex: 2 }}
+                >
+                  取得
+                  <br />
+                  日数
+                </th>
+                <th
+                  className="text-center primary"
+                  style={{ position: "sticky", top: 0, width: "7%", zIndex: 2 }}
+                >
+                  有休
+                  <br />
+                  残日数
+                </th>
 
-                    <th className="text-center primary" style={{ position: "sticky", top: 0, width: "7%", zIndex: 2 }}>取得<br/>日数</th>
-                    <th className="text-center primary" style={{ position: "sticky", top: 0, width: "7%", zIndex: 2 }}>有休<br/>残日数</th>
-
-                    {/* 申請01〜40 columns */}
-                    {requestHeaders.map((h, idx) => (
-                    <th
-                        key={idx}
-                        className="text-center primary detail"
-                        style={{
-                        display: showDetails ? "" : "none",
-                        position: "sticky",
-                        top: 0,
-                        zIndex: 2
-                        }}
-                    >
-                        {h}
-                    </th>
-                    ))}
-                </tr>
+                {/* 申請01〜40 columns */}
+                {requestHeaders.map((h, idx) => (
+                  <th
+                    key={idx}
+                    className="text-center primary detail"
+                    style={{
+                      display: showDetails ? "" : "none",
+                      position: "sticky",
+                      top: 0,
+                      zIndex: 2,
+                    }}
+                  >
+                    {h}
+                  </th>
+                ))}
+              </tr>
             </thead>
 
             <tbody>
-                {mockEmployees.map((e, idx) => (
-                    <tr key={idx} className="text-center">
-
-                    {/* 従業員 */}
-                    <td className="text-left"
-                        style={{
-                            position: "sticky",
-                            left: 0,
-                            background: "white",
-                            zIndex: 4,
-                            width: "18%",
-                            borderLeft: "1px solid #ddd",
-                            boxShadow: "2px 0 2px rgba(0,0,0,0.1)"
-                        }}
+              {mockEmployees.map((e, idx) => (
+                <tr key={idx} className="text-center">
+                  {/* 従業員 */}
+                  <td
+                    className="text-left"
+                    style={{
+                      position: "sticky",
+                      left: 0,
+                      background: "white",
+                      zIndex: 4,
+                      width: "18%",
+                      borderLeft: "1px solid #ddd",
+                      boxShadow: "2px 0 2px rgba(0,0,0,0.1)",
+                    }}
+                  >
+                    <span
+                      style={{ cursor: "pointer", color: "#337ab7" }}
+                      onClick={() =>
+                        navigate(
+                          `/paid/edit/${e.companyId}/${e.employeeId}/${targetYear}`
+                        )
+                      }
                     >
-                        <a href={`/paid/edit/${e.companyId}/${e.employeeId}/${targetYear}`}>
-                            {e.employeeId} {e.employeeName}
-                        </a>
-                    </td>
+                      {e.employeeId} {e.employeeName}
+                    </span>
+                  </td>
 
-                    {/* MAIN COLUMNS */}
-                    <td>{e.groupName}</td>
-                    <td>{e.hireDate}</td>
-                    <td>{e.weekWorkDayCount}</td>
+                  {/* MAIN COLUMNS */}
+                  <td>{e.groupName}</td>
+                  <td>{e.hireDate}</td>
+                  <td>{e.weekWorkDayCount}</td>
 
-                    <td>{e.firstGiveDate}</td>
-                    <td>{e.firstGiveCount}</td>
-                    <td>{e.firstRemainingCount}</td>
-                    <td>{e.firstFixRemainingCount}</td>
+                  <td>{e.firstGiveDate}</td>
+                  <td>{e.firstGiveCount}</td>
+                  <td>{e.firstRemainingCount}</td>
+                  <td>{e.firstFixRemainingCount}</td>
 
-                    <td>{e.lastGiveCount}</td>
-                    <td>{e.lastRemainingCount}</td>
-                    <td>{e.lastFixRemainingCount}</td>
+                  <td>{e.lastGiveCount}</td>
+                  <td>{e.lastRemainingCount}</td>
+                  <td>{e.lastFixRemainingCount}</td>
 
-                    <td>{e.currentGiveCount}</td>
-                    <td>{e.currentRemainingCount}</td>
+                  <td>{e.currentGiveCount}</td>
+                  <td>{e.currentRemainingCount}</td>
 
-                    <td>{e.useDay}</td>
-                    <td>{e.totalRemainingCount}</td>
+                  <td>{e.useDay}</td>
+                  <td>{e.totalRemainingCount}</td>
 
-                    {/* 申請01〜40 */}
-                    {requestHeaders.map((h, i) => {
-                        const d = e.paidAcquisitionDateList[i] || { targetDate: "", requestFlag: null };
+                  {/* 申請01〜40 */}
+                  {requestHeaders.map((h, i) => {
+                    const d = e.paidAcquisitionDateList[i] || {
+                      targetDate: "",
+                      requestFlag: null,
+                    };
 
-                        return (
-                            <td
-                                key={i}
-                                className="detail"
-                                style={{
-                                display: showDetails ? "" : "none",
-                                textDecoration: d.requestFlag === "0" ? "underline" : ""
-                                }}
-                            >
-                                {d.targetDate}
-                            </td>
-                        );
-                    })}
-                    </tr>
-                ))}
+                    return (
+                      <td
+                        key={i}
+                        className="detail"
+                        style={{
+                          display: showDetails ? "" : "none",
+                          textDecoration:
+                            d.requestFlag === "0" ? "underline" : "",
+                        }}
+                      >
+                        {d.targetDate}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

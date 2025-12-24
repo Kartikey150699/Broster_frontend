@@ -1,6 +1,11 @@
 import React from "react";
 
-export default function AutoFillControls({ selectedCell, recordTable, setRecordTable, position = "right" }) {
+export default function AutoFillControls({
+  selectedCell,
+  recordTable,
+  setRecordTable,
+  position = "right",
+}) {
   const disabled = !selectedCell;
 
   // ================================
@@ -57,7 +62,12 @@ export default function AutoFillControls({ selectedCell, recordTable, setRecordT
   };
 
   return (
-    <div style={{ textAlign: position === "left" ? "left" : "right", marginBottom: 10 }}>
+    <div
+      style={{
+        textAlign: position === "left" ? "left" : "right",
+        marginBottom: 10,
+      }}
+    >
       <button
         className="btn btn-primary btn-sm"
         disabled={disabled}

@@ -6,6 +6,7 @@ import MiniTimePicker from "../../components/MiniTimePicker";
 import AutoFillControls from "../../components/AutoFillControls";
 import ShiftCell from "../../components/ShiftCell";
 import useGridDragSelection from "../../components/grid/useGridDragSelection";
+import CommonButton from "../../components/CommonButton";
 
 export default function TemplateEdit() {
   const { templateId } = useParams();
@@ -61,7 +62,6 @@ export default function TemplateEdit() {
         setTemplateName(mockTemplate.templateName);
         setUseHoliday(mockTemplate.useHoliday);
         setRecordTable(mockTemplate.recordTable);
-
       } catch (e) {
         setErrorMessages(["テンプレートの読み込みに失敗しました。"]);
       } finally {
@@ -98,16 +98,11 @@ export default function TemplateEdit() {
     B120: "120分",
   };
 
-
   // ---------------------------
   // DRAG SELECT HOOK
   // ---------------------------
-  const {
-    handleDragStart,
-    handleDragEnter,
-    handleDragEnd,
-    isCellHighlighted
-  } = useGridDragSelection(recordTable, setRecordTable);
+  const { handleDragStart, handleDragEnter, handleDragEnd, isCellHighlighted } =
+    useGridDragSelection(recordTable, setRecordTable);
 
   // ---------------------------
   // Update single cell
@@ -147,7 +142,10 @@ export default function TemplateEdit() {
 
   return (
     <OwnerLayout title="テンプレート更新">
-      <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* TITLE */}
       <div className="row row-padding-top-1">
@@ -218,11 +216,20 @@ export default function TemplateEdit() {
         />
 
         <div className="row row-padding-top-1" style={{ padding: "10px 20px" }}>
-          <div className="col-md-12" style={{ overflowX: "scroll", height: "500px", padding: 0 }}>
+          <div
+            className="col-md-12"
+            style={{ overflowX: "scroll", height: "500px", padding: 0 }}
+          >
             <div className="panel panel-default">
-              <table className="table table-bordered table-condensed" style={{ width: "100%" }}>
+              <table
+                className="table table-bordered table-condensed"
+                style={{ width: "100%" }}
+              >
                 <thead>
-                  <tr className="primary" style={{ position: "sticky", top: 0, zIndex: 1 }}>
+                  <tr
+                    className="primary"
+                    style={{ position: "sticky", top: 0, zIndex: 1 }}
+                  >
                     <th className="text-center">週</th>
                     <th className="text-center">曜日</th>
                     <th className="text-center">早出</th>
@@ -264,29 +271,59 @@ export default function TemplateEdit() {
                                 onDragEnter={handleDragEnter}
                                 onDragEnd={handleDragEnd}
                               >
-                                <div className="form-inline" style={{ whiteSpace: "nowrap", display: "flex", alignItems: "center" }}>
+                                <div
+                                  className="form-inline"
+                                  style={{
+                                    whiteSpace: "nowrap",
+                                    display: "flex",
+                                    alignItems: "center",
+                                  }}
+                                >
                                   <MiniTimePicker
                                     value={cell[startKey]}
-                                    onChange={(val) => updateCell(w, d, startKey, val)}
-                                    onSelect={() => setSelectedCell({ weekIndex: w, dayIndex: d, shiftIndex: s })}
+                                    onChange={(val) =>
+                                      updateCell(w, d, startKey, val)
+                                    }
+                                    onSelect={() =>
+                                      setSelectedCell({
+                                        weekIndex: w,
+                                        dayIndex: d,
+                                        shiftIndex: s,
+                                      })
+                                    }
                                   />
                                   &nbsp;〜&nbsp;
                                   <MiniTimePicker
                                     value={cell[endKey]}
-                                    onChange={(val) => updateCell(w, d, endKey, val)}
-                                    onSelect={() => setSelectedCell({ weekIndex: w, dayIndex: d, shiftIndex: s })}
+                                    onChange={(val) =>
+                                      updateCell(w, d, endKey, val)
+                                    }
+                                    onSelect={() =>
+                                      setSelectedCell({
+                                        weekIndex: w,
+                                        dayIndex: d,
+                                        shiftIndex: s,
+                                      })
+                                    }
                                   />
                                   <select
                                     className="form-control input-sm"
-                                    style={{ height: "34px", marginLeft: "5px" }}
+                                    style={{
+                                      height: "34px",
+                                      marginLeft: "5px",
+                                    }}
                                     value={cell[breakKey]}
-                                    onChange={(e) => updateCell(w, d, breakKey, e.target.value)}
+                                    onChange={(e) =>
+                                      updateCell(w, d, breakKey, e.target.value)
+                                    }
                                   >
-                                    {Object.entries(BREAKTIME_MAP).map(([key, label]) => (
+                                    {Object.entries(BREAKTIME_MAP).map(
+                                      ([key, label]) => (
                                         <option key={key} value={key}>
-                                            {label}
+                                          {label}
                                         </option>
-                                    ))}
+                                      )
+                                    )}
                                   </select>
                                 </div>
                               </ShiftCell>
@@ -316,17 +353,14 @@ export default function TemplateEdit() {
       {/* BUTTONS */}
       <div className="row row-padding-top-2">
         <div className="col-md-12 text-center">
-          <button className="btn btn-primary" onClick={handleUpdate}>
-            <i className="fa fa-pencil fa-fw"></i> 更新
-          </button>
+          <CommonButton label="更新" icon="pencil" onClick={handleUpdate} />
 
-          <button
-            className="btn btn-primary"
-            style={{ marginLeft: 10 }}
+          <CommonButton
+            label="戻る"
+            icon="ban"
             onClick={() => navigate("/template/list")}
-          >
-            <i className="fa fa-ban fa-fw"></i> 戻る
-          </button>
+            style={{ marginLeft: 10 }}
+          />
         </div>
       </div>
     </OwnerLayout>

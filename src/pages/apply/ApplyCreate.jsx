@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import OwnerLayout from "../../layouts/OwnerLayout";
 import NotificationBar from "../../components/NotificationBar";
 import MiniTimePicker from "../../components/MiniTimePicker";
+import CommonButton from "../../components/CommonButton";
 
 export default function ApplyCreate() {
   const [infoMessages, setInfoMessages] = useState([]);
@@ -11,30 +12,30 @@ export default function ApplyCreate() {
   // MOCK LOOKUP DATA
   // ==============
   const mockGroupMap = {
-    "G001": "営業部",
-    "G002": "開発部",
-    "G003": "総務部",
+    G001: "営業部",
+    G002: "開発部",
+    G003: "総務部",
   };
 
   const mockEmployeeMap = {
-    "E001": { employeeName: "田中 太郎", groupId: "G001" },
-    "E002": { employeeName: "山田 花子", groupId: "G002" },
-    "E003": { employeeName: "佐藤 健", groupId: "G003" },
+    E001: { employeeName: "田中 太郎", groupId: "G001" },
+    E002: { employeeName: "山田 花子", groupId: "G002" },
+    E003: { employeeName: "佐藤 健", groupId: "G003" },
   };
 
   const mockApplyCodeMap = {
-  "100": "有給休暇（全日）",
-  "110": "有給休暇（半日）",
-  "120": "慶弔休暇",
-  "130": "欠勤",
-  "140": "直行",
-  "150": "直帰",
-  "160": "直行直帰",
-  "170": "出張",
-  "180": "遅刻",
-  "190": "早退",
-  "200": "振替休日",
-  "210": "早出",
+    100: "有給休暇（全日）",
+    110: "有給休暇（半日）",
+    120: "慶弔休暇",
+    130: "欠勤",
+    140: "直行",
+    150: "直帰",
+    160: "直行直帰",
+    170: "出張",
+    180: "遅刻",
+    190: "早退",
+    200: "振替休日",
+    210: "早出",
   };
 
   const [filteredGroup, setFilteredGroup] = useState("");
@@ -91,7 +92,10 @@ export default function ApplyCreate() {
 
   return (
     <OwnerLayout title="申請登録">
-      <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* TITLE */}
       <div className="row row-padding-top-1">
@@ -105,7 +109,6 @@ export default function ApplyCreate() {
 
       {/* FORM */}
       <form className="form-horizontal" onSubmit={submitForm}>
-
         {/* GROUP FILTER */}
         <div className="row row-padding-top-1">
           <div className="col-md-offset-2 col-md-2">
@@ -239,38 +242,45 @@ export default function ApplyCreate() {
 
         {/* TIME */}
         <div className="row row-padding-top-1 form-inline">
-            <div className="col-md-offset-2 col-md-2">
-                <label className="input-label">申請時間</label>
+          <div className="col-md-offset-2 col-md-2">
+            <label className="input-label">申請時間</label>
+          </div>
+
+          <div className="col-md-6">
+            <MiniTimePicker
+              value={form.requestTimeFrom}
+              onChange={(val) => updateForm("requestTimeFrom", val)}
+            />
+            ～
+            <MiniTimePicker
+              value={form.requestTimeTo}
+              onChange={(val) => updateForm("requestTimeTo", val)}
+            />
+            <div style={{ marginTop: 5 }}>
+              ※半休・早退・遅刻・早出は必須入力
             </div>
-
-            <div className="col-md-6">
-                <MiniTimePicker
-                    value={form.requestTimeFrom}
-                    onChange={(val) => updateForm("requestTimeFrom", val)}
-                />
-
-                ～
-
-                <MiniTimePicker
-                    value={form.requestTimeTo}
-                    onChange={(val) => updateForm("requestTimeTo", val)}
-                />
-
-                <div style={{ marginTop: 5 }}>
-                    ※半休・早退・遅刻・早出は必須入力
-                </div>
-            </div>
+          </div>
         </div>
 
         {/* ACTION BUTTONS */}
         <div className="row row-padding-top-2">
           <div className="col-md-12 text-center">
-            <button className="btn btn-primary">
-              <i className="fa fa-plus fa-fw"></i> 申請
-            </button>
-            <a href="/apply/list" className="btn btn-primary" style={{ marginLeft: 10 }}>
-              <i className="fa fa-ban fa-fw"></i> 戻る
-            </a>
+            {/* SUBMIT */}
+            <CommonButton
+              icon="plus"
+              label="申請"
+              size="md"
+              type="submit" // FORM SUBMIT
+              style={{ marginRight: "10px" }}
+            />
+
+            {/* BACK */}
+            <CommonButton
+              icon="ban"
+              label="戻る"
+              size="md"
+              onClick={() => (window.location.href = "/apply/list")}
+            />
           </div>
         </div>
       </form>

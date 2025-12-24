@@ -28,7 +28,6 @@ export default function AdminLayout({ title = "B-ROSTER", children }) {
 
   return (
     <div>
-
       {/* HEADER — clicking logout button opens modal */}
       <Header onLogoutClick={() => setShowLogout(true)} />
 
@@ -60,7 +59,6 @@ export default function AdminLayout({ title = "B-ROSTER", children }) {
           window.location.href = "/admin/logout";
         }}
       />
-
     </div>
   );
 }

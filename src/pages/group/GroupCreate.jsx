@@ -4,6 +4,7 @@ import UniversalModal from "../../components/UniversalModal";
 import { useNavigate } from "react-router-dom";
 import NotificationBar from "../../components/NotificationBar";
 import axios from "axios";
+import CommonButton from "../../components/CommonButton";
 
 export default function GroupCreate() {
   // ----------------------------------------------------
@@ -11,7 +12,7 @@ export default function GroupCreate() {
   // ----------------------------------------------------
   const [form, setForm] = useState({
     companyId: "11018",
-    groupId: "",      
+    groupId: "",
     groupName: "",
     parentGroupId: "",
     shiftId: "",
@@ -40,19 +41,19 @@ export default function GroupCreate() {
     setParentGroupList([
       { id: "", name: "なし" },
       { id: "P001", name: "本社" },
-      { id: "P002", name: "支店A" }
+      { id: "P002", name: "支店A" },
     ]);
 
     setShiftList([
       { id: "", name: "-- 未選択 --" },
       { id: "S01", name: "日勤" },
-      { id: "S02", name: "夜勤" }
+      { id: "S02", name: "夜勤" },
     ]);
 
     setApplyGroupList([
       { id: "", name: "-- 自動作成 --" },
       { id: "A01", name: "承認1" },
-      { id: "A02", name: "承認2" }
+      { id: "A02", name: "承認2" },
     ]);
   };
 
@@ -66,39 +67,40 @@ export default function GroupCreate() {
   // ----------------------------------------------------
   // SUBMIT HANDLER
   // ----------------------------------------------------
-const submitForm = async () => {
-  const url = "http://localhost:8081/broster/v2/api/group/regist";
+  const submitForm = async () => {
+    const url = "http://localhost:8081/broster/v2/api/group/regist";
 
-  try {
-    console.log("Submitting CREATE:", form);
-    // await axios.post(url, form);
+    try {
+      console.log("Submitting CREATE:", form);
+      // await axios.post(url, form);
 
-    setConfirmVisible(false);
+      setConfirmVisible(false);
 
-    // success notification
-    setInfoMessages(["グループを登録しました。"]);
-    setErrorMessages([]);
+      // success notification
+      setInfoMessages(["グループを登録しました。"]);
+      setErrorMessages([]);
 
-    // auto redirect after 1.5 seconds
-    setTimeout(() => {
-      navigate("/group/list");
-    }, 1500);
-
-  } catch (err) {
-    setErrorMessages(["登録に失敗しました。"]);
-    setInfoMessages([]);
-    console.error(err);
-  }
-};
+      // auto redirect after 1.5 seconds
+      setTimeout(() => {
+        navigate("/group/list");
+      }, 1500);
+    } catch (err) {
+      setErrorMessages(["登録に失敗しました。"]);
+      setInfoMessages([]);
+      console.error(err);
+    }
+  };
 
   // ----------------------------------------------------
   // PAGE UI
   // ----------------------------------------------------
   return (
     <OwnerLayout title="グループ登録">
-
-    {/* Notification Bar */}
-    <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      {/* Notification Bar */}
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* PAGE TITLE */}
       <div className="row row-padding-top-1">
@@ -113,7 +115,6 @@ const submitForm = async () => {
 
       {/* FORM */}
       <div className="form-horizontal">
-
         {/* GROUP NAME */}
         <div className="row row-padding-top-2">
           <div className="col-md-offset-2 col-md-2 col-sm-offset-1 col-sm-3">
@@ -143,7 +144,9 @@ const submitForm = async () => {
               onChange={(e) => updateField("parentGroupId", e.target.value)}
             >
               {parentGroupList.map((pg) => (
-                <option key={pg.id} value={pg.id}>{pg.name}</option>
+                <option key={pg.id} value={pg.id}>
+                  {pg.name}
+                </option>
               ))}
             </select>
           </div>
@@ -163,7 +166,9 @@ const submitForm = async () => {
               onChange={(e) => updateField("shiftId", e.target.value)}
             >
               {shiftList.map((s) => (
-                <option key={s.id} value={s.id}>{s.name}</option>
+                <option key={s.id} value={s.id}>
+                  {s.name}
+                </option>
               ))}
             </select>
           </div>
@@ -181,7 +186,9 @@ const submitForm = async () => {
               onChange={(e) => updateField("applyGroupId", e.target.value)}
             >
               {applyGroupList.map((ag) => (
-                <option key={ag.id} value={ag.id}>{ag.name}</option>
+                <option key={ag.id} value={ag.id}>
+                  {ag.name}
+                </option>
               ))}
             </select>
 
@@ -194,17 +201,20 @@ const submitForm = async () => {
         {/* BUTTONS */}
         <div className="row row-padding-top-3">
           <div className="col-md-12 text-center">
-            <button
-              className="btn btn-primary"
+            <CommonButton
+              label="登録"
+              icon="plus"
+              color="primary"
               onClick={() => setConfirmVisible(true)}
-            >
-              <i className="fa fa-plus fa-fw"></i>
-              登録
-            </button>
+            />
 
-            <a href="/group/list" className="btn btn-primary" style={{ marginLeft: 10 }}>
-              <i className="fa fa-ban fa-fw"></i> 戻る
-            </a>
+            <CommonButton
+              label="戻る"
+              icon="ban"
+              color="secondary"
+              style={{ marginLeft: 10 }}
+              onClick={() => navigate(-1)}
+            />
           </div>
         </div>
       </div>
@@ -220,7 +230,6 @@ const submitForm = async () => {
         onCancel={() => setConfirmVisible(false)}
         onConfirm={submitForm}
       />
-
     </OwnerLayout>
   );
 }

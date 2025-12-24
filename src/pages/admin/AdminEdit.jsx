@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import AdminLayout from "../../layouts/AdminLayout";
 import NotificationBar from "../../components/NotificationBar";
 import axios from "axios";
+import CommonButton from "../../components/CommonButton";
 
 export default function AdminEdit() {
   const { companyId, adminId } = useParams();
@@ -13,7 +14,7 @@ export default function AdminEdit() {
     mailAddress: "",
     oldPassword: "",
     newPassword: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
 
   const [infoMessages, setInfoMessages] = useState([]);
@@ -32,7 +33,7 @@ export default function AdminEdit() {
         "http://localhost:8081/broster/v2/api/userManage/getAdminList",
         {
           companyId: Number(companyId),
-          adminId: String(adminId)
+          adminId: String(adminId),
         }
       );
 
@@ -42,10 +43,9 @@ export default function AdminEdit() {
         setForm((prev) => ({
           ...prev,
           adminName: record.adminName || "",
-          mailAddress: record.mailAddress || ""
+          mailAddress: record.mailAddress || "",
         }));
       }
-
     } catch (err) {
       console.error(err);
       setErrorMessages(["管理者情報の取得に失敗しました。"]);
@@ -63,9 +63,9 @@ export default function AdminEdit() {
           adminId: String(adminId),
           adminName: form.adminName,
           mailAddress: form.mailAddress,
-          adminPassword: "dummy" // required by backend
-        }
-      ]
+          adminPassword: "dummy", // required by backend
+        },
+      ],
     };
 
     return axios.post(
@@ -99,7 +99,7 @@ export default function AdminEdit() {
       {
         companyId: Number(companyId),
         adminId: String(adminId),
-        password: form.oldPassword
+        password: form.oldPassword,
       }
     );
 
@@ -113,9 +113,9 @@ export default function AdminEdit() {
         {
           companyId: Number(companyId),
           adminId: String(adminId),
-          password: form.newPassword
-        }
-      ]
+          password: form.newPassword,
+        },
+      ],
     };
 
     return axios.post(
@@ -140,7 +140,6 @@ export default function AdminEdit() {
 
       setInfoMessages(["更新が完了しました。"]);
       setTimeout(() => navigate("/admin/list"), 900);
-
     } catch (err) {
       console.error(err);
       setErrorMessages([err.message || "更新に失敗しました。"]);
@@ -149,9 +148,11 @@ export default function AdminEdit() {
 
   return (
     <AdminLayout title="管理者更新">
-
-    {/* Notification Bar */}
-    <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      {/* Notification Bar */}
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       <div className="row row-padding-top-1">
         <div className="col-md-12">
@@ -164,7 +165,6 @@ export default function AdminEdit() {
 
       <div className="row">
         <div className="col-md-6 col-md-offset-3">
-
           {/* Company ID */}
           <div className="form-group">
             <label style={{ fontWeight: "bold" }}>会社ID :</label>
@@ -199,7 +199,9 @@ export default function AdminEdit() {
               type="text"
               className="form-control"
               value={form.mailAddress}
-              onChange={(e) => setForm({ ...form, mailAddress: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, mailAddress: e.target.value })
+              }
             />
           </div>
 
@@ -213,7 +215,9 @@ export default function AdminEdit() {
               type="password"
               className="form-control"
               value={form.oldPassword}
-              onChange={(e) => setForm({ ...form, oldPassword: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, oldPassword: e.target.value })
+              }
             />
           </div>
 
@@ -223,7 +227,9 @@ export default function AdminEdit() {
               type="password"
               className="form-control"
               value={form.newPassword}
-              onChange={(e) => setForm({ ...form, newPassword: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, newPassword: e.target.value })
+              }
             />
           </div>
 
@@ -240,18 +246,22 @@ export default function AdminEdit() {
           </div>
 
           <div className="text-center" style={{ marginTop: 20 }}>
-            <button className="btn btn-primary" onClick={handleUpdate}>
-              <i className="fa fa-check"></i> 更新
-            </button>
+            <CommonButton
+              icon="check"
+              label="更新"
+              size="md"
+              onClick={handleUpdate}
+            />
 
-            <a href="/admin/list" className="btn btn-primary" style={{ marginLeft: 10 }}>
-              <i className="fa fa-ban fa-fw"></i>戻る
-            </a>
+            <CommonButton
+              icon="ban"
+              label="戻る"
+              size="md"
+              onClick={() => navigate("/admin/list")}
+            />
           </div>
-
         </div>
       </div>
-
     </AdminLayout>
   );
 }

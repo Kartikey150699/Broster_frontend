@@ -7,6 +7,7 @@ import AutoFillControls from "../../components/AutoFillControls";
 import ShiftCell from "../../components/ShiftCell";
 import axios from "axios";
 import useGridDragSelection from "../../components/grid/useGridDragSelection";
+import CommonButton from "../../components/CommonButton";
 
 export default function WorkPlanEdit() {
   const { month } = useParams();
@@ -29,11 +30,11 @@ export default function WorkPlanEdit() {
   // --------------------------
   // MOCK DATA LIKE SHIFTEDIT
   // --------------------------
-  const BREAKTIME_MAP = { 
+  const BREAKTIME_MAP = {
     B0: "休憩無",
     B5: "5分",
     B10: "10分",
-    B15: "15分", 
+    B15: "15分",
     B30: "30分",
     B45: "45分",
     B60: "60分",
@@ -231,17 +232,13 @@ export default function WorkPlanEdit() {
 
           {/* 更新 + 戻る */}
           <div className="action-right">
-            <button className="btn btn-primary btn-md" onClick={handleSubmit}>
-              <i className="fa fa-pencil fa-fw"></i> 更新
-            </button>
-
-            <button
-              className="btn btn-primary btn-md"
-              style={{ marginLeft: "5px" }}
+            <CommonButton icon="pencil" label="更新" onClick={handleSubmit} />
+            <CommonButton
+              icon="ban"
+              label="戻る"
               onClick={() => navigate(-1)}
-            >
-              <i className="fa fa-ban fa-fw"></i> 戻る
-            </button>
+              style={{ marginLeft: 3 }}
+            />
           </div>
         </div>
 

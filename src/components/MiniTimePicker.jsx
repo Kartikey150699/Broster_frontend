@@ -24,7 +24,7 @@ export default function MiniTimePicker({ value, onChange, onSelect }) {
   // Update parent + update UI
   const update = (newTime) => {
     setTime(newTime);
-    if (onChange) onChange(newTime);      // ← Always update parent
+    if (onChange) onChange(newTime); // Always update parent
   };
 
   // Adjust hour/minute
@@ -38,7 +38,7 @@ export default function MiniTimePicker({ value, onChange, onSelect }) {
     }
 
     const finalTime = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
-    update(finalTime);                    // ← Parent updates immediately
+    update(finalTime); // Parent updates immediately
   };
 
   return (
@@ -83,7 +83,13 @@ export default function MiniTimePicker({ value, onChange, onSelect }) {
           </div>
 
           {/* 時間（分） */}
-          <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: 6,
+            }}
+          >
             <button onClick={() => adjustTime("m", +1)}>▲</button>
             <span>分</span>
             <button onClick={() => adjustTime("m", -1)}>▼</button>

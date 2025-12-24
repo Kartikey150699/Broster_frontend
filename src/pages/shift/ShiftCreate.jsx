@@ -6,6 +6,7 @@ import MiniTimePicker from "../../components/MiniTimePicker";
 import AutoFillControls from "../../components/AutoFillControls";
 import ShiftCell from "../../components/ShiftCell";
 import useGridDragSelection from "../../components/grid/useGridDragSelection";
+import CommonButton from "../../components/CommonButton";
 
 export default function ShiftCreate() {
   const navigate = useNavigate();
@@ -13,16 +14,16 @@ export default function ShiftCreate() {
 
   const tableRef = useRef(null);
 
-    useEffect(() => {
+  useEffect(() => {
     const handleClickOutside = (event) => {
-        if (tableRef.current && !tableRef.current.contains(event.target)) {
-        setSelectedCell(null);   // ← disable autofill buttons
-        }
+      if (tableRef.current && !tableRef.current.contains(event.target)) {
+        setSelectedCell(null); // disable autofill buttons
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
+  }, []);
 
   // ------------------------------------------
   // Dummy data (to replace by API later)
@@ -79,12 +80,8 @@ export default function ShiftCreate() {
 
   const [recordTable, setRecordTable] = useState(initialRecord);
 
-  const {
-    handleDragStart,
-    handleDragEnter,
-    handleDragEnd,
-    isCellHighlighted
-  } = useGridDragSelection(recordTable, setRecordTable);
+  const { handleDragStart, handleDragEnter, handleDragEnd, isCellHighlighted } =
+    useGridDragSelection(recordTable, setRecordTable);
 
   // ------------------------------------------
   // Helper functions
@@ -123,7 +120,10 @@ export default function ShiftCreate() {
   // ------------------------------------------
   return (
     <OwnerLayout title="シフト登録">
-      <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* TITLE */}
       <div className="row row-padding-top-1">
@@ -206,132 +206,192 @@ export default function ShiftCreate() {
         </div>
       </div>
 
-
       {/* MAIN TABLE */}
-    <div ref={tableRef}>
-    <AutoFillControls
-        selectedCell={selectedCell}
-        recordTable={recordTable}
-        setRecordTable={setRecordTable}
-    />
-      <div className="row row-padding-top-1" style={{ padding: "10px 20px" }}>
-        <div className="col-md-12" style={{ overflowX: "scroll", height: "500px", padding: 0 }}>
-          <div className="panel panel-default">
-            <table
-              className="table table-bordered table-condensed"
-              style={{ width: "100%", borderCollapse: "collapse" }}
-            >
-              <thead>
-                <tr className="primary" style={{ position: "sticky", top: 0, zIndex: 1 }}>
-                  <th className="text-center" style={{ width: "5%" }}>週</th>
-                  <th className="text-center" style={{ width: "5%" }}>曜日</th>
-                  <th className="text-center" style={{ width: "17%" }}>早出</th>
-                  <th className="text-center" style={{ width: "17%" }}>勤務１</th>
-                  <th className="text-center" style={{ width: "17%" }}>勤務２</th>
-                  <th className="text-center" style={{ width: "17%" }}>勤務３</th>
-                  <th className="text-center" style={{ width: "17%" }}>勤務４</th>
-                  <th className="text-center" style={{ width: "5%" }}>休日</th>
-                </tr>
-              </thead>
+      <div ref={tableRef}>
+        <AutoFillControls
+          selectedCell={selectedCell}
+          recordTable={recordTable}
+          setRecordTable={setRecordTable}
+        />
+        <div className="row row-padding-top-1" style={{ padding: "10px 20px" }}>
+          <div
+            className="col-md-12"
+            style={{ overflowX: "scroll", height: "500px", padding: 0 }}
+          >
+            <div className="panel panel-default">
+              <table
+                className="table table-bordered table-condensed"
+                style={{ width: "100%", borderCollapse: "collapse" }}
+              >
+                <thead>
+                  <tr
+                    className="primary"
+                    style={{ position: "sticky", top: 0, zIndex: 1 }}
+                  >
+                    <th className="text-center" style={{ width: "5%" }}>
+                      週
+                    </th>
+                    <th className="text-center" style={{ width: "5%" }}>
+                      曜日
+                    </th>
+                    <th className="text-center" style={{ width: "17%" }}>
+                      早出
+                    </th>
+                    <th className="text-center" style={{ width: "17%" }}>
+                      勤務１
+                    </th>
+                    <th className="text-center" style={{ width: "17%" }}>
+                      勤務２
+                    </th>
+                    <th className="text-center" style={{ width: "17%" }}>
+                      勤務３
+                    </th>
+                    <th className="text-center" style={{ width: "17%" }}>
+                      勤務４
+                    </th>
+                    <th className="text-center" style={{ width: "5%" }}>
+                      休日
+                    </th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                {recordTable.map((weekRow, w) =>
-                  weekRow.map((cell, d) => (
-                    <tr key={`${w}-${d}`}>
-                      {/* WEEK NUMBER (rowspan=7 mimic) */}
-                      {d === 0 && (
-                        <td className="text-center" rowSpan="7">
-                          {w + 1}
+                <tbody>
+                  {recordTable.map((weekRow, w) =>
+                    weekRow.map((cell, d) => (
+                      <tr key={`${w}-${d}`}>
+                        {/* WEEK NUMBER (rowspan=7 mimic) */}
+                        {d === 0 && (
+                          <td className="text-center" rowSpan="7">
+                            {w + 1}
+                          </td>
+                        )}
+
+                        {/* DAY LABEL */}
+                        <td className="text-center">
+                          {["月", "火", "水", "木", "金", "土", "日"][d]}
                         </td>
-                      )}
 
-                      {/* DAY LABEL */}
-                      <td className="text-center">
-                        {["月", "火", "水", "木", "金", "土", "日"][d]}
-                      </td>
+                        {/* 5 SHIFTS COLUMNS */}
+                        {Array.from({ length: 5 }).map((_, shiftIndex) => {
+                          const startKey = `startTime${shiftIndex + 1}`;
+                          const endKey = `endTime${shiftIndex + 1}`;
+                          const breakKey = `breakTime${shiftIndex + 1}`;
 
-                      {/* 5 SHIFTS COLUMNS */}
-                      {Array.from({ length: 5 }).map((_, shiftIndex) => {
-                        const startKey = `startTime${shiftIndex + 1}`;
-                        const endKey = `endTime${shiftIndex + 1}`;
-                        const breakKey = `breakTime${shiftIndex + 1}`;
-
-                        return (
-                          <td key={shiftIndex}>
-                            <ShiftCell
+                          return (
+                            <td key={shiftIndex}>
+                              <ShiftCell
                                 w={w}
                                 d={d}
                                 shiftIndex={shiftIndex}
-                                isHighlighted={isCellHighlighted(w, d, shiftIndex)}
+                                isHighlighted={isCellHighlighted(
+                                  w,
+                                  d,
+                                  shiftIndex
+                                )}
                                 onDragStart={handleDragStart}
                                 onDragEnter={handleDragEnter}
                                 onDragEnd={handleDragEnd}
-                            >
-                                <div className="form-inline" style={{ whiteSpace: "nowrap", display: "flex", alignItems: "center" }}>
-                                <MiniTimePicker
-                                    value={cell[startKey]}
-                                    onChange={(val) => updateCell(w, d, startKey, val)}
-                                    onSelect={() => setSelectedCell({ weekIndex: w, dayIndex: d, shiftIndex })}
-                                    style={{ marginRight: "5px" }}
-                                />
-                                <span style={{ marginRight: "5px", marginLeft: "5px" }}>〜</span>
-                                <MiniTimePicker
-                                    value={cell[endKey]}
-                                    onChange={(val) => updateCell(w, d, endKey, val)}
-                                    onSelect={() => setSelectedCell({ weekIndex: w, dayIndex: d, shiftIndex })}
-                                    style={{ marginRight: "5px" }}
-                                />
-                                <select
-                                    className="form-control input-sm"
-                                    style={{ height: "34px", marginLeft: "5px" }}
-                                    value={cell[breakKey]}
-                                    onChange={(e) => updateCell(w, d, breakKey, e.target.value)}
+                              >
+                                <div
+                                  className="form-inline"
+                                  style={{
+                                    whiteSpace: "nowrap",
+                                    display: "flex",
+                                    alignItems: "center",
+                                  }}
                                 >
-                                    {Object.entries(BREAKTIME_MAP).map(([k, v]) => (
-                                    <option key={k} value={k}>{v}</option>
-                                    ))}
-                                </select>
+                                  <MiniTimePicker
+                                    value={cell[startKey]}
+                                    onChange={(val) =>
+                                      updateCell(w, d, startKey, val)
+                                    }
+                                    onSelect={() =>
+                                      setSelectedCell({
+                                        weekIndex: w,
+                                        dayIndex: d,
+                                        shiftIndex,
+                                      })
+                                    }
+                                    style={{ marginRight: "5px" }}
+                                  />
+                                  <span
+                                    style={{
+                                      marginRight: "5px",
+                                      marginLeft: "5px",
+                                    }}
+                                  >
+                                    〜
+                                  </span>
+                                  <MiniTimePicker
+                                    value={cell[endKey]}
+                                    onChange={(val) =>
+                                      updateCell(w, d, endKey, val)
+                                    }
+                                    onSelect={() =>
+                                      setSelectedCell({
+                                        weekIndex: w,
+                                        dayIndex: d,
+                                        shiftIndex,
+                                      })
+                                    }
+                                    style={{ marginRight: "5px" }}
+                                  />
+                                  <select
+                                    className="form-control input-sm"
+                                    style={{
+                                      height: "34px",
+                                      marginLeft: "5px",
+                                    }}
+                                    value={cell[breakKey]}
+                                    onChange={(e) =>
+                                      updateCell(w, d, breakKey, e.target.value)
+                                    }
+                                  >
+                                    {Object.entries(BREAKTIME_MAP).map(
+                                      ([k, v]) => (
+                                        <option key={k} value={k}>
+                                          {v}
+                                        </option>
+                                      )
+                                    )}
+                                  </select>
+                                </div>
+                              </ShiftCell>
+                            </td>
+                          );
+                        })}
 
-                            </div>
-                            </ShiftCell>
-                          </td>
-                        );
-                      })}
-
-                      {/* NO WORKING DAY */}
-                      <td className="text-center">
-                        <input
-                          type="checkbox"
-                          checked={cell.noWorkingDay}
-                          onChange={(e) =>
-                            updateCell(w, d, "noWorkingDay", e.target.checked)
-                          }
-                        />
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+                        {/* NO WORKING DAY */}
+                        <td className="text-center">
+                          <input
+                            type="checkbox"
+                            checked={cell.noWorkingDay}
+                            onChange={(e) =>
+                              updateCell(w, d, "noWorkingDay", e.target.checked)
+                            }
+                          />
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-      </div> 
 
       {/* BUTTONS */}
       <div className="row row-padding-top-2">
         <div className="col-md-12 text-center">
-          <button className="btn btn-primary" onClick={handleSubmit}>
-            <i className="fa fa-plus fa-fw"></i> 登録
-          </button>
+          <CommonButton label="登録" icon="plus" onClick={handleSubmit} />
 
-          <button
-            className="btn btn-primary"
-            style={{ marginLeft: 10 }}
+          <CommonButton
+            label="戻る"
+            icon="ban"
             onClick={() => navigate("/shift/list")}
-          >
-            <i className="fa fa-ban fa-fw"></i> 戻る
-          </button>
+            style={{ marginLeft: 10 }}
+          />
         </div>
       </div>
     </OwnerLayout>

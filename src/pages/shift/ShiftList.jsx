@@ -3,6 +3,7 @@ import OwnerLayout from "../../layouts/OwnerLayout";
 import NotificationBar from "../../components/NotificationBar";
 import UniversalModal from "../../components/UniversalModal";
 import { useNavigate } from "react-router-dom";
+import CommonButton from "../../components/CommonButton";
 
 export default function ShiftList() {
   const navigate = useNavigate();
@@ -44,19 +45,16 @@ export default function ShiftList() {
             shiftName: "早番",
             groupShowDtoList: [
               { groupName: "営業部" },
-              { groupName: "開発部" }
-            ]
+              { groupName: "開発部" },
+            ],
           },
           {
             shiftName: "遅番",
-            groupShowDtoList: [
-              { groupName: "企画部" }
-            ]
-          }
+            groupShowDtoList: [{ groupName: "企画部" }],
+          },
         ];
 
         setShiftList(mock);
-
       } catch (e) {
         setErrorMessages(["シフト一覧の取得に失敗しました。"]);
       } finally {
@@ -101,9 +99,11 @@ export default function ShiftList() {
       <div className="row row-padding-top-1">
         <div className="col-sm-8 col-md-8"></div>
         <div className="col-sm-4 col-md-4 text-right admin-add-btn">
-          <a href="/shift/create" className="btn btn-primary">
-            <i className="fa fa-plus fa-fw"></i> シフト追加
-          </a>
+          <CommonButton
+            label="シフト追加"
+            icon="plus"
+            onClick={() => navigate("/shift/create")}
+          />
         </div>
       </div>
 
@@ -114,7 +114,7 @@ export default function ShiftList() {
           style={{
             overflowX: "visible",
             padding: "0 0",
-            height: "auto"
+            height: "auto",
           }}
         >
           <div className="panel panel-default">
@@ -123,7 +123,7 @@ export default function ShiftList() {
               style={{
                 width: "100%",
                 borderCollapse: "collapse",
-                whiteSpace: "normal"
+                whiteSpace: "normal",
               }}
             >
               <thead>
@@ -155,7 +155,7 @@ export default function ShiftList() {
                           style={{
                             fontSize: 12,
                             lineHeight: "2",
-                            marginRight: 5
+                            marginRight: 5,
                           }}
                         >
                           {g.groupName}
@@ -196,7 +196,6 @@ export default function ShiftList() {
                   </tr>
                 )}
               </tbody>
-
             </table>
           </div>
         </div>
@@ -216,7 +215,6 @@ export default function ShiftList() {
         onCancel={() => setDeleteModalVisible(false)}
         onConfirm={handleDelete}
       />
-
     </OwnerLayout>
   );
 }

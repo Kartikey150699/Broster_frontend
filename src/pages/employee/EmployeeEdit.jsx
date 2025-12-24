@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import NotificationBar from "../../components/NotificationBar";
 import OwnerLayout from "../../layouts/OwnerLayout";
+import CommonButton from "../../components/CommonButton";
 
 export default function EmployeeEdit() {
   const { companyId, groupId, employeeId } = useParams();
@@ -55,7 +56,6 @@ export default function EmployeeEdit() {
         setEmployee(response);
         setGroupList(groups);
         setShiftList(shifts);
-
       } catch (e) {
         setErrorMessages(["データの取得に失敗しました。"]);
       } finally {
@@ -89,21 +89,23 @@ export default function EmployeeEdit() {
       setInfoMessages(["更新が完了しました。"]);
 
       setTimeout(() => navigate("/employee/list"), 3000);
-
     } catch (e) {
       setErrorMessages(["更新に失敗しました。"]);
     }
   }
 
-  if (loading) return <OwnerLayout title="従業員更新">読み込み中...</OwnerLayout>;
+  if (loading)
+    return <OwnerLayout title="従業員更新">読み込み中...</OwnerLayout>;
 
   // ============================
   //    PAGE UI START
   // ============================
   return (
     <OwnerLayout title="従業員更新">
-      
-      <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* PAGE TITLE */}
       <div className="row row-padding-top-1">
@@ -116,18 +118,25 @@ export default function EmployeeEdit() {
       </div>
 
       <div className="form-horizontal row-padding-top-1">
-
         {/* EMPLOYEE ID */}
         <div className="form-group">
-          <label className="col-md-offset-2 col-md-2 input-label">従業員ID</label>
+          <label className="col-md-offset-2 col-md-2 input-label">
+            従業員ID
+          </label>
           <div className="col-md-2">
-            <span style={{ color: "red", fontSize: "15px", fontWeight: "bold" }}>{employee.employeeId}</span>
+            <span
+              style={{ color: "red", fontSize: "15px", fontWeight: "bold" }}
+            >
+              {employee.employeeId}
+            </span>
           </div>
         </div>
 
         {/* NAME */}
         <div className="form-group">
-          <label className="col-md-offset-2 col-md-2 input-label">従業員名</label>
+          <label className="col-md-offset-2 col-md-2 input-label">
+            従業員名
+          </label>
           <div className="col-md-2">
             <input
               type="text"
@@ -141,7 +150,9 @@ export default function EmployeeEdit() {
 
         {/* EMAIL */}
         <div className="form-group">
-          <label className="col-md-offset-2 col-md-2 input-label">メールアドレス</label>
+          <label className="col-md-offset-2 col-md-2 input-label">
+            メールアドレス
+          </label>
           <div className="col-md-2">
             <input
               type="text"
@@ -155,8 +166,13 @@ export default function EmployeeEdit() {
 
         {/* PASSWORD */}
         <div className="form-group">
-          <label className="col-md-offset-2 col-md-2 input-label">パスワード</label>
-          <div className="col-md-2" style={{ color: "red", fontSize: "15px", fontWeight: "bold" }}>
+          <label className="col-md-offset-2 col-md-2 input-label">
+            パスワード
+          </label>
+          <div
+            className="col-md-2"
+            style={{ color: "red", fontSize: "15px", fontWeight: "bold" }}
+          >
             ※更新できません
           </div>
         </div>
@@ -164,14 +180,19 @@ export default function EmployeeEdit() {
         {/* HIRE DATE */}
         <div className="form-group">
           <label className="col-md-offset-2 col-md-2 input-label">入社日</label>
-          <div className="col-md-2" style={{ color: "red", fontSize: "15px", fontWeight: "bold" }}>
+          <div
+            className="col-md-2"
+            style={{ color: "red", fontSize: "15px", fontWeight: "bold" }}
+          >
             {employee.hireDate} ※更新できません
           </div>
         </div>
 
         {/* WEEK WORK DAYS */}
         <div className="form-group">
-          <label className="col-md-offset-2 col-md-2 input-label">週所定労働日数</label>
+          <label className="col-md-offset-2 col-md-2 input-label">
+            週所定労働日数
+          </label>
           <div className="col-md-2">
             <select
               className="form-control"
@@ -179,8 +200,10 @@ export default function EmployeeEdit() {
               value={employee.weekWorkDayCount}
               onChange={handleChange}
             >
-              {[1,2,3,4,5,6,7].map(v => (
-                <option key={v} value={v}>{v}</option>
+              {[1, 2, 3, 4, 5, 6, 7].map((v) => (
+                <option key={v} value={v}>
+                  {v}
+                </option>
               ))}
             </select>
           </div>
@@ -188,41 +211,80 @@ export default function EmployeeEdit() {
 
         {/* JOB TYPE */}
         <div className="form-group">
-          <label className="col-md-offset-2 col-md-2 input-label">雇用形態</label>
+          <label className="col-md-offset-2 col-md-2 input-label">
+            雇用形態
+          </label>
           <div className="col-md-6">
             <label>
-              <input type="radio" name="jobType" value="1"
-                checked={employee.jobType === "1"} onChange={handleChange} /> 社員
-            </label>　
+              <input
+                type="radio"
+                name="jobType"
+                value="1"
+                checked={employee.jobType === "1"}
+                onChange={handleChange}
+              />{" "}
+              社員
+            </label>
+            　
             <label>
-              <input type="radio" name="jobType" value="2"
-                checked={employee.jobType === "2"} onChange={handleChange} /> パート
-            </label>　
+              <input
+                type="radio"
+                name="jobType"
+                value="2"
+                checked={employee.jobType === "2"}
+                onChange={handleChange}
+              />{" "}
+              パート
+            </label>
+            　
             <label>
-              <input type="radio" name="jobType" value="3"
-                checked={employee.jobType === "3"} onChange={handleChange} /> アルバイト
+              <input
+                type="radio"
+                name="jobType"
+                value="3"
+                checked={employee.jobType === "3"}
+                onChange={handleChange}
+              />{" "}
+              アルバイト
             </label>
           </div>
         </div>
 
         {/* BREAK TIME */}
         <div className="form-group">
-          <label className="col-md-offset-2 col-md-2 input-label">休憩打刻</label>
+          <label className="col-md-offset-2 col-md-2 input-label">
+            休憩打刻
+          </label>
           <div className="col-md-6">
             <label>
-              <input type="radio" name="breakTimeType" value="1"
-                checked={employee.breakTimeType === "1"} onChange={handleChange} /> 自動控除
-            </label>　
+              <input
+                type="radio"
+                name="breakTimeType"
+                value="1"
+                checked={employee.breakTimeType === "1"}
+                onChange={handleChange}
+              />{" "}
+              自動控除
+            </label>
+            　
             <label>
-              <input type="radio" name="breakTimeType" value="2"
-                checked={employee.breakTimeType === "2"} onChange={handleChange} /> 休憩打刻を利用
+              <input
+                type="radio"
+                name="breakTimeType"
+                value="2"
+                checked={employee.breakTimeType === "2"}
+                onChange={handleChange}
+              />{" "}
+              休憩打刻を利用
             </label>
           </div>
         </div>
 
         {/* GROUP SELECT */}
         <div className="form-group">
-          <label className="col-md-offset-2 col-md-2 input-label">グループ</label>
+          <label className="col-md-offset-2 col-md-2 input-label">
+            グループ
+          </label>
           <div className="col-md-2">
             <select
               className="form-control"
@@ -231,8 +293,10 @@ export default function EmployeeEdit() {
               onChange={handleChange}
             >
               <option value="">未選択</option>
-              {groupList.map(g => (
-                <option key={g.id} value={g.id}>{g.name}</option>
+              {groupList.map((g) => (
+                <option key={g.id} value={g.id}>
+                  {g.name}
+                </option>
               ))}
             </select>
           </div>
@@ -240,7 +304,9 @@ export default function EmployeeEdit() {
 
         {/* SHIFT SELECT */}
         <div className="form-group">
-          <label className="col-md-offset-2 col-md-2 input-label">個別シフト</label>
+          <label className="col-md-offset-2 col-md-2 input-label">
+            個別シフト
+          </label>
           <div className="col-md-2">
             <select
               className="form-control"
@@ -249,8 +315,10 @@ export default function EmployeeEdit() {
               onChange={handleChange}
             >
               <option value="">未選択</option>
-              {shiftList.map(s => (
-                <option key={s.id} value={s.id}>{s.name}</option>
+              {shiftList.map((s) => (
+                <option key={s.id} value={s.id}>
+                  {s.name}
+                </option>
               ))}
             </select>
           </div>
@@ -258,7 +326,9 @@ export default function EmployeeEdit() {
 
         {/* SHIFT APPLY DATE */}
         <div className="form-group">
-          <label className="col-md-offset-2 col-md-2 input-label">シフト変更適用日</label>
+          <label className="col-md-offset-2 col-md-2 input-label">
+            シフト変更適用日
+          </label>
           <div className="col-md-2">
             <input
               type="text"
@@ -272,7 +342,9 @@ export default function EmployeeEdit() {
 
         {/* OTHER APP ID */}
         <div className="form-group">
-          <label className="col-md-offset-2 col-md-2 input-label">外部アプリID</label>
+          <label className="col-md-offset-2 col-md-2 input-label">
+            外部アプリID
+          </label>
           <div className="col-md-2">
             <input
               type="text"
@@ -286,19 +358,41 @@ export default function EmployeeEdit() {
 
         {/* STATUS */}
         <div className="form-group">
-          <label className="col-md-offset-2 col-md-2 input-label">ステータス</label>
+          <label className="col-md-offset-2 col-md-2 input-label">
+            ステータス
+          </label>
           <div className="col-md-6">
             <label>
-              <input type="radio" name="employeeStatus" value="0"
-                checked={employee.employeeStatus === "0"} onChange={handleChange} /> 在職
-            </label>　
+              <input
+                type="radio"
+                name="employeeStatus"
+                value="0"
+                checked={employee.employeeStatus === "0"}
+                onChange={handleChange}
+              />{" "}
+              在職
+            </label>
+            　
             <label>
-              <input type="radio" name="employeeStatus" value="1"
-                checked={employee.employeeStatus === "1"} onChange={handleChange} /> 休職
-            </label>　
+              <input
+                type="radio"
+                name="employeeStatus"
+                value="1"
+                checked={employee.employeeStatus === "1"}
+                onChange={handleChange}
+              />{" "}
+              休職
+            </label>
+            　
             <label>
-              <input type="radio" name="employeeStatus" value="2"
-                checked={employee.employeeStatus === "2"} onChange={handleChange} /> 退職
+              <input
+                type="radio"
+                name="employeeStatus"
+                value="2"
+                checked={employee.employeeStatus === "2"}
+                onChange={handleChange}
+              />{" "}
+              退職
             </label>
           </div>
         </div>
@@ -306,24 +400,23 @@ export default function EmployeeEdit() {
         {/* BUTTONS */}
         <div className="row row-padding-top-2">
           <div className="col-md-12 text-center">
+            <CommonButton
+              label="更新"
+              icon="pencil"
+              color="primary"
+              onClick={handleUpdate}
+            />
 
-            <button className="btn btn-primary" onClick={handleUpdate}>
-              <i className="fa fa-pencil fa-fw"></i> 更新
-            </button>
-
-            <a 
-              href="/employee/list"
-              className="btn btn-primary"
+            <CommonButton
+              label="戻る"
+              icon="ban"
+              color="secondary"
+              onClick={() => navigate(-1)}
               style={{ marginLeft: 10 }}
-            >
-              <i className="fa fa-ban fa-fw"></i> 戻る
-            </a>
-
+            />
           </div>
         </div>
-
       </div>
-
     </OwnerLayout>
   );
 }

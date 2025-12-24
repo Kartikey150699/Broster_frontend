@@ -4,6 +4,7 @@ import OwnerLayout from "../../layouts/OwnerLayout";
 import UniversalModal from "../../components/UniversalModal";
 import NotificationBar from "../../components/NotificationBar";
 import { useNavigate } from "react-router-dom";
+import CommonButton from "../../components/CommonButton";
 
 import axios from "axios";
 
@@ -48,19 +49,19 @@ export default function GroupEdit() {
     setParentGroupList([
       { id: "", name: "なし" },
       { id: "P001", name: "本社" },
-      { id: "P002", name: "支店A" }
+      { id: "P002", name: "支店A" },
     ]);
 
     setShiftList([
       { id: "", name: "-- 未選択 --" },
       { id: "S01", name: "日勤" },
-      { id: "S02", name: "夜勤" }
+      { id: "S02", name: "夜勤" },
     ]);
 
     setApplyGroupList([
       { id: "", name: "-- 自動作成 --" },
       { id: "A01", name: "承認1" },
-      { id: "A02", name: "承認2" }
+      { id: "A02", name: "承認2" },
     ]);
   };
 
@@ -87,7 +88,6 @@ export default function GroupEdit() {
         ...form,
         ...mock,
       });
-
     } catch (err) {
       console.error("LOAD ERROR:", err);
     }
@@ -120,7 +120,6 @@ export default function GroupEdit() {
       setTimeout(() => {
         navigate("/group/list");
       }, 1500);
-
     } catch (err) {
       setErrorMessages(["更新に失敗しました。"]);
       setInfoMessages([]);
@@ -133,9 +132,11 @@ export default function GroupEdit() {
   // ----------------------------------------------------
   return (
     <OwnerLayout title="グループ更新">
-
-    {/* Notification Bar */}
-    <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      {/* Notification Bar */}
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* PAGE TITLE */}
       <div className="row row-padding-top-1">
@@ -150,7 +151,6 @@ export default function GroupEdit() {
 
       {/* FORM */}
       <div className="form-horizontal">
-
         {/* GROUP NAME */}
         <div className="row row-padding-top-2">
           <div className="col-md-offset-2 col-md-2 col-sm-offset-1 col-sm-3">
@@ -180,7 +180,9 @@ export default function GroupEdit() {
               onChange={(e) => updateField("parentGroupId", e.target.value)}
             >
               {parentGroupList.map((pg) => (
-                <option key={pg.id} value={pg.id}>{pg.name}</option>
+                <option key={pg.id} value={pg.id}>
+                  {pg.name}
+                </option>
               ))}
             </select>
           </div>
@@ -200,7 +202,9 @@ export default function GroupEdit() {
               onChange={(e) => updateField("shiftId", e.target.value)}
             >
               {shiftList.map((s) => (
-                <option key={s.id} value={s.id}>{s.name}</option>
+                <option key={s.id} value={s.id}>
+                  {s.name}
+                </option>
               ))}
             </select>
           </div>
@@ -235,7 +239,9 @@ export default function GroupEdit() {
               onChange={(e) => updateField("applyGroupId", e.target.value)}
             >
               {applyGroupList.map((ag) => (
-                <option key={ag.id} value={ag.id}>{ag.name}</option>
+                <option key={ag.id} value={ag.id}>
+                  {ag.name}
+                </option>
               ))}
             </select>
 
@@ -248,16 +254,20 @@ export default function GroupEdit() {
         {/* BUTTONS */}
         <div className="row row-padding-top-3">
           <div className="col-md-12 text-center">
-            <button
-              className="btn btn-primary"
+            <CommonButton
+              label="更新"
+              icon="plus"
+              color="primary"
               onClick={() => setConfirmVisible(true)}
-            >
-              <i className="fa fa-plus fa-fw"></i> 更新
-            </button>
+            />
 
-            <a href="/group/list" className="btn btn-primary" style={{ marginLeft: 10 }}>
-              <i className="fa fa-ban fa-fw"></i> 戻る
-            </a>
+            <CommonButton
+              label="戻る"
+              icon="ban"
+              color="secondary"
+              style={{ marginLeft: 10 }}
+              onClick={() => navigate(-1)}
+            />
           </div>
         </div>
       </div>
@@ -273,7 +283,6 @@ export default function GroupEdit() {
         onCancel={() => setConfirmVisible(false)}
         onConfirm={submitForm}
       />
-
     </OwnerLayout>
   );
 }

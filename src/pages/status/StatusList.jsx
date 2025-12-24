@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import OwnerLayout from "../../layouts/OwnerLayout";
 import NotificationBar from "../../components/NotificationBar";
+import CommonButton from "../../components/CommonButton";
 
 export default function StatusList() {
   const [infoMessages, setInfoMessages] = useState([]);
@@ -82,7 +83,10 @@ export default function StatusList() {
 
   return (
     <OwnerLayout title="勤務状況照会">
-      <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* Title */}
       <div className="row row-padding-top-1">
@@ -135,17 +139,12 @@ export default function StatusList() {
                   />
 
                   {/* 検索 */}
-                  <button
-                    type="button"
-                    className="btn btn-primary"
+                  <CommonButton
+                    label="検索"
+                    icon="search"
+                    onClick={handleSearch}
                     style={{ marginLeft: 6 }}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleSearch();
-                    }}
-                  >
-                    <i className="fa fa-search fa-fw"></i>検索
-                  </button>
+                  />
                 </div>
               </div>
 
@@ -153,45 +152,32 @@ export default function StatusList() {
               <div className="col-xs-12 col-sm-7 col-md-7 text-right">
                 <div className="form-inline csv-buttons">
                   {/* Label */}
-                  <label className="input-label csv-label">ダウンロード：{monthLabel}　</label>
+                  <label className="input-label csv-label">
+                    ダウンロード：{monthLabel}　
+                  </label>
 
                   {/* 社員CSV */}
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleCsv("社員");
-                    }}
-                  >
-                    <i className="fa fa-file-text-o fa-fw"></i>社員CSV
-                  </button>
+                  <CommonButton
+                    label="社員CSV"
+                    icon="file-text-o"
+                    onClick={() => handleCsv("社員")}
+                  />
 
                   {/* パートCSV */}
-                  <button
-                    type="button"
-                    className="btn btn-primary"
+                  <CommonButton
+                    label="パートCSV"
+                    icon="file-text-o"
+                    onClick={() => handleCsv("パート")}
                     style={{ marginLeft: 6 }}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleCsv("パート");
-                    }}
-                  >
-                    <i className="fa fa-file-text-o fa-fw"></i>パートCSV
-                  </button>
+                  />
 
                   {/* 残業CSV */}
-                  <button
-                    type="button"
-                    className="btn btn-primary"
+                  <CommonButton
+                    label="残業CSV"
+                    icon="file-text-o"
+                    onClick={() => handleCsv("残業")}
                     style={{ marginLeft: 6 }}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleCsv("残業");
-                    }}
-                  >
-                    <i className="fa fa-file-text-o fa-fw"></i>残業CSV
-                  </button>
+                  />
                 </div>
               </div>
             </div>

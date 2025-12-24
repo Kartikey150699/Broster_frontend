@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import OwnerLayout from "../../layouts/OwnerLayout";
 import NotificationBar from "../../components/NotificationBar";
 import MiniTimePicker from "../../components/MiniTimePicker";
+import CommonButton from "../../components/CommonButton";
 
 export default function ApplyEdit() {
   const [infoMessages, setInfoMessages] = useState([]);
@@ -24,18 +25,18 @@ export default function ApplyEdit() {
   };
 
   const mockApplyCodeMap = {
-    "100": "有給休暇（全日）",
-    "110": "有給休暇（半日）",
-    "120": "慶弔休暇",
-    "130": "欠勤",
-    "140": "直行",
-    "150": "直帰",
-    "160": "直行直帰",
-    "170": "出張",
-    "180": "遅刻",
-    "190": "早退",
-    "200": "振替休日",
-    "210": "早出",
+    100: "有給休暇（全日）",
+    110: "有給休暇（半日）",
+    120: "慶弔休暇",
+    130: "欠勤",
+    140: "直行",
+    150: "直帰",
+    160: "直行直帰",
+    170: "出張",
+    180: "遅刻",
+    190: "早退",
+    200: "振替休日",
+    210: "早出",
   };
 
   // Form filled with existing data
@@ -71,7 +72,10 @@ export default function ApplyEdit() {
 
   return (
     <OwnerLayout title="申請更新">
-      <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* TITLE */}
       <div className="row row-padding-top-1">
@@ -85,7 +89,6 @@ export default function ApplyEdit() {
 
       {/* FORM */}
       <form className="form-horizontal" onSubmit={submitForm}>
-
         {/* GROUP (READ-ONLY) */}
         <div className="row row-padding-top-1">
           <div className="col-md-offset-2 col-md-2">
@@ -197,17 +200,22 @@ export default function ApplyEdit() {
         {/* ACTION BUTTONS */}
         <div className="row row-padding-top-2">
           <div className="col-md-12 text-center">
-            <button className="btn btn-primary">
-              <i className="fa fa-refresh fa-fw"></i> 更新
-            </button>
+            {/* UPDATE */}
+            <CommonButton
+              icon="refresh"
+              label="更新"
+              type="submit" // form submit
+              size="md"
+              style={{ marginRight: "10px" }}
+            />
 
-            <a
-              href="/apply/list"
-              className="btn btn-primary"
-              style={{ marginLeft: 10 }}
-            >
-              <i className="fa fa-ban fa-fw"></i> 戻る
-            </a>
+            {/* BACK */}
+            <CommonButton
+              icon="ban"
+              label="戻る"
+              size="md"
+              onClick={() => (window.location.href = "/apply/list")}
+            />
           </div>
         </div>
       </form>

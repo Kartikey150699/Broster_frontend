@@ -3,6 +3,7 @@ import OwnerLayout from "../../layouts/OwnerLayout";
 import NotificationBar from "../../components/NotificationBar";
 import UniversalModal from "../../components/UniversalModal";
 import axios from "axios";
+import CommonButton from "../../components/CommonButton";
 
 export default function EmployeeList() {
   const [employees, setEmployees] = useState([]);
@@ -69,13 +70,14 @@ export default function EmployeeList() {
       setEmployees(MOCK);
 
       // Populate group dropdown
-      const uniqueGroups = [...new Set(MOCK.map((e) => e.groupId))].map((id) => ({
-        key: id,
-        value: MOCK.find((e) => e.groupId === id).groupName
-      }));
+      const uniqueGroups = [...new Set(MOCK.map((e) => e.groupId))].map(
+        (id) => ({
+          key: id,
+          value: MOCK.find((e) => e.groupId === id).groupName,
+        })
+      );
 
       setGroupOptions(uniqueGroups);
-
     } catch (err) {
       setErrorMessages(["従業員一覧の取得に失敗しました。"]);
       console.error(err);
@@ -102,11 +104,12 @@ export default function EmployeeList() {
 
       setDeleteModalVisible(false);
 
-      setInfoMessages([`従業員「${selectedEmployee.employeeName}」を削除しました。`]);
+      setInfoMessages([
+        `従業員「${selectedEmployee.employeeName}」を削除しました。`,
+      ]);
       setTimeout(() => setInfoMessages([]), 3000);
 
       loadEmployeeList();
-
     } catch (err) {
       setDeleteModalVisible(false);
       setErrorMessages(["削除に失敗しました。"]);
@@ -116,14 +119,18 @@ export default function EmployeeList() {
 
   return (
     <OwnerLayout title="従業員一覧">
-
       {/* Notification Bar */}
-      <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* PAGE TITLE */}
       <div className="row row-padding-top-1">
         <div className="col-md-12">
-          <h2><i className="fa fa-file fa-fw"></i> 従業員一覧</h2>
+          <h2>
+            <i className="fa fa-file fa-fw"></i> 従業員一覧
+          </h2>
           <hr className="star-primary" />
         </div>
       </div>
@@ -143,56 +150,93 @@ export default function EmployeeList() {
             >
               <option value="">未選択</option>
               {groupOptions.map((g) => (
-                <option key={g.key} value={g.key}>{g.value}</option>
+                <option key={g.key} value={g.key}>
+                  {g.value}
+                </option>
               ))}
             </select>
           </div>
         </div>
 
         <div className="col-sm-4 text-right">
-          <a href="/employee/create" className="btn btn-primary">
-            <i className="fa fa-plus fa-fw"></i> 従業員登録
-          </a>
+          <CommonButton
+            label="従業員登録"
+            icon="plus"
+            size="md"
+            onClick={() => (window.location.href = "/employee/create")}
+          />
         </div>
       </div>
 
       {/* TABLE */}
       <div className="row row-padding-top-1" style={{ padding: "10px" }}>
-        <div className="col-md-12" style={{ overflowX: "scroll", height: "500px", padding: 0 }}>
+        <div
+          className="col-md-12"
+          style={{ overflowX: "scroll", height: "500px", padding: 0 }}
+        >
           <div className="panel panel-default">
-
-            <table className="table table-bordered table-condensed table-hover" style={{ width: "100%", whiteSpace: "nowrap" }}>
+            <table
+              className="table table-bordered table-condensed table-hover"
+              style={{ width: "100%", whiteSpace: "nowrap" }}
+            >
               <thead>
                 <tr className="primary">
-                  <th className="text-center" style={{ width: "5%" }}>従業員ID</th>
-                  <th className="text-center" style={{ width: "15%" }}>従業員名</th>
-                  <th className="text-center" style={{ width: "10%" }}>グループ名</th>
-                  <th className="text-center" style={{ width: "5%" }}>入社日</th>
-                  <th className="text-center" style={{ width: "5%" }}>雇用形態</th>
-                  <th className="text-center" style={{ width: "5%" }}>休憩</th>
-                  <th className="text-center" style={{ width: "10%" }}>メールアドレス</th>
-                  <th className="text-center" style={{ width: "5%" }}>ステータス</th>
-                  <th className="text-center" style={{ width: "10%" }}>個別シフト</th>
-                  <th className="text-center" style={{ width: "5%" }}>外部ID</th>
-                  <th className="text-center" style={{ width: "5%" }}>登録日</th>
-                  <th className="text-center" style={{ width: "15%" }}>操作</th>
+                  <th className="text-center" style={{ width: "5%" }}>
+                    従業員ID
+                  </th>
+                  <th className="text-center" style={{ width: "15%" }}>
+                    従業員名
+                  </th>
+                  <th className="text-center" style={{ width: "10%" }}>
+                    グループ名
+                  </th>
+                  <th className="text-center" style={{ width: "5%" }}>
+                    入社日
+                  </th>
+                  <th className="text-center" style={{ width: "5%" }}>
+                    雇用形態
+                  </th>
+                  <th className="text-center" style={{ width: "5%" }}>
+                    休憩
+                  </th>
+                  <th className="text-center" style={{ width: "10%" }}>
+                    メールアドレス
+                  </th>
+                  <th className="text-center" style={{ width: "5%" }}>
+                    ステータス
+                  </th>
+                  <th className="text-center" style={{ width: "10%" }}>
+                    個別シフト
+                  </th>
+                  <th className="text-center" style={{ width: "5%" }}>
+                    外部ID
+                  </th>
+                  <th className="text-center" style={{ width: "5%" }}>
+                    登録日
+                  </th>
+                  <th className="text-center" style={{ width: "15%" }}>
+                    操作
+                  </th>
                 </tr>
               </thead>
 
               <tbody>
                 {filteredRows.length === 0 && (
                   <tr>
-                    <td colSpan="12" className="text-center text-muted">データがありません</td>
+                    <td colSpan="12" className="text-center text-muted">
+                      データがありません
+                    </td>
                   </tr>
                 )}
 
                 {filteredRows.map((e, index) => (
                   <tr key={index}>
-
                     <td className="text-center">{e.employeeId}</td>
 
                     <td className="text-center">
-                      <a href={`/employee/edit/${e.companyId}/${e.groupId}/${e.employeeId}`}>
+                      <a
+                        href={`/employee/edit/${e.companyId}/${e.groupId}/${e.employeeId}`}
+                      >
                         {e.employeeName}
                       </a>
                     </td>
@@ -204,9 +248,21 @@ export default function EmployeeList() {
                     <td className="text-left">{e.employeeAddr}</td>
 
                     <td className="text-center">
-                      {e.employeeStatus === "0" && <span className="label label-info">{e.employeeStatusLabel}</span>}
-                      {e.employeeStatus === "1" && <span className="label label-warning">{e.employeeStatusLabel}</span>}
-                      {e.employeeStatus === "2" && <span className="label label-default">{e.employeeStatusLabel}</span>}
+                      {e.employeeStatus === "0" && (
+                        <span className="label label-info">
+                          {e.employeeStatusLabel}
+                        </span>
+                      )}
+                      {e.employeeStatus === "1" && (
+                        <span className="label label-warning">
+                          {e.employeeStatusLabel}
+                        </span>
+                      )}
+                      {e.employeeStatus === "2" && (
+                        <span className="label label-default">
+                          {e.employeeStatusLabel}
+                        </span>
+                      )}
                     </td>
 
                     <td className="text-center">{e.shiftName}</td>
@@ -224,13 +280,10 @@ export default function EmployeeList() {
                         <i className="fa fa-ban fa-fw"></i> 削除
                       </a>
                     </td>
-
                   </tr>
                 ))}
               </tbody>
-
             </table>
-
           </div>
         </div>
       </div>
@@ -248,7 +301,6 @@ export default function EmployeeList() {
         onCancel={() => setDeleteModalVisible(false)}
         onConfirm={deleteEmployee}
       />
-
     </OwnerLayout>
   );
 }

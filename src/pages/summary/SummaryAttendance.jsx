@@ -1,14 +1,25 @@
 import { useState, useEffect } from "react";
 import OwnerLayout from "../../layouts/OwnerLayout";
 import NotificationBar from "../../components/NotificationBar";
+import CommonButton from "../../components/CommonButton";
 
 // YEAR LIST
 const mockYearList = [2023, 2024, 2025];
 
 // MONTHS
 const mockMonthList = [
-  "1月","2月","3月","4月","5月","6月",
-  "7月","8月","9月","10月","11月","12月"
+  "1月",
+  "2月",
+  "3月",
+  "4月",
+  "5月",
+  "6月",
+  "7月",
+  "8月",
+  "9月",
+  "10月",
+  "11月",
+  "12月",
 ];
 
 // MOCK DATA
@@ -17,12 +28,18 @@ const mockSummaryData = [
     groupName: "営業部",
     employeeName: "田中 太郎",
     summaryMonthlyDto: [
-      { attend: 20, holiday: 2 }, { attend: 18, holiday: 3 },
-      { attend: 21, holiday: 1 }, { attend: 19, holiday: 2 },
-      { attend: 20, holiday: 1 }, { attend: 22, holiday: 0 },
-      { attend: 19, holiday: 3 }, { attend: 18, holiday: 2 },
-      { attend: 20, holiday: 1 }, { attend: 21, holiday: 0 },
-      { attend: 20, holiday: 2 }, { attend: 19, holiday: 1 }
+      { attend: 20, holiday: 2 },
+      { attend: 18, holiday: 3 },
+      { attend: 21, holiday: 1 },
+      { attend: 19, holiday: 2 },
+      { attend: 20, holiday: 1 },
+      { attend: 22, holiday: 0 },
+      { attend: 19, holiday: 3 },
+      { attend: 18, holiday: 2 },
+      { attend: 20, holiday: 1 },
+      { attend: 21, holiday: 0 },
+      { attend: 20, holiday: 2 },
+      { attend: 19, holiday: 1 },
     ],
     attend: 237,
     holiday: 18,
@@ -31,16 +48,22 @@ const mockSummaryData = [
     groupName: "開発部",
     employeeName: "山田 花子",
     summaryMonthlyDto: [
-      { attend: 15, holiday: 5 }, { attend: 17, holiday: 3 },
-      { attend: 19, holiday: 2 }, { attend: 18, holiday: 1 },
-      { attend: 20, holiday: 0 }, { attend: 21, holiday: 1 },
-      { attend: 20, holiday: 2 }, { attend: 19, holiday: 1 },
-      { attend: 18, holiday: 3 }, { attend: 20, holiday: 0 },
-      { attend: 21, holiday: 1 }, { attend: 22, holiday: 0 }
+      { attend: 15, holiday: 5 },
+      { attend: 17, holiday: 3 },
+      { attend: 19, holiday: 2 },
+      { attend: 18, holiday: 1 },
+      { attend: 20, holiday: 0 },
+      { attend: 21, holiday: 1 },
+      { attend: 20, holiday: 2 },
+      { attend: 19, holiday: 1 },
+      { attend: 18, holiday: 3 },
+      { attend: 20, holiday: 0 },
+      { attend: 21, holiday: 1 },
+      { attend: 22, holiday: 0 },
     ],
     attend: 230,
     holiday: 19,
-  }
+  },
 ];
 
 export default function SummaryAttendance() {
@@ -107,19 +130,23 @@ export default function SummaryAttendance() {
 
   return (
     <OwnerLayout title="出勤/休日日数集計">
-      <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* TITLE */}
       <div className="row row-padding-top-1">
         <div className="col-md-12">
-          <h2><i className="fa fa-file fa-fw"></i>出勤/休日日数集計</h2>
+          <h2>
+            <i className="fa fa-file fa-fw"></i>出勤/休日日数集計
+          </h2>
           <hr className="star-primary" />
         </div>
       </div>
 
       {/* SEARCH AREA */}
       <div className="form-horizontal">
-
         {/* DATE RANGE */}
         <div className="row row-padding-top-1">
           <div className="col-md-2">
@@ -146,9 +173,12 @@ export default function SummaryAttendance() {
               onChange={(e) => setRequestDateTo(e.target.value)}
             />
 
-            <button className="btn btn-primary" style={{ marginLeft: 10 }} onClick={handleDownload}>
-              <i className="fa fa-file-text-o"></i> CSV出力
-            </button>
+            <CommonButton
+              label="CSV出力"
+              icon="file-text-o"
+              onClick={handleDownload}
+              style={{ marginLeft: 10 }}
+            />
           </div>
         </div>
 
@@ -159,34 +189,47 @@ export default function SummaryAttendance() {
           </div>
 
           <div className="col-md-1">
-            <select className="form-control" value={year} onChange={(e) => setYear(e.target.value)}>
+            <select
+              className="form-control"
+              value={year}
+              onChange={(e) => setYear(e.target.value)}
+            >
               {mockYearList.map((y) => (
-                <option key={y} value={y}>{y}</option>
+                <option key={y} value={y}>
+                  {y}
+                </option>
               ))}
             </select>
           </div>
 
           <div className="col-md-1">
-            <button className="btn btn-primary" onClick={handleSearch}>
-              <i className="fa fa-search"></i> 検索
-            </button>
+            <CommonButton label="検索" icon="search" onClick={handleSearch} />
           </div>
         </div>
       </div>
 
       {/* TABLE */}
       <div className="row row-padding-top-2" style={{ padding: 10 }}>
-        <div className="col-md-12" style={{ overflowX: "scroll", height: 500, padding: 0 }}>
-
+        <div
+          className="col-md-12"
+          style={{ overflowX: "scroll", height: 500, padding: 0 }}
+        >
           <table className="table table-bordered table-condensed">
             <thead>
-
               {/* HEADER 1 */}
               <tr style={{ background: "#0E7AC4", color: "white" }}>
-                <th rowSpan={2} className="text-center" style={{ width: 150, position: "sticky", top: 0 }}>
+                <th
+                  rowSpan={2}
+                  className="text-center"
+                  style={{ width: 150, position: "sticky", top: 0 }}
+                >
                   グループ名
                 </th>
-                <th rowSpan={2} className="text-center" style={{ width: 150, position: "sticky", top: 0 }}>
+                <th
+                  rowSpan={2}
+                  className="text-center"
+                  style={{ width: 150, position: "sticky", top: 0 }}
+                >
                   従業員
                 </th>
 
@@ -201,7 +244,11 @@ export default function SummaryAttendance() {
                   </th>
                 ))}
 
-                <th colSpan={2} className="text-center" style={{ position: "sticky", top: 0 }}>
+                <th
+                  colSpan={2}
+                  className="text-center"
+                  style={{ position: "sticky", top: 0 }}
+                >
                   合計
                 </th>
               </tr>
@@ -210,12 +257,34 @@ export default function SummaryAttendance() {
               <tr style={{ background: "#0E7AC4", color: "white" }}>
                 {mockMonthList.map((_, i) => (
                   <>
-                    <th key={`att-${i}`} className="text-center" style={{ position: "sticky", top: 33 }}>出</th>
-                    <th key={`hol-${i}`} className="text-center" style={{ position: "sticky", top: 33 }}>休</th>
+                    <th
+                      key={`att-${i}`}
+                      className="text-center"
+                      style={{ position: "sticky", top: 33 }}
+                    >
+                      出
+                    </th>
+                    <th
+                      key={`hol-${i}`}
+                      className="text-center"
+                      style={{ position: "sticky", top: 33 }}
+                    >
+                      休
+                    </th>
                   </>
                 ))}
-                <th className="text-center" style={{ position: "sticky", top: 33 }}>出</th>
-                <th className="text-center" style={{ position: "sticky", top: 33 }}>休</th>
+                <th
+                  className="text-center"
+                  style={{ position: "sticky", top: 33 }}
+                >
+                  出
+                </th>
+                <th
+                  className="text-center"
+                  style={{ position: "sticky", top: 33 }}
+                >
+                  休
+                </th>
               </tr>
             </thead>
 
@@ -237,9 +306,7 @@ export default function SummaryAttendance() {
                 </tr>
               ))}
             </tbody>
-
           </table>
-
         </div>
       </div>
     </OwnerLayout>

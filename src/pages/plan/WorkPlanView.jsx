@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import OwnerLayout from "../../layouts/OwnerLayout";
 import NotificationBar from "../../components/NotificationBar";
+import CommonButton from "../../components/CommonButton";
 
 export default function WorkPlanView() {
   const navigate = useNavigate();
@@ -150,32 +151,30 @@ export default function WorkPlanView() {
 
         {/* Prev / Next */}
         <div className="col-sm-12" style={{ marginBottom: 10 }}>
-          <button className="btn btn-primary" onClick={goPrev}>
-            <i className="fa fa-caret-left fa-fw" />
-          </button>
+          <CommonButton icon="caret-left" label="" onClick={goPrev} />
 
-          <button
-            className="btn btn-primary"
-            style={{ marginLeft: 5 }}
+          <CommonButton
+            icon="caret-right"
+            label=""
             onClick={goNext}
-          >
-            <i className="fa fa-caret-right fa-fw" />
-          </button>
+            style={{ marginLeft: 5 }}
+          />
         </div>
 
         {/* Edit / Back */}
         <div className="col-sm-12 text-right">
-          <button className="btn btn-primary" onClick={handleEdit}>
-            <i className="fa fa-pencil-square-o"></i> 編集
-          </button>
+          <CommonButton
+            icon="pencil-square-o"
+            label="編集"
+            onClick={handleEdit}
+          />
 
-          <button
-            className="btn btn-primary"
-            style={{ marginLeft: 5 }}
+          <CommonButton
+            icon="ban"
+            label="戻る"
             onClick={goBack}
-          >
-            <i className="fa fa-ban"></i> 戻る
-          </button>
+            style={{ marginLeft: 5 }}
+          />
         </div>
       </div>
 

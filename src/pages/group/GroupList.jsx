@@ -3,6 +3,8 @@ import axios from "axios";
 import OwnerLayout from "../../layouts/OwnerLayout";
 import NotificationBar from "../../components/NotificationBar";
 import UniversalModal from "../../components/UniversalModal";
+import CommonButton from "../../components/CommonButton";
+import { useNavigate } from "react-router-dom";
 
 export default function GroupList() {
   const [groups, setGroups] = useState([]);
@@ -12,6 +14,7 @@ export default function GroupList() {
   const [errorMessages, setErrorMessages] = useState([]);
   const [deleteSuccess, setDeleteSuccess] = useState("");
   const [deleteError, setDeleteError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadGroups();
@@ -26,7 +29,6 @@ export default function GroupList() {
 
       const list = res.data.groupDetailInfoDtoList || [];
       setGroups(list.length > 0 ? list : TEST_DATA);
-
     } catch (err) {
       // No error messages - silently use test data
       setGroups(TEST_DATA);
@@ -57,45 +59,51 @@ export default function GroupList() {
     },
   ];
 
-  // DELETE API 
+  // DELETE API
   const deleteGroup = async () => {
-  if (!selectedGroup) return;
+    if (!selectedGroup) return;
 
-  try {
-    // TODO: Replace with real API call later
-    // await axios.post("API_URL/delete", { companyId: selectedGroup.companyId, groupId: selectedGroup.groupId });
+    try {
+      // TODO: Replace with real API call later
+      // await axios.post("API_URL/delete", { companyId: selectedGroup.companyId, groupId: selectedGroup.groupId });
 
-    setDeleteModalVisible(false);
+      setDeleteModalVisible(false);
 
-    // SUCCESS notification
-    setDeleteSuccess(`グループ「${selectedGroup.groupName}」を削除しました。`);
-    setDeleteError("");
+      // SUCCESS notification
+      setDeleteSuccess(
+        `グループ「${selectedGroup.groupName}」を削除しました。`
+      );
+      setDeleteError("");
 
-    // Clear message after 3 sec
-    setTimeout(() => setDeleteSuccess(""), 3000);
+      // Clear message after 3 sec
+      setTimeout(() => setDeleteSuccess(""), 3000);
 
-    loadGroups();
+      loadGroups();
+    } catch (err) {
+      console.error(err);
 
-  } catch (err) {
-    console.error(err);
+      setDeleteModalVisible(false);
 
-    setDeleteModalVisible(false);
+      // ERROR notification
+      setDeleteError("削除に失敗しました。");
+      setDeleteSuccess("");
 
-    // ERROR notification
-    setDeleteError("削除に失敗しました。");
-    setDeleteSuccess("");
-
-    setTimeout(() => setDeleteError(""), 3000);
-  }
-};
+      setTimeout(() => setDeleteError(""), 3000);
+    }
+  };
 
   return (
     <OwnerLayout title="グループ一覧">
-
       {/* Notification Bar */}
-      <NotificationBar 
-      infoMessages={[...infoMessages, deleteSuccess ? deleteSuccess : null].filter(Boolean)}
-      errorMessages={[...errorMessages, deleteError ? deleteError : null].filter(Boolean)}
+      <NotificationBar
+        infoMessages={[
+          ...infoMessages,
+          deleteSuccess ? deleteSuccess : null,
+        ].filter(Boolean)}
+        errorMessages={[
+          ...errorMessages,
+          deleteError ? deleteError : null,
+        ].filter(Boolean)}
       />
 
       {/* TITLE */}
@@ -112,9 +120,12 @@ export default function GroupList() {
       <div className="row row-padding-top-1">
         <div className="col-sm-8 col-md-8"></div>
         <div className="col-sm-4 col-md-4 text-right">
-          <a href="/group/create" className="btn btn-primary">
-            <i className="fa fa-plus fa-fw"></i> グループ追加
-          </a>
+          <CommonButton
+            label="グループ追加"
+            icon="plus"
+            color="primary"
+            onClick={() => navigate("/group/create")}
+          />
         </div>
       </div>
 
@@ -129,20 +140,40 @@ export default function GroupList() {
           }}
         >
           <div className="panel panel-default">
-
             <table
               className="table table-bordered table-condensed table-hover"
               style={{ width: "100%", whiteSpace: "nowrap" }}
             >
-              <thead style={{ position: "sticky", top: 0, zIndex: 2, background: "#fff" }}>
+              <thead
+                style={{
+                  position: "sticky",
+                  top: 0,
+                  zIndex: 2,
+                  background: "#fff",
+                }}
+              >
                 <tr className="primary">
-                  <th className="text-center" style={{ width: "20%" }}>グループ名</th>
-                  <th className="text-center" style={{ width: "20%" }}>親グループ名</th>
-                  <th className="text-center" style={{ width: "15%" }}>シフト名</th>
-                  <th className="text-center" style={{ width: "15%" }}>承認グループ</th>
-                  <th className="text-center" style={{ width: "10%" }}>登録日</th>
-                  <th className="text-center" style={{ width: "10%" }}>更新日</th>
-                  <th className="text-center" style={{ width: "10%" }}>操作</th>
+                  <th className="text-center" style={{ width: "20%" }}>
+                    グループ名
+                  </th>
+                  <th className="text-center" style={{ width: "20%" }}>
+                    親グループ名
+                  </th>
+                  <th className="text-center" style={{ width: "15%" }}>
+                    シフト名
+                  </th>
+                  <th className="text-center" style={{ width: "15%" }}>
+                    承認グループ
+                  </th>
+                  <th className="text-center" style={{ width: "10%" }}>
+                    登録日
+                  </th>
+                  <th className="text-center" style={{ width: "10%" }}>
+                    更新日
+                  </th>
+                  <th className="text-center" style={{ width: "10%" }}>
+                    操作
+                  </th>
                 </tr>
               </thead>
 
@@ -175,19 +206,17 @@ export default function GroupList() {
                       <a
                         style={{ paddingRight: 8, cursor: "pointer" }}
                         onClick={() => {
-                            setSelectedGroup(g);
-                            setDeleteModalVisible(true);
+                          setSelectedGroup(g);
+                          setDeleteModalVisible(true);
                         }}
-                        >
+                      >
                         <i className="fa fa-ban fa-fw"></i> 削除
-                        </a>
+                      </a>
                     </td>
                   </tr>
                 ))}
               </tbody>
-
             </table>
-
           </div>
         </div>
       </div>
@@ -201,12 +230,9 @@ export default function GroupList() {
         confirmText="削除する"
         cancelText="キャンセル"
         confirmColor="btn-danger"
-
         onCancel={() => setDeleteModalVisible(false)}
-
         onConfirm={deleteGroup}
-        />
-
+      />
     </OwnerLayout>
   );
 }

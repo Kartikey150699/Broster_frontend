@@ -6,6 +6,7 @@ import AutoFillControls from "../../components/AutoFillControls";
 import MiniTimePicker from "../../components/MiniTimePicker";
 import ShiftCell from "../../components/ShiftCell";
 import useGridDragSelection from "../../components/grid/useGridDragSelection";
+import CommonButton from "../../components/CommonButton";
 
 export default function TemplateCreate() {
   const navigate = useNavigate();
@@ -117,7 +118,10 @@ export default function TemplateCreate() {
 
   return (
     <OwnerLayout title="テンプレート登録">
-      <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* TITLE */}
       <div className="row row-padding-top-1">
@@ -198,15 +202,34 @@ export default function TemplateCreate() {
                 style={{ width: "100%", borderCollapse: "collapse" }}
               >
                 <thead>
-                  <tr className="primary" style={{ position: "sticky", top: 0, zIndex: 1 }}>
-                    <th className="text-center" style={{ width: "5%" }}>週</th>
-                    <th className="text-center" style={{ width: "5%" }}>曜日</th>
-                    <th className="text-center" style={{ width: "17%" }}>早出</th>
-                    <th className="text-center" style={{ width: "17%" }}>勤務１</th>
-                    <th className="text-center" style={{ width: "17%" }}>勤務２</th>
-                    <th className="text-center" style={{ width: "17%" }}>勤務３</th>
-                    <th className="text-center" style={{ width: "17%" }}>勤務４</th>
-                    <th className="text-center" style={{ width: "5%" }}>休日</th>
+                  <tr
+                    className="primary"
+                    style={{ position: "sticky", top: 0, zIndex: 1 }}
+                  >
+                    <th className="text-center" style={{ width: "5%" }}>
+                      週
+                    </th>
+                    <th className="text-center" style={{ width: "5%" }}>
+                      曜日
+                    </th>
+                    <th className="text-center" style={{ width: "17%" }}>
+                      早出
+                    </th>
+                    <th className="text-center" style={{ width: "17%" }}>
+                      勤務１
+                    </th>
+                    <th className="text-center" style={{ width: "17%" }}>
+                      勤務２
+                    </th>
+                    <th className="text-center" style={{ width: "17%" }}>
+                      勤務３
+                    </th>
+                    <th className="text-center" style={{ width: "17%" }}>
+                      勤務４
+                    </th>
+                    <th className="text-center" style={{ width: "5%" }}>
+                      休日
+                    </th>
                   </tr>
                 </thead>
 
@@ -251,30 +274,49 @@ export default function TemplateCreate() {
                                 >
                                   <MiniTimePicker
                                     value={cell[startKey]}
-                                    onChange={(val) => updateCell(w, d, startKey, val)}
+                                    onChange={(val) =>
+                                      updateCell(w, d, startKey, val)
+                                    }
                                     onSelect={() =>
-                                      setSelectedCell({ weekIndex: w, dayIndex: d, shiftIndex: s })
+                                      setSelectedCell({
+                                        weekIndex: w,
+                                        dayIndex: d,
+                                        shiftIndex: s,
+                                      })
                                     }
                                   />
                                   <span style={{ margin: "0 5px" }}>〜</span>
                                   <MiniTimePicker
                                     value={cell[endKey]}
-                                    onChange={(val) => updateCell(w, d, endKey, val)}
+                                    onChange={(val) =>
+                                      updateCell(w, d, endKey, val)
+                                    }
                                     onSelect={() =>
-                                      setSelectedCell({ weekIndex: w, dayIndex: d, shiftIndex: s })
+                                      setSelectedCell({
+                                        weekIndex: w,
+                                        dayIndex: d,
+                                        shiftIndex: s,
+                                      })
                                     }
                                   />
                                   <select
                                     className="form-control input-sm"
-                                    style={{ height: "34px", marginLeft: "5px" }}
+                                    style={{
+                                      height: "34px",
+                                      marginLeft: "5px",
+                                    }}
                                     value={cell[breakKey]}
-                                    onChange={(e) => updateCell(w, d, breakKey, e.target.value)}
+                                    onChange={(e) =>
+                                      updateCell(w, d, breakKey, e.target.value)
+                                    }
                                   >
-                                    {Object.entries(BREAKTIME_MAP).map(([k, v]) => (
-                                      <option key={k} value={k}>
-                                        {v}
-                                      </option>
-                                    ))}
+                                    {Object.entries(BREAKTIME_MAP).map(
+                                      ([k, v]) => (
+                                        <option key={k} value={k}>
+                                          {v}
+                                        </option>
+                                      )
+                                    )}
                                   </select>
                                 </div>
                               </ShiftCell>
@@ -305,17 +347,14 @@ export default function TemplateCreate() {
       {/* BUTTONS */}
       <div className="row row-padding-top-2">
         <div className="col-md-12 text-center">
-          <button className="btn btn-primary" onClick={handleSubmit}>
-            <i className="fa fa-plus fa-fw"></i> 登録
-          </button>
+          <CommonButton label="登録" icon="plus" onClick={handleSubmit} />
 
-          <button
-            className="btn btn-primary"
-            style={{ marginLeft: 10 }}
+          <CommonButton
+            label="戻る"
+            icon="ban"
             onClick={() => navigate("/template/list")}
-          >
-            <i className="fa fa-ban fa-fw"></i> 戻る
-          </button>
+            style={{ marginLeft: 10 }}
+          />
         </div>
       </div>
     </OwnerLayout>

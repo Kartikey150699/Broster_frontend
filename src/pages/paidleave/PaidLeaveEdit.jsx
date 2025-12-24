@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import OwnerLayout from "../../layouts/OwnerLayout";
 import NotificationBar from "../../components/NotificationBar";
+import CommonButton from "../../components/CommonButton";
 
 export default function PaidLeaveEdit() {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ export default function PaidLeaveEdit() {
     lastRemainingCount: 5,
     lastFixRemainingCount: 3,
     currentGiveCount: 14,
-    currentRemainingCount: 10
+    currentRemainingCount: 10,
   };
 
   const [form, setForm] = useState(mockData);
@@ -30,7 +31,7 @@ export default function PaidLeaveEdit() {
   const [errorMessages, setErrorMessages] = useState([]);
 
   function updateField(key, val) {
-    setForm(prev => ({ ...prev, [key]: val }));
+    setForm((prev) => ({ ...prev, [key]: val }));
   }
 
   function handleUpdate() {
@@ -40,7 +41,10 @@ export default function PaidLeaveEdit() {
 
   return (
     <OwnerLayout title="有休取得履歴">
-      <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* PAGE TITLE */}
       <div className="row row-padding-top-1">
@@ -55,7 +59,6 @@ export default function PaidLeaveEdit() {
 
       {/* FORM */}
       <div className="form-horizontal">
-
         {/* Employee ID */}
         <div className="row form-inline row-padding-top-1">
           <div className="col-md-offset-2 col-md-2 col-sm-offset-1 col-sm-3">
@@ -97,72 +100,75 @@ export default function PaidLeaveEdit() {
         <FormRow
           label="初回基準日付与日数"
           value={form.firstGiveCount}
-          onChange={v => updateField("firstGiveCount", v)}
+          onChange={(v) => updateField("firstGiveCount", v)}
         />
 
         {/* firstRemainingCount */}
         <FormRow
           label="初回基準日付与残日数"
           value={form.firstRemainingCount}
-          onChange={v => updateField("firstRemainingCount", v)}
+          onChange={(v) => updateField("firstRemainingCount", v)}
         />
 
         {/* firstFixRemainingCount */}
         <FormRow
           label="繰越初回付与残日数"
           value={form.firstFixRemainingCount}
-          onChange={v => updateField("firstFixRemainingCount", v)}
+          onChange={(v) => updateField("firstFixRemainingCount", v)}
         />
 
         {/* lastGiveCount */}
         <FormRow
           label="前回基準日付与日数"
           value={form.lastGiveCount}
-          onChange={v => updateField("lastGiveCount", v)}
+          onChange={(v) => updateField("lastGiveCount", v)}
         />
 
         {/* lastRemainingCount */}
         <FormRow
           label="前回基準日付与残日数"
           value={form.lastRemainingCount}
-          onChange={v => updateField("lastRemainingCount", v)}
+          onChange={(v) => updateField("lastRemainingCount", v)}
         />
 
         {/* lastFixRemainingCount */}
         <FormRow
           label="繰越前期付与残日数"
           value={form.lastFixRemainingCount}
-          onChange={v => updateField("lastFixRemainingCount", v)}
+          onChange={(v) => updateField("lastFixRemainingCount", v)}
         />
 
         {/* currentGiveCount */}
         <FormRow
           label="今期基準日付与日数"
           value={form.currentGiveCount}
-          onChange={v => updateField("currentGiveCount", v)}
+          onChange={(v) => updateField("currentGiveCount", v)}
         />
 
         {/* currentRemainingCount */}
         <FormRow
           label="今期基準日付与残日数"
           value={form.currentRemainingCount}
-          onChange={v => updateField("currentRemainingCount", v)}
+          onChange={(v) => updateField("currentRemainingCount", v)}
         />
 
         {/* BUTTONS */}
         <div className="row row-padding-top-2">
           <div className="col-md-12 text-center">
-            <button className="btn btn-primary" onClick={handleUpdate}>
-              <i className="fa fa-pencil fa-fw"></i> 更新
-            </button>
+            <CommonButton
+              label="更新"
+              icon="pencil"
+              color="primary"
+              onClick={handleUpdate}
+            />
 
-            <button
-              className="btn btn-primary"
+            <CommonButton
+              label="戻る"
+              icon="ban"
+              color="secondary"
+              onClick={() => navigate(-1)}
               style={{ marginLeft: 10 }}
-              onClick={() => navigate("/paid/list")}
-            >
-              <i className="fa fa-ban fa-fw"></i> 戻る
-            </button>
+            />
           </div>
         </div>
       </div>
@@ -182,7 +188,7 @@ function FormRow({ label, value, onChange }) {
           type="text"
           className="form-control"
           value={value}
-          onChange={e => onChange(e.target.value)}
+          onChange={(e) => onChange(e.target.value)}
         />
       </div>
     </div>

@@ -28,7 +28,6 @@ export default function OwnerLayout({ title = "B-ROSTER", children }) {
 
   return (
     <div>
-
       {/* HEADER (Logout button triggers modal) */}
       <Header onLogoutClick={() => setShowLogout(true)} />
 
@@ -58,7 +57,6 @@ export default function OwnerLayout({ title = "B-ROSTER", children }) {
         onCancel={() => setShowLogout(false)}
         onConfirm={handleLogout}
       />
-
     </div>
   );
 }

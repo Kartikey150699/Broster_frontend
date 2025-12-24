@@ -19,7 +19,7 @@ export default function UniversalModal({
 
   onCancel,
   onConfirm,
-  hideCancel = false
+  hideCancel = false,
 }) {
   if (!visible) return null;
 
@@ -49,7 +49,6 @@ export default function UniversalModal({
             boxShadow: "0 2px 12px rgba(0,0,0,0.3)",
           }}
         >
-
           {/* HEADER */}
           <div
             className="modal-header"
@@ -85,17 +84,27 @@ export default function UniversalModal({
             {mode === "confirm" && (
               <>
                 {message && (
-                  <p style={{ fontSize: "15px", marginBottom: "10px" }}>{message}</p>
+                  <p style={{ fontSize: "15px", marginBottom: "10px" }}>
+                    {message}
+                  </p>
                 )}
 
                 {targetName && (
-                  <p style={{ fontWeight: "bold", fontSize: "16px", color: "#d9534f" }}>
+                  <p
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: "16px",
+                      color: "#d9534f",
+                    }}
+                  >
                     {targetName}
                   </p>
                 )}
 
                 {targetId && (
-                  <p style={{ fontSize: "12px", color: "#777" }}>（ID: {targetId}）</p>
+                  <p style={{ fontSize: "12px", color: "#777" }}>
+                    （ID: {targetId}）
+                  </p>
                 )}
               </>
             )}
@@ -103,14 +112,21 @@ export default function UniversalModal({
             {mode === "details" && (
               <>
                 {detailList.map((d, i) => (
-                  <div key={i} style={{ marginBottom: 8, display: "flex", alignItems: "center" }}>
+                  <div
+                    key={i}
+                    style={{
+                      marginBottom: 8,
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
                     <span
                       className={`label ${
                         d.detailApplyStatus === 0
                           ? "label-info"
                           : d.detailApplyStatus === 1
-                          ? "label-default"
-                          : "label-danger"
+                            ? "label-default"
+                            : "label-danger"
                       }`}
                       style={{
                         fontSize: 12,
@@ -181,7 +197,6 @@ export default function UniversalModal({
               </>
             )}
           </div>
-
         </div>
       </div>
     </div>

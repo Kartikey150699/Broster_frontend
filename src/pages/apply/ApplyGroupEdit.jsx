@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import OwnerLayout from "../../layouts/OwnerLayout";
 import NotificationBar from "../../components/NotificationBar";
 import UniversalModal from "../../components/UniversalModal";
+import CommonButton from "../../components/CommonButton";
 
 export default function ApplyGroupEdit() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function ApplyGroupEdit() {
     E001: "田中太郎",
     E002: "佐藤花子",
     E003: "山本一郎",
-    E004: "鈴木健太"
+    E004: "鈴木健太",
   };
 
   // Pretend this is loaded from backend
@@ -29,21 +30,21 @@ export default function ApplyGroupEdit() {
         priority: "1",
         employeeId: "E001",
         applyLevel: "2",
-        allApplyFlag: "0"
+        allApplyFlag: "0",
       },
       {
         priority: "2",
         employeeId: "E002",
         applyLevel: "1",
-        allApplyFlag: "1"
+        allApplyFlag: "1",
       },
       {
         priority: "3",
         employeeId: "",
         applyLevel: "1",
-        allApplyFlag: "0"
-      }
-    ]
+        allApplyFlag: "0",
+      },
+    ],
   };
 
   // =============================
@@ -71,7 +72,7 @@ export default function ApplyGroupEdit() {
       priority: r.priority,
       employeeId: r.employeeId,
       applyLevel: r.applyLevel,
-      allApplyFlag: r.allApplyFlag
+      allApplyFlag: r.allApplyFlag,
     }));
 
     // Always 10 rows
@@ -80,7 +81,7 @@ export default function ApplyGroupEdit() {
         priority: String(baseRows.length + 1),
         employeeId: "",
         applyLevel: "1",
-        allApplyFlag: "0"
+        allApplyFlag: "0",
       });
     }
 
@@ -118,7 +119,10 @@ export default function ApplyGroupEdit() {
 
   return (
     <OwnerLayout title="承認グループ更新">
-      <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* TITLE */}
       <div className="row row-padding-top-1">
@@ -155,17 +159,28 @@ export default function ApplyGroupEdit() {
             overflowY: "scroll",
             height: "400px",
             padding: 0,
-            position: "relative"
+            position: "relative",
           }}
         >
           <div className="panel panel-default">
-            <table className="table table-bordered table-hover" style={{ whiteSpace: "nowrap" }}>
+            <table
+              className="table table-bordered table-hover"
+              style={{ whiteSpace: "nowrap" }}
+            >
               <thead>
                 <tr className="primary">
-                  <th className="text-center" style={headerStyle}>優先度</th>
-                  <th className="text-center" style={headerStyle}>従業員名</th>
-                  <th className="text-center" style={headerStyle}>承認権限</th>
-                  <th className="text-center" style={headerStyle}>一括承認</th>
+                  <th className="text-center" style={headerStyle}>
+                    優先度
+                  </th>
+                  <th className="text-center" style={headerStyle}>
+                    従業員名
+                  </th>
+                  <th className="text-center" style={headerStyle}>
+                    承認権限
+                  </th>
+                  <th className="text-center" style={headerStyle}>
+                    一括承認
+                  </th>
                 </tr>
               </thead>
 
@@ -177,10 +192,14 @@ export default function ApplyGroupEdit() {
                       <select
                         className="form-control"
                         value={row.priority}
-                        onChange={(e) => updateRow(idx, "priority", e.target.value)}
+                        onChange={(e) =>
+                          updateRow(idx, "priority", e.target.value)
+                        }
                       >
                         {[...Array(10)].map((_, i) => (
-                          <option key={i} value={i + 1}>{i + 1}</option>
+                          <option key={i} value={i + 1}>
+                            {i + 1}
+                          </option>
                         ))}
                       </select>
                     </td>
@@ -190,11 +209,15 @@ export default function ApplyGroupEdit() {
                       <select
                         className="form-control"
                         value={row.employeeId}
-                        onChange={(e) => updateRow(idx, "employeeId", e.target.value)}
+                        onChange={(e) =>
+                          updateRow(idx, "employeeId", e.target.value)
+                        }
                       >
                         <option value="">未設定</option>
                         {Object.entries(employeeMap).map(([id, name]) => (
-                          <option key={id} value={id}>{name}</option>
+                          <option key={id} value={id}>
+                            {name}
+                          </option>
                         ))}
                       </select>
                     </td>
@@ -204,7 +227,9 @@ export default function ApplyGroupEdit() {
                       <select
                         className="form-control"
                         value={row.applyLevel}
-                        onChange={(e) => updateRow(idx, "applyLevel", e.target.value)}
+                        onChange={(e) =>
+                          updateRow(idx, "applyLevel", e.target.value)
+                        }
                       >
                         <option value="1">必須承認</option>
                         <option value="2">任意承認</option>
@@ -219,7 +244,9 @@ export default function ApplyGroupEdit() {
                           name={`allApply-${idx}`}
                           value="0"
                           checked={row.allApplyFlag === "0"}
-                          onChange={(e) => updateRow(idx, "allApplyFlag", e.target.value)}
+                          onChange={(e) =>
+                            updateRow(idx, "allApplyFlag", e.target.value)
+                          }
                         />
                         利用不可
                       </label>
@@ -229,7 +256,9 @@ export default function ApplyGroupEdit() {
                           name={`allApply-${idx}`}
                           value="1"
                           checked={row.allApplyFlag === "1"}
-                          onChange={(e) => updateRow(idx, "allApplyFlag", e.target.value)}
+                          onChange={(e) =>
+                            updateRow(idx, "allApplyFlag", e.target.value)
+                          }
                         />
                         利用可
                       </label>
@@ -237,46 +266,51 @@ export default function ApplyGroupEdit() {
                   </tr>
                 ))}
               </tbody>
-
             </table>
           </div>
         </div>
       </div>
 
       {/* BUTTONS */}
-      <div className="text-center mobile-button-group" style={{ marginTop: 20 }}>
-        <button className="btn btn-primary" onClick={handleUpdate}>
-          <i className="fa fa-pencil"></i> 更新
-        </button>
+      <div className="button-row-center" style={{ marginTop: 25 }}>
+        <CommonButton
+          label="更新"
+          icon="pencil"
+          size="md"
+          onClick={handleUpdate}
+          style={{ marginRight: "10px" }}
+        />
 
-        <button className="btn btn-danger" style={{ marginLeft: 10 }} onClick={() => setShowDeleteModal(true)}>
-          <i className="fa fa-trash"></i> 削除
-        </button>
+        <CommonButton
+          label="削除"
+          icon="trash"
+          size="md"
+          color="danger"
+          onClick={() => setShowDeleteModal(true)}
+          style={{ marginRight: "10px" }}
+        />
 
-        <button
-          className="btn btn-primary"
-          style={{ marginLeft: 10 }}
+        <CommonButton
+          label="戻る"
+          icon="ban"
+          size="md"
           onClick={() => navigate("/apply-group/list")}
-        >
-          <i className="fa fa-ban fa-fw"></i> 戻る
-        </button>
+        />
       </div>
 
       <UniversalModal
-  visible={showDeleteModal}     
-  title="確認"
-  message="承認グループを削除しますか？"
-  confirmText="削除"
-  cancelText="キャンセル"
-  confirmColor="btn-danger"
-
-  onConfirm={() => {
-    setShowDeleteModal(false);
-    handleDelete();     // perform delete
-  }}
-
-  onCancel={() => setShowDeleteModal(false)}
-/>
+        visible={showDeleteModal}
+        title="確認"
+        message="承認グループを削除しますか？"
+        confirmText="削除"
+        cancelText="キャンセル"
+        confirmColor="btn-danger"
+        onConfirm={() => {
+          setShowDeleteModal(false);
+          handleDelete(); // perform delete
+        }}
+        onCancel={() => setShowDeleteModal(false)}
+      />
     </OwnerLayout>
   );
 }

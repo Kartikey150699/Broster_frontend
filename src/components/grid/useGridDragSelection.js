@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 export default function useGridDragSelection(recordTable, setRecordTable) {
-  
   const [dragStart, setDragStart] = useState(null);
   const [dragEnd, setDragEnd] = useState(null);
   const [isDragging, setIsDragging] = useState(false);

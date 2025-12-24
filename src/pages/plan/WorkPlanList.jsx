@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import OwnerLayout from "../../layouts/OwnerLayout";
 import NotificationBar from "../../components/NotificationBar";
 import UniversalModal from "../../components/UniversalModal";
+import { useNavigate } from "react-router-dom";
+import CommonButton from "../../components/CommonButton";
 
 // ------------------------------
 // MOCK DATA (Replace with API later)
@@ -51,6 +53,7 @@ export default function WorkPlanList() {
   const [infoMessages, setInfoMessages] = useState([]);
   const [errorMessages, setErrorMessages] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
+  const navigate = useNavigate();
 
   // PAGE TITLE
   useEffect(() => {
@@ -144,24 +147,21 @@ export default function WorkPlanList() {
               ))}
             </select>
 
-            <button
-              type="button"
-              className="btn btn-primary"
-              style={{ marginLeft: 10 }}
+            <CommonButton
+              icon="search"
+              label="検索"
               onClick={handleSearch}
-            >
-              <i className="fa fa-search fa-fw" /> 検索
-            </button>
+              style={{ marginLeft: 10 }}
+            />
           </div>
 
           {/* CREATE NEXT YEAR */}
           <div className="col-md-6 text-right">
-            <button
-              className="btn btn-primary"
+            <CommonButton
+              icon="plus"
+              label="翌年度分を一括作成"
               onClick={() => setModalVisible(true)}
-            >
-              <i className="fa fa-plus fa-fw" /> 翌年度分を一括作成
-            </button>
+            />
           </div>
         </div>
       </div>

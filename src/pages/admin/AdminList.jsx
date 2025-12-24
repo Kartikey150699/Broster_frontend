@@ -3,6 +3,7 @@ import AdminLayout from "../../layouts/AdminLayout";
 import axios from "axios";
 import UniversalModal from "../../components/UniversalModal";
 import NotificationBar from "../../components/NotificationBar";
+import CommonButton from "../../components/CommonButton";
 
 /**
  * Fetches real data from Spring Boot API
@@ -29,8 +30,8 @@ export default function AdminList() {
       const response = await axios.post(
         "http://localhost:8081/broster/v2/api/userManage/getAdminList",
         {
-          companyId: "11018",   // required by backend
-          adminId: ""           // backend allows empty string
+          companyId: "11018", // required by backend
+          adminId: "", // backend allows empty string
         },
         {
           withCredentials: true,
@@ -52,7 +53,6 @@ export default function AdminList() {
       if (response.data?.errorMessages) {
         setErrorMessages(response.data.errorMessages);
       }
-
     } catch (error) {
       console.error("Failed to fetch admin list:", error);
       setErrorMessages(["サーバーとの通信に失敗しました。"]);
@@ -62,54 +62,52 @@ export default function AdminList() {
   };
 
   const deleteAdmin = async () => {
-  if (!targetAdmin) return;
+    if (!targetAdmin) return;
 
-  try {
-    const payload = {
-      companyId: targetAdmin.companyId,
-      adminId: targetAdmin.adminId
-    };
+    try {
+      const payload = {
+        companyId: targetAdmin.companyId,
+        adminId: targetAdmin.adminId,
+      };
 
-    const res = await axios.delete(
-      "http://localhost:8081/broster/v2/api/userManage/deleteAdmin",
-      {
-        data: payload,
-        withCredentials: true
+      const res = await axios.delete(
+        "http://localhost:8081/broster/v2/api/userManage/deleteAdmin",
+        {
+          data: payload,
+          withCredentials: true,
+        }
+      );
+
+      // ===== SUCCESS =====
+      if (res.data.resultCode === "00000") {
+        setShowDeleteModal(false);
+
+        // Show success notification
+        setDeleteSuccess(`管理者「${targetAdmin.adminName}」を削除しました。`);
+        setTimeout(() => setDeleteSuccess(""), 3000);
+
+        fetchAdminList();
+        return;
       }
-    );
 
-    // ===== SUCCESS =====
-    if (res.data.resultCode === "00000") {
-      setShowDeleteModal(false);
+      // ===== FAILURE (HTTP OK but backend error) =====
+      setDeleteError("削除に失敗しました。");
+      setTimeout(() => setDeleteError(""), 3000);
+    } catch (err) {
+      console.error("DELETE ERROR:", err);
 
-      // Show success notification
-      setDeleteSuccess(`管理者「${targetAdmin.adminName}」を削除しました。`);
-      setTimeout(() => setDeleteSuccess(""), 3000);
-
-      fetchAdminList();
-      return;
+      // ===== SERVER ERROR =====
+      setDeleteError("サーバーエラーが発生しました。");
+      setTimeout(() => setDeleteError(""), 3000);
     }
-
-    // ===== FAILURE (HTTP OK but backend error) =====
-    setDeleteError("削除に失敗しました。");
-    setTimeout(() => setDeleteError(""), 3000);
-
-  } catch (err) {
-    console.error("DELETE ERROR:", err);
-
-    // ===== SERVER ERROR =====
-    setDeleteError("サーバーエラーが発生しました。");
-    setTimeout(() => setDeleteError(""), 3000);
-  }
-};
+  };
 
   return (
     <AdminLayout title="管理者一覧">
-
       {/* Notification Bar */}
       <NotificationBar
-      infoMessages={[...infoMessages, deleteSuccess].filter(Boolean)}
-      errorMessages={[...errorMessages, deleteError].filter(Boolean)}
+        infoMessages={[...infoMessages, deleteSuccess].filter(Boolean)}
+        errorMessages={[...errorMessages, deleteError].filter(Boolean)}
       />
 
       {/* PAGE TITLE */}
@@ -134,9 +132,12 @@ export default function AdminList() {
       <div className="row row-padding-top-1">
         <div className="col-sm-8 col-md-8"></div>
         <div className="col-sm-4 col-md-4 text-right admin-add-btn">
-          <a href="/admin/create" className="btn btn-primary">
-            <i className="fa fa-plus fa-fw"></i> 管理者追加
-          </a>
+          <CommonButton
+            icon="plus"
+            label="管理者追加"
+            size="md"
+            onClick={() => (window.location.href = "/admin/create")}
+          />
         </div>
       </div>
 
@@ -162,19 +163,34 @@ export default function AdminList() {
               >
                 <thead>
                   <tr className="primary">
-                    <th className="text-center primary" style={{ width: "15%" }}>
+                    <th
+                      className="text-center primary"
+                      style={{ width: "15%" }}
+                    >
                       管理者ID
                     </th>
-                    <th className="text-center primary" style={{ width: "30%" }}>
+                    <th
+                      className="text-center primary"
+                      style={{ width: "30%" }}
+                    >
                       管理者名
                     </th>
-                    <th className="text-center primary" style={{ width: "25%" }}>
+                    <th
+                      className="text-center primary"
+                      style={{ width: "25%" }}
+                    >
                       メールアドレス
                     </th>
-                    <th className="text-center primary" style={{ width: "15%" }}>
+                    <th
+                      className="text-center primary"
+                      style={{ width: "15%" }}
+                    >
                       登録日
                     </th>
-                    <th className="text-center primary" style={{ width: "15%" }}>
+                    <th
+                      className="text-center primary"
+                      style={{ width: "15%" }}
+                    >
                       操作
                     </th>
                   </tr>
@@ -189,22 +205,29 @@ export default function AdminList() {
                       <td className="text-center">{e.createDatetime}</td>
 
                       <td className="text-center">
-                        <a
-                          href={`/admin/edit/${e.companyId}/${e.adminId}`}
-                          style={{ paddingRight: 8 }}
-                        >
-                          <i className="fa fa-check fa-fw"></i> 更新
-                        </a>
+                        <CommonButton
+                          icon="check"
+                          label="更新"
+                          size="sm"
+                          onClick={() =>
+                            (window.location.href = `/admin/edit/${e.companyId}/${e.adminId}`)
+                          }
+                          style={{ marginRight: "6px" }}
+                        />
 
-                        <a
+                        <CommonButton
+                          icon="ban"
+                          label="削除"
+                          size="sm"
                           onClick={() => {
-                            setTargetAdmin({ companyId: e.companyId, adminId: e.adminId, adminName: e.adminName });
+                            setTargetAdmin({
+                              companyId: e.companyId,
+                              adminId: e.adminId,
+                              adminName: e.adminName,
+                            });
                             setShowDeleteModal(true);
                           }}
-                          style={{ paddingRight: 8, cursor: "pointer" }}
-                        >
-                          <i className="fa fa-ban fa-fw"></i> 削除
-                        </a>
+                        />
                       </td>
                     </tr>
                   ))}
@@ -218,7 +241,6 @@ export default function AdminList() {
                     </tr>
                   )}
                 </tbody>
-
               </table>
             </div>
           </div>
@@ -226,19 +248,19 @@ export default function AdminList() {
       )}
 
       <UniversalModal
-      visible={showDeleteModal}
-      title="削除確認"
-      message="この管理者を削除しますか？"
-      targetName={targetAdmin?.adminName}
-      targetId={targetAdmin?.adminId}
-      confirmText="はい、削除する"
-      cancelText="いいえ"
-      confirmColor="btn-danger"   // red delete button
-      cancelColor="btn-default"
-      iconClass="fa fa-exclamation-triangle"
-      onCancel={() => setShowDeleteModal(false)}
-      onConfirm={deleteAdmin}
-    />
+        visible={showDeleteModal}
+        title="削除確認"
+        message="この管理者を削除しますか？"
+        targetName={targetAdmin?.adminName}
+        targetId={targetAdmin?.adminId}
+        confirmText="はい、削除する"
+        cancelText="いいえ"
+        confirmColor="btn-danger" // red delete button
+        cancelColor="btn-default"
+        iconClass="fa fa-exclamation-triangle"
+        onCancel={() => setShowDeleteModal(false)}
+        onConfirm={deleteAdmin}
+      />
     </AdminLayout>
   );
 }

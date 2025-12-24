@@ -1515,7 +1515,6 @@ body.react-datepicker-open {
    MOBILE RESPONSIVENESS FOR WorkPlanEdit
    ============================ */
 @media (max-width: 768px) {
-
   /* Parent row of autofill + action buttons */
   .wp-toolbar {
     display: flex;
@@ -1540,5 +1539,39 @@ body.react-datepicker-open {
     width: 45%;
     min-width: 120px;
     margin: 3px;
+  }
+}
+
+.button-row-center {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .button-row-center {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .button-row-center button {
+    width: 100%;
+  }
+}
+
+.mobile-button-col {
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .mobile-button-col {
+    text-align: center !important;
+    margin-top: 10px;
+  }
+
+  .mobile-button-col button {
+    width: 100%;
   }
 }

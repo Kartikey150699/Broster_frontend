@@ -1,4 +1,7 @@
-export default function NotificationBar({ infoMessages = [], errorMessages = [] }) {
+export default function NotificationBar({
+  infoMessages = [],
+  errorMessages = [],
+}) {
   return (
     <>
       {/* SUCCESS */}

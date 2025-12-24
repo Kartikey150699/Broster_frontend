@@ -3,6 +3,7 @@ import OwnerLayout from "../../layouts/OwnerLayout";
 import NotificationBar from "../../components/NotificationBar";
 import UniversalModal from "../../components/UniversalModal";
 import { useNavigate } from "react-router-dom";
+import CommonButton from "../../components/CommonButton";
 
 export default function TemplateList() {
   const navigate = useNavigate();
@@ -61,7 +62,9 @@ export default function TemplateList() {
 
   // Delete action (Replace with API later)
   function handleDelete() {
-    setInfoMessages([`テンプレート「${deleteTemplateId}」を削除しました。（仮動作）`]);
+    setInfoMessages([
+      `テンプレート「${deleteTemplateId}」を削除しました。（仮動作）`,
+    ]);
     setDeleteModalVisible(false);
   }
 
@@ -71,7 +74,10 @@ export default function TemplateList() {
 
   return (
     <OwnerLayout title="テンプレート一覧">
-      <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* PAGE TITLE */}
       <div className="row row-padding-top-1">
@@ -85,14 +91,13 @@ export default function TemplateList() {
 
       {/* ADD BUTTON */}
       <div className="row row-padding-top-1">
-       <div className="col-md-10 col-md-offset-1 text-right template-add-btn">
-        <button
-            className="btn btn-primary"
+        <div className="col-md-10 col-md-offset-1 text-right template-add-btn">
+          <CommonButton
+            label="テンプレート登録"
+            icon="plus"
             onClick={() => navigate("/template/create")}
-        >
-          <i className="fa fa-plus fa-fw"></i> テンプレート登録
-        </button>
-       </div>
+          />
+        </div>
       </div>
 
       {/* TABLE */}
@@ -105,9 +110,15 @@ export default function TemplateList() {
             <table className="table table-bordered table-condensed table-hover">
               <thead>
                 <tr className="primary">
-                  <th className="text-center" style={{ width: "60%" }}>テンプレート名</th>
-                  <th className="text-center" style={{ width: "20%" }}>登録日</th>
-                  <th className="text-center" style={{ width: "20%" }}>操作</th>
+                  <th className="text-center" style={{ width: "60%" }}>
+                    テンプレート名
+                  </th>
+                  <th className="text-center" style={{ width: "20%" }}>
+                    登録日
+                  </th>
+                  <th className="text-center" style={{ width: "20%" }}>
+                    操作
+                  </th>
                 </tr>
               </thead>
 
@@ -121,7 +132,9 @@ export default function TemplateList() {
                       {/* UPDATE */}
                       <a
                         style={{ paddingRight: 8, cursor: "pointer" }}
-                        onClick={() => navigate(`/template/edit/${t.templateId}`)}
+                        onClick={() =>
+                          navigate(`/template/edit/${t.templateId}`)
+                        }
                       >
                         <i className="fa fa-check fa-fw"></i> 更新
                       </a>
@@ -131,7 +144,7 @@ export default function TemplateList() {
                         style={{ paddingRight: 8, cursor: "pointer" }}
                         onClick={() => {
                           setDeleteTemplateId(t.templateId);
-                          setDeleteTemplateName(t.templateName)
+                          setDeleteTemplateName(t.templateName);
                           setDeleteModalVisible(true);
                         }}
                       >

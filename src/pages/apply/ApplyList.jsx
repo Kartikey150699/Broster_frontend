@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import OwnerLayout from "../../layouts/OwnerLayout";
 import NotificationBar from "../../components/NotificationBar";
 import UniversalModal from "../../components/UniversalModal";
+import CommonButton from "../../components/CommonButton";
 
 export default function ApplyList() {
   const [infoMessages, setInfoMessages] = useState([]);
@@ -21,24 +22,24 @@ export default function ApplyList() {
   // MOCK LOOKUP MAPS
   // ================
   const mockApplyCodeMap = {
-  "100": "有給休暇（全日）",
-  "110": "有給休暇（半日）",
-  "120": "慶弔休暇",
-  "130": "欠勤",
-  "140": "直行",
-  "150": "直帰",
-  "160": "直行直帰",
-  "170": "出張",
-  "180": "遅刻",
-  "190": "早退",
-  "200": "振替休日",
-  "210": "早出",
+    100: "有給休暇（全日）",
+    110: "有給休暇（半日）",
+    120: "慶弔休暇",
+    130: "欠勤",
+    140: "直行",
+    150: "直帰",
+    160: "直行直帰",
+    170: "出張",
+    180: "遅刻",
+    190: "早退",
+    200: "振替休日",
+    210: "早出",
   };
 
   const mockStatusMap = {
-    "0": "承認待ち",
-    "1": "承認済み",
-    "9": "否認",
+    0: "承認待ち",
+    1: "承認済み",
+    9: "否認",
   };
 
   // ================
@@ -60,8 +61,18 @@ export default function ApplyList() {
       applyStatus: "0",
       applyStatusLabel: "承認待ち",
       detailDtoList: [
-        { employeeName: "上司1", detailApplyStatus: 0, detailApplyStatusLabel: "承認待ち", applyLevel: 1 },
-        { employeeName: "上司2", detailApplyStatus: 1, detailApplyStatusLabel: "承認済み", applyLevel: 2 },
+        {
+          employeeName: "上司1",
+          detailApplyStatus: 0,
+          detailApplyStatusLabel: "承認待ち",
+          applyLevel: 1,
+        },
+        {
+          employeeName: "上司2",
+          detailApplyStatus: 1,
+          detailApplyStatusLabel: "承認済み",
+          applyLevel: 2,
+        },
       ],
     },
     {
@@ -79,7 +90,12 @@ export default function ApplyList() {
       applyStatus: "1",
       applyStatusLabel: "承認済み",
       detailDtoList: [
-        { employeeName: "上司1", detailApplyStatus: 1, detailApplyStatusLabel: "承認済み", applyLevel: 1 },
+        {
+          employeeName: "上司1",
+          detailApplyStatus: 1,
+          detailApplyStatusLabel: "承認済み",
+          applyLevel: 1,
+        },
       ],
     },
     {
@@ -97,7 +113,12 @@ export default function ApplyList() {
       applyStatus: "9",
       applyStatusLabel: "否認",
       detailDtoList: [
-        { employeeName: "上司1", detailApplyStatus: 9, detailApplyStatusLabel: "否認", applyLevel: 1 },
+        {
+          employeeName: "上司1",
+          detailApplyStatus: 9,
+          detailApplyStatusLabel: "否認",
+          applyLevel: 1,
+        },
       ],
     },
   ];
@@ -115,7 +136,10 @@ export default function ApplyList() {
 
   return (
     <OwnerLayout title="勤務申請一覧">
-      <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* TITLE */}
       <div className="row row-padding-top-1">
@@ -131,7 +155,6 @@ export default function ApplyList() {
       <div className="row row-padding-top-1">
         <div className="col-sm-10">
           <div className="form-inline">
-
             {/* 申請項目 */}
             <label className="input-label">申請項目</label>
             <select
@@ -142,15 +165,15 @@ export default function ApplyList() {
             >
               <option value="">-- 未選択 --</option>
               {Object.entries(mockApplyCodeMap).map(([k, v]) => (
-                <option key={k} value={k}>{v}</option>
+                <option key={k} value={k}>
+                  {v}
+                </option>
               ))}
             </select>
-
             {/* 日付 */}
             <label className="input-label" style={{ paddingLeft: 15 }}>
               日付
             </label>
-
             <input
               type="date"
               className="form-control"
@@ -158,9 +181,7 @@ export default function ApplyList() {
               onChange={(e) => setDateFrom(e.target.value)}
               style={{ width: 140, marginLeft: 10 }}
             />
-
             〜
-
             <input
               type="date"
               className="form-control"
@@ -168,12 +189,10 @@ export default function ApplyList() {
               onChange={(e) => setDateTo(e.target.value)}
               style={{ width: 140, marginLeft: 10 }}
             />
-
             {/* 承認状況 */}
             <label className="input-label" style={{ paddingLeft: 16 }}>
               承認状況
             </label>
-
             <select
               className="form-control"
               value={statusGroup}
@@ -181,25 +200,30 @@ export default function ApplyList() {
             >
               <option value="">-- 未選択 --</option>
               {Object.entries(mockStatusMap).map(([k, v]) => (
-                <option key={k} value={k}>{v}</option>
+                <option key={k} value={k}>
+                  {v}
+                </option>
               ))}
             </select>
-
-            <button
-              className="btn btn-primary"
+            <CommonButton
+              label="検索"
+              icon="search"
+              type="search"
+              size="md"
               style={{ marginLeft: 10 }}
               onClick={() => setInfoMessages(["検索しました（モック）"])}
-            >
-              <i className="fa fa-search fa-fw"></i> 検索
-            </button>
+            />
           </div>
         </div>
 
         {/* 申請登録 */}
-        <div className="col-sm-2 text-right">
-          <a href="/apply/create" className="btn btn-primary">
-            <i className="fa fa-plus fa-fw"></i> 申請登録
-          </a>
+        <div className="col-sm-2 text-right mobile-button-col">
+          <CommonButton
+            label="申請登録"
+            icon="plus"
+            size="md"
+            onClick={() => (window.location.href = "/apply/create")}
+          />
         </div>
       </div>
 
@@ -271,15 +295,15 @@ export default function ApplyList() {
                     <td>
                       <button
                         className={`label ${
-                            e.applyStatus === "0"
+                          e.applyStatus === "0"
                             ? "label-info"
                             : e.applyStatus === "1"
-                            ? "label-default"
-                            : "label-danger"
+                              ? "label-default"
+                              : "label-danger"
                         }`}
                         style={{ fontSize: 12, cursor: "pointer" }}
                         onClick={() => setDetailTarget(e.requestId)}
-                      >                   
+                      >
                         {e.applyStatusLabel}
                       </button>
                     </td>
@@ -294,8 +318,8 @@ export default function ApplyList() {
                         href="#"
                         style={{ marginLeft: 8 }}
                         onClick={(ev) => {
-                            ev.preventDefault();
-                            setDeleteTarget(e.requestId);
+                          ev.preventDefault();
+                          setDeleteTarget(e.requestId);
                         }}
                       >
                         削除
@@ -304,7 +328,6 @@ export default function ApplyList() {
                   </tr>
                 ))}
               </tbody>
-
             </table>
           </div>
         </div>
@@ -315,7 +338,7 @@ export default function ApplyList() {
         message="この申請削除しますか？"
         onCancel={() => setDeleteTarget(null)}
         onConfirm={() => {
-            window.location.href = `/apply/delete/${deleteTarget}`;
+          window.location.href = `/apply/delete/${deleteTarget}`;
         }}
       />
       <UniversalModal
@@ -323,7 +346,8 @@ export default function ApplyList() {
         mode="details"
         title="承認状況詳細"
         detailList={
-            mockRows.find((row) => row.requestId === detailTarget)?.detailDtoList || []
+          mockRows.find((row) => row.requestId === detailTarget)
+            ?.detailDtoList || []
         }
         onCancel={() => setDetailTarget(null)}
       />
