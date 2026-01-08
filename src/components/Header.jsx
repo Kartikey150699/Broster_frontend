@@ -129,7 +129,7 @@ export default function OwnerHeader({ onLogoutClick }) {
 
             {/* ------------------ 勤務予定 ------------------ */}
             <li
-              className={`dropdown ${drop === "plan" ? "open" : ""} ${location.pathname.startsWith("/workplan") || location.pathname.startsWith("/shift") || location.pathname.startsWith("/template") ? "active" : ""}`}
+              className={`dropdown ${drop === "plan" ? "open" : ""} ${location.pathname.startsWith("/workPlan") || location.pathname.startsWith("/shift") || location.pathname.startsWith("/template") ? "active" : ""}`}
             >
               <a
                 href="#"
@@ -149,7 +149,7 @@ export default function OwnerHeader({ onLogoutClick }) {
               {drop === "plan" && (
                 <ul className="dropdown-menu" style={{ display: "block" }}>
                   <li>
-                    <Link to="/workplan/list">
+                    <Link to="/workPlan/list">
                       <i className="fa fa-calendar fa-fw"></i> 勤務予定一覧
                     </Link>
                   </li>
