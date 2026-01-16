@@ -41,7 +41,7 @@ export default function AdminList() {
       console.log("API Response:", response.data);
 
       // For backend response:
-      // adminRecordDtoList → real data
+      // adminRecordDtoList - real data
       if (response.data?.adminRecordDtoList) {
         setRecords(response.data.adminRecordDtoList);
       }

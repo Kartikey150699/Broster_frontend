@@ -247,7 +247,7 @@ export default function TemplateCreate() {
                           {["月", "火", "水", "木", "金", "土", "日"][d]}
                         </td>
 
-                        {/* SHIFT 1 → 5 */}
+                        {/* SHIFT 1 to 5 */}
                         {Array.from({ length: 5 }).map((_, s) => {
                           const startKey = `startTime${s + 1}`;
                           const endKey = `endTime${s + 1}`;

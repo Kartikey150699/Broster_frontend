@@ -38,7 +38,7 @@ export default function WorkResultList() {
       groupId: "G01",
       groupName: "営業部",
       employeeId: "0001",
-      employeeName: "田中 太郎",
+      employeeName: "田中",
       targetMonthList: {
         202401: true,
         202402: false,
@@ -51,7 +51,7 @@ export default function WorkResultList() {
       groupId: "G02",
       groupName: "開発部",
       employeeId: "0002",
-      employeeName: "山田 花子",
+      employeeName: "山田",
       targetMonthList: {
         202401: false,
         202402: true,
@@ -64,7 +64,7 @@ export default function WorkResultList() {
       groupId: "G03",
       groupName: "総務部",
       employeeId: "0003",
-      employeeName: "佐藤 次郎",
+      employeeName: "佐藤",
       targetMonthList: {
         202401: true,
         202402: true,
@@ -130,7 +130,7 @@ export default function WorkResultList() {
   // Navigate detail
   // ------------------------------------------------------
   const openResultDetail = (m, companyId, groupId, employeeId) => {
-    navigate(`/result/showJisseki/${m}/${companyId}/${groupId}/${employeeId}`);
+    navigate(`/result/view/${m}/${companyId}/${groupId}/${employeeId}`);
   };
 
   // ------------------------------------------------------
@@ -156,9 +156,9 @@ export default function WorkResultList() {
       {/* SEARCH AREA */}
       <div className="row row-padding-top-1">
         {/* YEAR */}
-        <div className="col-md-6 form-inline">
+        <div className="col-md-6 form-inline broster-mobile-row">
           <select
-            className="form-control"
+            className="form-control broster-mobile-select"
             value={targetYear}
             onChange={(e) => setTargetYear(e.target.value)}
           >
@@ -178,9 +178,9 @@ export default function WorkResultList() {
         </div>
 
         {/* MONTH */}
-        <div className="col-md-6 text-right form-inline">
+        <div className="col-md-6 text-right form-inline broster-mobile-row">
           <select
-            className="form-control"
+            className="form-control broster-mobile-select"
             value={targetMonth}
             onChange={(e) => setTargetMonth(e.target.value)}
           >

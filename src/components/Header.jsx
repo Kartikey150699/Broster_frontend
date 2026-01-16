@@ -16,12 +16,12 @@ export default function OwnerHeader({ onLogoutClick }) {
     const handler = (e) => {
       const isDropdownParent = e.target.closest(".dropdown > a");
 
-      // If clicking a parent dropdown → DO NOT close menu
+      // If clicking a parent dropdown - DO NOT close menu
       if (isDropdownParent) return;
 
       const insideDropdownMenu = e.target.closest(".dropdown-menu");
 
-      // If clicking inside dropdown items → DO NOT close menu
+      // If clicking inside dropdown items - DO NOT close menu
       if (insideDropdownMenu) return;
 
       // Otherwise close the menu (regular links)

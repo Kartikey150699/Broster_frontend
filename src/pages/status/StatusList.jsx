@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import OwnerLayout from "../../layouts/OwnerLayout";
 import NotificationBar from "../../components/NotificationBar";
 import CommonButton from "../../components/CommonButton";
+import { useNavigate } from "react-router-dom";
 
 export default function StatusList() {
   const [infoMessages, setInfoMessages] = useState([]);
   const [errorMessages, setErrorMessages] = useState([]);
+  const navigate = useNavigate();
 
   // MOCK GROUPS
   const mockGroupIdMap = {
@@ -79,6 +81,25 @@ export default function StatusList() {
 
   const handleCsv = (type) => {
     setInfoMessages([`${type} CSVダウンロード（モック）`]);
+  };
+
+  const openNextMonthDetail = (e) => {
+    const today = new Date();
+    let year = today.getFullYear();
+    let month = today.getMonth() + 1; // 1–12
+
+    // NEXT MONTH of today
+    month += 1;
+    if (month === 13) {
+      month = 1;
+      year += 1;
+    }
+
+    const nextMonthStr = `${year}${String(month).padStart(2, "0")}`;
+
+    navigate(
+      `/result/view/${nextMonthStr}/${e.companyId}/${e.groupId}/${e.employeeId}`
+    );
   };
 
   return (
@@ -289,12 +310,17 @@ export default function StatusList() {
                     <td>{e.groupName}</td>
                     <td>{e.employeeId}</td>
                     <td>
-                      <a
-                        href={`/result/showJisseki/${e.targetDate}/${e.companyId}/${e.groupId}/${e.employeeId}`}
+                      <span
+                        onClick={() => openNextMonthDetail(e)}
+                        style={{
+                          cursor: "pointer",
+                          color: "#f0ad4e",
+                          textDecoration: "underline",
+                        }}
                       >
                         {e.employeeName}
                         <i className="fa fa-pencil-square-o fa-fw" />
-                      </a>
+                      </span>
                     </td>
                     <td>{e.startTime}</td>
                     <td>{e.endTime}</td>

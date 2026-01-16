@@ -85,18 +85,21 @@ export default function AttendanceBookOutputSearch() {
 
   // Submit
   const handleShow = () => {
-  if (!validateDateRange()) return;
+    if (!validateDateRange()) return;
 
-  const url = `/print/show?emp=${employeeId}&from=${formatYm(requestDateFrom)}&to=${formatYm(requestDateTo)}`;
+    const url = `/print/show?emp=${employeeId}&from=${formatYm(requestDateFrom)}&to=${formatYm(requestDateTo)}`;
 
-  window.open(url, "_blank");
+    window.open(url, "_blank");
 
-  setInfoMessages(["出勤簿を表示しました（モック）"]);
-};
+    setInfoMessages(["出勤簿を表示しました（モック）"]);
+  };
 
   return (
     <OwnerLayout title="出勤簿出力">
-      <NotificationBar infoMessages={infoMessages} errorMessages={errorMessages} />
+      <NotificationBar
+        infoMessages={infoMessages}
+        errorMessages={errorMessages}
+      />
 
       {/* Title */}
       <div className="row row-padding-top-1">
@@ -110,7 +113,6 @@ export default function AttendanceBookOutputSearch() {
 
       {/* FORM */}
       <div className="form-horizontal" onSubmit={(e) => e.preventDefault()}>
-
         {/* GROUP BUTTONS */}
         <div className="row row-padding-top-1">
           <div className="col-md-offset-2 col-md-2 col-sm-offset-1 col-sm-3">
@@ -205,7 +207,11 @@ export default function AttendanceBookOutputSearch() {
         {/* SUBMIT */}
         <div className="row row-padding-top-2">
           <div className="col-md-12 text-center">
-            <button type="button" className="btn btn-primary btn-lg" onClick={handleShow}>
+            <button
+              type="button"
+              className="btn btn-primary btn-lg"
+              onClick={handleShow}
+            >
               <i className="fa fa-plus fa-fw"></i>表示
             </button>
           </div>

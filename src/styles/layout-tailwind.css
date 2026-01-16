@@ -4,7 +4,8 @@
    --------------------------------------------------- */
 
 /* GLOBAL PAGE STRUCTURE */
-html, body {
+html,
+body {
   @apply min-h-screen relative;
 }
 

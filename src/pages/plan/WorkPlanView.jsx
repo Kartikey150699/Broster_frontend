@@ -9,6 +9,9 @@ export default function WorkPlanView() {
   const { month, companyId, groupId, employeeId } = useParams();
   const targetMonth = month || "202503";
 
+  const [infoMessages, setInfoMessages] = useState([]);
+  const [errorMessages, setErrorMessages] = useState([]);
+
   // =========================================================
   // Generate 16th to next month 15th date range
   // =========================================================
@@ -48,6 +51,18 @@ export default function WorkPlanView() {
     return list;
   }
 
+  // ==== Calculate prev & next month dynamically ====
+  const yyyy = parseInt(targetMonth.substring(0, 4));
+  const mm = parseInt(targetMonth.substring(4, 6));
+
+  const prevMonth =
+    mm === 1 ? `${yyyy - 1}12` : `${yyyy}${String(mm - 1).padStart(2, "0")}`;
+
+  const nextMonth =
+    mm === 12 ? `${yyyy + 1}01` : `${yyyy}${String(mm + 1).padStart(2, "0")}`;
+
+  const targetMonthLabel = `${yyyy}年${mm}月度`;
+
   // =========================================================
   // Mock Form
   // =========================================================
@@ -55,9 +70,9 @@ export default function WorkPlanView() {
     groupName: "システム部",
     employeeId: "000003",
     employeeName: "カルティケ",
-    targetMonthLabel: "2025年03月度",
-    lastTargetMonth: "202502",
-    nextTargetMonth: "202504",
+    targetMonthLabel,
+    lastTargetMonth: prevMonth,
+    nextTargetMonth: nextMonth,
 
     lockFlag: "0",
 
@@ -73,9 +88,11 @@ export default function WorkPlanView() {
     contractualOverWorkTime: "0",
   };
 
-  const [form, setForm] = useState(mockForm);
-  const [infoMessages, setInfoMessages] = useState([]);
-  const [errorMessages, setErrorMessages] = useState([]);
+  const [form, setForm] = useState(null);
+
+  useEffect(() => {
+    setForm(mockForm);
+  }, [month]);
 
   useEffect(() => {
     document.title = "勤務予定照会";
@@ -94,11 +111,17 @@ export default function WorkPlanView() {
   // =========================================================
   // Navigation
   // =========================================================
-  const goPrev = () =>
-    setInfoMessages([`前月(${form.lastTargetMonth}) を読み込み（モック）`]);
+  const goPrev = () => {
+    navigate(
+      `/workPlan/view/${form.lastTargetMonth}/${companyId}/${groupId}/${employeeId}`
+    );
+  };
 
-  const goNext = () =>
-    setInfoMessages([`翌月(${form.nextTargetMonth}) を読み込み（モック）`]);
+  const goNext = () => {
+    navigate(
+      `/workPlan/view/${form.nextTargetMonth}/${companyId}/${groupId}/${employeeId}`
+    );
+  };
 
   const goBack = () => navigate("/workPlan/list");
 
@@ -110,6 +133,7 @@ export default function WorkPlanView() {
   // =========================================================
   // UI RENDER
   // =========================================================
+  if (!form) return null;
   return (
     <OwnerLayout title="勤務予定照会">
       <NotificationBar

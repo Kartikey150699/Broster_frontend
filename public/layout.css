@@ -528,7 +528,7 @@ label.input-label {
 
   /* Modal dialog becomes smaller */
   .modal-dialog {
-    width: 90% !important; /* from 380px → responsive */
+    width: 90% !important; /* from 380px to responsive */
     max-width: 360px !important;
     margin: 120px auto !important;
   }
@@ -743,7 +743,7 @@ label.input-label {
 /* Reduce top empty space for admin pages only */
 @media (max-width: 1024px) {
   body {
-    margin-top: 20px !important; /* from 50px → smaller */
+    margin-top: 20px !important; /* from 50px to smaller */
   }
 }
 
@@ -1493,7 +1493,7 @@ body.react-datepicker-open {
      ======================= */
   .row .col-sm-12:has(> button.btn-primary:nth-child(2)) {
     display: flex !important;
-    flex-direction: row !important; /* ← force one row */
+    flex-direction: row !important;
     justify-content: center !important;
     align-items: center !important;
     width: 100% !important;
@@ -1573,5 +1573,207 @@ body.react-datepicker-open {
 
   .mobile-button-col button {
     width: 100%;
+  }
+}
+
+.broster-label {
+  color: #0e7ac4; /* Broster Blue */
+  font-weight: bold; /* Same as the original JSP UI */
+  font-size: 18px; /* Adjustable */
+}
+
+/* ------------------------------------------------------ */
+/*   DESKTOP (default)                                    */
+/* ------------------------------------------------------ */
+
+.broster-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Arrow buttons always in same row */
+.broster-arrow-row {
+  display: flex;
+  gap: 10px;
+}
+
+/* ------------------------------------------------------ */
+/*   MOBILE (max-width: 768px)                            */
+/* ------------------------------------------------------ */
+@media (max-width: 768px) {
+  /* Wrap the whole left block vertically */
+  .broster-nav-left {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 12px; /* enough gap to prevent overlap */
+  }
+
+  /* -------------------------- */
+  /* Arrow Buttons (side-by-side) */
+  /* -------------------------- */
+  .broster-arrow-row {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+
+  .broster-arrow-row .btn,
+  .broster-arrow-row button {
+    width: 48% !important;
+    padding: 8px 0 !important;
+    font-size: 14px !important;
+  }
+
+  /* -------------------------- */
+  /* 勤務予定を見る button       */
+  /* -------------------------- */
+  .broster-calendar-btn {
+    width: 100%;
+  }
+
+  .broster-calendar-btn .btn,
+  .broster-calendar-btn button {
+    width: 100% !important;
+    padding: 10px 0 !important;
+    font-size: 14px !important;
+  }
+
+  /* Prevent overlap */
+  .broster-calendar-btn {
+    margin-top: 4px;
+  }
+
+  .broster-mobile-left {
+    margin-bottom: 10px !important;
+  }
+}
+
+/* Extra gap under 勤務予定を見る button on mobile */
+@media (max-width: 768px) {
+  .broster-calendar-btn {
+    margin-bottom: 15px !important;
+  }
+}
+
+/* Fix right-side buttons stacking on mobile */
+@media (max-width: 768px) {
+  .broster-mobile-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    gap: 10px !important;
+    text-align: center !important; /* prevent right-side collapsing */
+  }
+
+  /* Make sure all right-side buttons stay full width */
+  .broster-mobile-buttons .btn,
+  .broster-mobile-buttons button {
+    width: 100% !important;
+    margin-right: 0 !important; /* stop forcing right gap */
+  }
+}
+
+/* ------------------------------------------------------ */
+/*   MOBILE FIX: Search + Bulk Fix buttons full width     */
+/* ------------------------------------------------------ */
+@media (max-width: 768px) {
+  /* Make the row stack vertically */
+  .broster-mobile-row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* center items */
+    width: 100% !important;
+    gap: 10px !important;
+    margin-top: 10px;
+  }
+
+  /* Make buttons full width */
+  .broster-mobile-row .btn,
+  .broster-mobile-row button {
+    width: 100% !important;
+    padding: 12px 0 !important;
+    font-size: 16px !important;
+  }
+
+  /* Month selector also full width */
+  .broster-mobile-select {
+    width: 100% !important;
+  }
+}
+
+/* Mobile: reduce width of week summary cells */
+@media (max-width: 768px) {
+  .week-summary-table th,
+  .week-summary-table td {
+    padding: 4px !important; /* smaller padding  */
+    font-size: 12px !important; /* smaller text */
+    width: 40px !important; /* tighter width */
+  }
+
+  /* The left header column 労働時間 / 残業時間 */
+  .week-summary-table th.primary {
+    width: 80px !important; /* reduce from 160 */
+    white-space: nowrap;
+  }
+}
+
+/* -------------------------------------------- */
+/*   MOBILE Responsive — Month Summary Table    */
+/* -------------------------------------------- */
+@media (max-width: 768px) {
+  /* Make entire table scrollable horizontally */
+  .month-summary-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  /* Make header cells smaller & readable */
+  .month-summary-table th {
+    font-size: 11px !important;
+    padding: 6px 4px !important;
+    white-space: normal !important;
+    line-height: 1.2 !important;
+    width: max-content !important;
+  }
+
+  /* Body cells smaller */
+  .month-summary-table td {
+    font-size: 12px !important;
+    padding: 8px 4px !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* ------------------------------------------------------- */
+/*    iPad Portrait (768px–1024px)                         */
+/* ------------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  /* Reduce margin-left of logo header */
+  .navbar-header.page-scroll {
+    margin-left: 40px !important;
+  }
+
+  /* Reduce margin-right of right menu */
+  .navbar-nav.navbar-right {
+    margin-right: 40px !important;
+  }
+
+  /* Make links fit nicer */
+  .navbar-nav > li > a {
+    font-size: 14px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  /* Add gap under the header */
+  .navbar.navbar-custom {
+    margin-bottom: 25px !important;
   }
 }
