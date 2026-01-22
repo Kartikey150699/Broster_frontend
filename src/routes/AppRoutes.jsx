@@ -36,6 +36,7 @@ import WorkPlanView from "../pages/plan/WorkPlanView";
 import WorkPlanEdit from "../pages/plan/WorkPlanEdit";
 import WorkResultList from "../pages/workResult/WorkResultList";
 import WorkResultView from "../pages/workResult/WorkResultView";
+import WorkResultEdit from "../pages/workResult/WorkResultEdit";
 
 // ========================================================
 //   Application Routes
@@ -146,6 +147,9 @@ export default function AppRoutes() {
 
         {/* WORK RESULT VIEW */}
         <Route path="/result/view/:month/:companyId/:groupId/:employeeId" element={<WorkResultView />} />
+
+        {/* WORK RESULT EDIT */}
+        <Route path="/result/edit/:month/:companyId/:groupId/:employeeId" element={<WorkResultEdit />} />
 
         {/* DEFAULT REDIRECT */}
         <Route path="*" element={<Navigate to="/admin/list" replace />} />

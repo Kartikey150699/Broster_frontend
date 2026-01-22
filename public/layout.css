@@ -1580,6 +1580,11 @@ body.react-datepicker-open {
   color: #0e7ac4; /* Broster Blue */
   font-weight: bold; /* Same as the original JSP UI */
   font-size: 18px; /* Adjustable */
+  margin-right: 20px;
+}
+
+.input-label {
+  margin-right: 20px;
 }
 
 /* ------------------------------------------------------ */
@@ -1754,7 +1759,6 @@ body.react-datepicker-open {
 /*    iPad Portrait (768px–1024px)                         */
 /* ------------------------------------------------------- */
 @media (min-width: 768px) and (max-width: 1024px) {
-
   /* Reduce margin-left of logo header */
   .navbar-header.page-scroll {
     margin-left: 40px !important;

@@ -116,7 +116,7 @@ export default function WorkResultView() {
       y -= 1;
     }
     navigate(
-      `/result/view/${y}${String(m).padStart(2, "0")}/${companyId}/${groupId}/${employeeId}`
+      `/result/view/${y}${String(m).padStart(2, "0")}/${companyId}/${groupId}/${employeeId}`,
     );
   };
 
@@ -130,8 +130,21 @@ export default function WorkResultView() {
       y += 1;
     }
     navigate(
-      `/result/view/${y}${String(m).padStart(2, "0")}/${companyId}/${groupId}/${employeeId}`
+      `/result/view/${y}${String(m).padStart(2, "0")}/${companyId}/${groupId}/${employeeId}`,
     );
+  };
+
+  // Check if the month is editable (this month or previous month)
+  const isEditableMonth = () => {
+    const y = parseInt(month.slice(0, 4));
+    const m = parseInt(month.slice(4, 6));
+    const target = new Date(y, m - 1);
+
+    const now = new Date();
+    const previous = new Date(now.getFullYear(), now.getMonth() - 1); // previous month
+
+    // editable when target >= previous month
+    return target.getTime() >= previous.getTime();
   };
 
   // ------------------------------------------------------------
@@ -195,7 +208,7 @@ export default function WorkResultView() {
               label="勤務予定を見る"
               onClick={() =>
                 navigate(
-                  `/workPlan/view/${month}/${companyId}/${groupId}/${employeeId}`
+                  `/workPlan/view/${month}/${companyId}/${groupId}/${employeeId}`,
                 )
               }
             />
@@ -205,19 +218,38 @@ export default function WorkResultView() {
         {/* RIGHT SIDE BUTTONS */}
         <div className="col-md-4 text-right broster-mobile-buttons">
           {/* 編集 / 編集不可 */}
-          {headerInfo.lockFlag === "0" && (
+          {/* -------------------- 編集ボタンロジック -------------------- */}
+
+          {/* EDIT ALLOWED - only when lockFlag=0 AND target month = this or prev month */}
+          {headerInfo.lockFlag === "0" && isEditableMonth() && (
             <CommonButton
               icon="edit"
               label="編集"
               onClick={() =>
                 navigate(
-                  `/result/edit/${month}/${companyId}/${groupId}/${employeeId}`
+                  `/result/edit/${month}/${companyId}/${groupId}/${employeeId}`,
                 )
               }
               style={{ marginRight: 10 }}
             />
           )}
 
+          {/* EDIT NOT ALLOWED - lockFlag=0 but month is too old or future */}
+          {headerInfo.lockFlag === "0" && !isEditableMonth() && (
+            <CommonButton
+              icon="edit"
+              label="編集不可"
+              disabled
+              style={{
+                marginRight: 10,
+                backgroundColor: "#d9534f",
+                borderColor: "#d43f3a",
+                opacity: 0.8,
+              }}
+            />
+          )}
+
+          {/* EDIT NOT ALLOWED - lockFlag=1 (締め済) */}
           {headerInfo.lockFlag === "1" && (
             <CommonButton
               icon="edit"
@@ -232,6 +264,7 @@ export default function WorkResultView() {
             />
           )}
 
+          {/* EDIT NOT ALLOWED - lockFlag=9 (異常) */}
           {headerInfo.lockFlag === "9" && (
             <CommonButton
               icon="edit"
@@ -439,7 +472,7 @@ export default function WorkResultView() {
 
                       // Example: "1日 (08:00)"
                       const match = monthSummary.paid.match(
-                        /(\d+)\s*日\s*\((.*?)\)/
+                        /(\d+)\s*日\s*\((.*?)\)/,
                       );
 
                       if (!match) return monthSummary.paid.replace(" ", "\n");

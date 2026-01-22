@@ -17,7 +17,7 @@ export default function ApplyGroupCreate() {
       employeeId: "",
       applyLevel: "1",
       allApplyFlag: "0",
-    }))
+    })),
   );
 
   const [employeeMap, setEmployeeMap] = useState({});
@@ -35,7 +35,7 @@ export default function ApplyGroupCreate() {
     try {
       const res = await axios.post(
         "http://localhost:8081/broster/v2/api/employee/getEmployeeList",
-        { companyId }
+        { companyId },
       );
 
       setEmployeeMap(res.data.employeeMap || {});
@@ -80,7 +80,7 @@ export default function ApplyGroupCreate() {
     try {
       await axios.post(
         "http://localhost:8081/broster/v2/api/applyGroup/create",
-        payload
+        payload,
       );
 
       setSuccessMsg("承認グループを登録しました。");
