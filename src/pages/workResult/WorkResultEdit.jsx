@@ -35,6 +35,14 @@ export default function WorkResultEdit() {
     targetMonthLabel: `${month.slice(0, 4)}年${month.slice(4)}月`,
   });
 
+  // Keep month label in sync with URL
+  useEffect(() => {
+    setHeader((prev) => ({
+      ...prev,
+      targetMonthLabel: `${month.slice(0, 4)}年${month.slice(4)}月`,
+    }));
+  }, [month]);
+
   // -------------------------------------------------------
   // MOCK DAILY ROWS (Replace with API response)
   // -------------------------------------------------------
