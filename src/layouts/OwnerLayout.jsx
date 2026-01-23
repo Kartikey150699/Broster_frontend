@@ -50,7 +50,7 @@ export default function OwnerLayout({ title = "B-ROSTER", children }) {
         message="ログアウトしてもよろしいですか？"
         confirmText="ログアウト"
         cancelText="キャンセル"
-        confirmColor="btn-danger"
+        confirmColor="btn-primary"
         cancelColor="btn-default"
         iconClass="fa fa-sign-out"
         onCancel={() => setShowLogout(false)}
