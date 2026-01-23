@@ -208,6 +208,12 @@ section article header time {
   height: 100%;
 
   background: rgba(0, 0, 0, 0.45);
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(6px);
+  isolation: isolate;
+  will-change: backdrop-filter;
+
   animation: modalFadeIn 0.25s ease forwards;
   z-index: 2000;
 }
