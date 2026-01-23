@@ -125,7 +125,7 @@ export default function AttendanceBookOutputSearch() {
                 <button
                   key={g.key}
                   type="button"
-                  className="btn btn-info btn-lg"
+                  className={`btn btn-info btn-lg ${selectedGroup === g.key ? "selected-btn" : ""}`}
                   style={{ width: 165, margin: "2px 1px" }}
                   onClick={() => setSelectedGroup(g.key)}
                 >

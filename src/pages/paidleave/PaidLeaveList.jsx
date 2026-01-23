@@ -20,7 +20,7 @@ export default function PaidLeaveList() {
 
   const requestHeaders = Array.from(
     { length: 40 },
-    (_, i) => `申請${String(i + 1).padStart(2, "0")}`
+    (_, i) => `申請${String(i + 1).padStart(2, "0")}`,
   );
 
   const mockEmployees = [
@@ -210,7 +210,7 @@ export default function PaidLeaveList() {
 
         <div className="col-md-4 col-sm-4 col-xs-12 text-right toggle-area">
           <div
-            className="btn btn-info btn-lg toggle-btn"
+            className={`btn btn-info btn-lg toggle-btn ${showDetails ? "selected-btn" : ""}`}
             onClick={() => setShowDetails(!showDetails)}
           >
             表示切替
@@ -445,7 +445,7 @@ export default function PaidLeaveList() {
                       style={{ cursor: "pointer", color: "#337ab7" }}
                       onClick={() =>
                         navigate(
-                          `/paid/edit/${e.companyId}/${e.employeeId}/${targetYear}`
+                          `/paid/edit/${e.companyId}/${e.employeeId}/${targetYear}`,
                         )
                       }
                     >

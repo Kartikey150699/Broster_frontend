@@ -173,7 +173,7 @@ const getDayCells = (dto, start, end) => {
             </>
           )}
         </div>
-      </td>
+      </td>,
     );
   }
   return cells;

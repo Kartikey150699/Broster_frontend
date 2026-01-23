@@ -2190,6 +2190,59 @@ body.react-datepicker-open {
   box-shadow: none !important;
 }
 
+/* ----------------------------------------
+   PREMIUM SELECTED INFO BUTTON
+------------------------------------------ */
+.selected-btn {
+  background: linear-gradient(135deg, #10b4d4, #0fa6c8) !important;
+  color: #fff !important;
+
+  transform: translateY(-3px) scale(1.035);
+  border-radius: 10px;
+
+  /* 3D Glow + Aura */
+  box-shadow:
+    0 0 0 3px rgba(16, 180, 212, 0.35),
+    0 6px 18px rgba(16, 180, 212, 0.45),
+    inset 0 0 12px rgba(255, 255, 255, 0.25);
+
+  position: relative;
+  z-index: 2;
+
+  animation: selectedPulse 1.8s ease-in-out infinite;
+}
+
+/* Soft breathing animation */
+@keyframes selectedPulse {
+  0% {
+    transform: translateY(-3px) scale(1.035);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.045);
+    box-shadow:
+      0 0 0 4px rgba(16, 180, 212, 0.38),
+      0 8px 22px rgba(16, 180, 212, 0.55),
+      inset 0 0 14px rgba(255, 255, 255, 0.28);
+  }
+  100% {
+    transform: translateY(-3px) scale(1.035);
+  }
+}
+
+/* Shine effect stays ON for selected state */
+.selected-btn::after {
+  opacity: 0.55 !important;
+}
+
+/* Hover — slightly stronger lift */
+.selected-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow:
+    0 0 0 4px rgba(16, 180, 212, 0.45),
+    0 10px 26px rgba(16, 180, 212, 0.55),
+    inset 0 0 16px rgba(255, 255, 255, 0.32);
+}
+
 /* ============================================================
    NOT FOUND PANEL
 ============================================================ */
@@ -2460,20 +2513,6 @@ body.react-datepicker-open {
 .owner-layout {
   min-height: 100vh;
   color: #0b1220;
-
-  /* Layered background (not a boring gradient)
-  background:
-    radial-gradient(
-      1200px 600px at 10% -10%,
-      rgba(99, 102, 241, 0.08),
-      transparent 40%
-    ),
-    radial-gradient(
-      900px 500px at 90% 0%,
-      rgba(14, 165, 233, 0.06),
-      transparent 45%
-    ),
-    #f8fafc; */
 
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;

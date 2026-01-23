@@ -7,6 +7,7 @@ import CommonButton from "../../components/CommonButton";
 export default function ApplyCreate() {
   const [infoMessages, setInfoMessages] = useState([]);
   const [errorMessages, setErrorMessages] = useState([]);
+  const [selectedGroup, setSelectedGroup] = useState("");
 
   // ==============
   // MOCK LOOKUP DATA
@@ -119,7 +120,7 @@ export default function ApplyCreate() {
               <button
                 key={gid}
                 type="button"
-                className="btn btn-info btn-lg"
+                className={`btn btn-info btn-lg ${filteredGroup === gid ? "selected-btn" : ""}`}
                 style={{ width: 165, margin: "3px" }}
                 onClick={() => setFilteredGroup(gid)}
               >
@@ -152,7 +153,7 @@ export default function ApplyCreate() {
 
               {Object.entries(mockEmployeeMap)
                 .filter(([id, emp]) =>
-                  !filteredGroup ? true : emp.groupId === filteredGroup
+                  !filteredGroup ? true : emp.groupId === filteredGroup,
                 )
                 .map(([id, emp]) => (
                   <option key={id} value={id}>
