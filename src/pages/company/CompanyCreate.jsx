@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import OwnerLayout from "../../layouts/OwnerLayout";
 import NotificationBar from "../../components/NotificationBar";
 import CommonButton from "../../components/CommonButton";
-import axios from "axios";
+import AuthLayout from "../../layouts/AuthLayout";
 
 export default function CompanyCreate() {
   const navigate = useNavigate();
@@ -117,7 +116,7 @@ export default function CompanyCreate() {
   // UI
   // -------------------------------
   return (
-    <OwnerLayout title="会社登録">
+    <AuthLayout title="会社登録">
       <NotificationBar
         infoMessages={infoMessages}
         errorMessages={errorMessages}
@@ -294,7 +293,8 @@ export default function CompanyCreate() {
           <label className="col-md-offset-2 col-md-2 input-label">
             休日設定
           </label>
-          <div className="col-md-8">
+
+          <div className="col-md-6">
             {[
               ["weekWorkFlag1", "月"],
               ["weekWorkFlag2", "火"],
@@ -305,7 +305,7 @@ export default function CompanyCreate() {
               ["weekWorkFlag7", "日"],
               ["weekWorkFlag0", "祝日"],
             ].map(([key, label]) => (
-              <label key={key} style={{ marginRight: 10 }}>
+              <label key={key} style={{ marginRight: 12 }}>
                 <input
                   type="checkbox"
                   checked={form[key] === "1"}
@@ -444,6 +444,6 @@ export default function CompanyCreate() {
           </div>
         </div>
       </form>
-    </OwnerLayout>
+    </AuthLayout>
   );
 }
