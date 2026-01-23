@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 // ========================================================
 //   Page Imports
 // ========================================================
+import AdminLogin from "../pages/auth/AdminLogin";
 import AdminList from "../pages/admin/AdminList";
 import AdminEdit from "../pages/admin/AdminEdit";
 import AdminCreate from "../pages/admin/AdminCreate";
@@ -37,6 +38,8 @@ import WorkPlanEdit from "../pages/plan/WorkPlanEdit";
 import WorkResultList from "../pages/workResult/WorkResultList";
 import WorkResultView from "../pages/workResult/WorkResultView";
 import WorkResultEdit from "../pages/workResult/WorkResultEdit";
+import SystemError from "../pages/error/SystemError";
+import NotFound from "../pages/error/NotFound";
 
 // ========================================================
 //   Application Routes
@@ -45,6 +48,9 @@ export default function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
+
+        {/* ADMIN LOGIN */}
+        <Route path="/admin/login" element={<AdminLogin />} />
 
         {/* ADMIN LIST */}
         <Route path="/admin/list" element={<AdminList />} />
@@ -151,8 +157,14 @@ export default function AppRoutes() {
         {/* WORK RESULT EDIT */}
         <Route path="/result/edit/:month/:companyId/:groupId/:employeeId" element={<WorkResultEdit />} />
 
+        {/* SYSTEM ERROR */}
+        <Route path="/error/system" element={<SystemError />} />
+
+        {/* 404 NOT FOUND */}
+        <Route path="/error/404" element={<NotFound />} />
+
         {/* DEFAULT REDIRECT */}
-        <Route path="*" element={<Navigate to="/admin/list" replace />} />
+        <Route path="*" element={<NotFound />} />
 
       </Routes>
     </BrowserRouter>

@@ -66,80 +66,7 @@ hr.star-primary:after {
 .img-centered {
   margin: 0 auto;
 }
-.navbar-custom {
-  background: #0e7ac4;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  font-weight: 700;
-  border: none;
-}
-.navbar-custom a:focus {
-  outline: none;
-}
-.navbar-custom .navbar-brand {
-  color: white;
-}
-.navbar-custom .navbar-brand:hover,
-.navbar-custom .navbar-brand:focus,
-.navbar-custom .navbar-brand:active,
-.navbar-custom .navbar-brand.active {
-  color: white;
-}
-.navbar-custom .navbar-nav {
-  letter-spacing: 1px;
-}
-.navbar-custom .navbar-nav li a {
-  color: white;
-}
-.navbar-custom .navbar-nav li a:hover {
-  color: #18bc9c;
-  outline: none;
-}
-.navbar-custom .navbar-nav li a:focus,
-.navbar-custom .navbar-nav li a:active {
-  color: white;
-}
-.navbar-custom .navbar-nav li.active a {
-  color: white;
-  background: #18bc9c;
-}
-.navbar-custom .navbar-nav li.active a:hover,
-.navbar-custom .navbar-nav li.active a:focus,
-.navbar-custom .navbar-nav li.active a:active {
-  color: white;
-  background: #18bc9c;
-}
-.navbar-custom .navbar-toggle {
-  color: white;
-  text-transform: uppercase;
-  font-size: 10px;
-  border-color: white;
-}
-.navbar-custom .navbar-toggle:hover,
-.navbar-custom .navbar-toggle:focus {
-  background-color: #18bc9c;
-  color: white;
-  border-color: #18bc9c;
-}
-@media (min-width: 768px) {
-  .navbar-custom {
-    -webkit-transition: padding 0.3s;
-    -moz-transition: padding 0.3s;
-    transition: padding 0.3s;
-  }
-  .navbar-custom .navbar-brand {
-    font-size: 2em;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
-  }
-  .navbar-custom.affix {
-    padding: 10px 0;
-  }
-  .navbar-custom.affix .navbar-brand {
-    font-size: 1.5em;
-  }
-}
+
 footer {
   position: absolute;
   bottom: 0;
@@ -267,6 +194,80 @@ section article header time {
   border-bottom-right-radius: 0px;
 }
 
+/* ============================
+   UNIVERSAL MODAL ANIMATION
+============================ */
+
+/* ------- OPEN ANIMATION ------- */
+.universal-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.45);
+  animation: modalFadeIn 0.25s ease forwards;
+  z-index: 2000;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.universal-modal-animate {
+  animation: modalPopIn 0.28s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes modalPopIn {
+  0% {
+    transform: translateY(-10px) scale(0.92);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(2px) scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+}
+
+/* ------- CLOSE ANIMATION ------- */
+.universal-modal-overlay.closing {
+  animation: modalFadeOut 0.25s ease forwards;
+}
+
+@keyframes modalFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.universal-modal-animate.closing {
+  animation: modalPopOut 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes modalPopOut {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10px) scale(0.9);
+    opacity: 0;
+  }
+}
+
 .label-finger-infomation {
   font-size: 130%;
 }
@@ -281,217 +282,6 @@ label.input-label {
 
 .input-label > .fa-pencil {
   color: rgba(102, 81, 44, 1);
-}
-
-/* Reduce icon–text spacing for all menu items */
-.navbar-custom .navbar-nav > li > a > i.fa-fw {
-  margin-right: 2px !important;
-  width: auto !important;
-}
-
-/* Force dropdown menu background to match header */
-.navbar-custom .dropdown-menu {
-  background-color: #0e7ac4 !important;
-  border: none;
-}
-
-/* Dropdown text color */
-.navbar-custom .dropdown-menu > li > a {
-  color: white !important;
-}
-
-/* Hover color */
-.navbar-custom .dropdown-menu > li > a:hover {
-  background-color: #18bc9c !important;
-  color: white !important;
-}
-
-/* GLOBAL RESPONSIVE RULES */
-
-/* Make the container scale on all screens */
-.responsive-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-/* Generic table scroll for mobile */
-.responsive-table-wrapper {
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: 60vh;
-}
-
-/* Sticky table header */
-.table-sticky th {
-  position: sticky;
-  top: 0;
-  background: #f5f5f5;
-  z-index: 5;
-}
-
-/* Inputs expand automatically */
-.input-full {
-  width: 100%;
-}
-
-/* Mobile-first buttons */
-.button-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-}
-
-/* Fixed header responsiveness */
-.header-responsive {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #0e7ac4;
-  padding: 10px 20px;
-  flex-wrap: wrap;
-}
-
-/* Make header vertical on small screens */
-@media (max-width: 768px) {
-  .header-responsive {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-/* Responsive modal */
-.modal-dialog-responsive {
-  width: 95%;
-  max-width: 380px;
-  margin: 10vh auto;
-}
-
-/* ------------------------------------------------------
-   Global Responsiveness
--------------------------------------------------------*/
-@media (min-width: 769px) {
-  #owner-navbar {
-    display: block !important;
-    height: auto !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-
-  /* Dropdown menus behave normally on PC */
-  #owner-navbar .dropdown-menu {
-    position: absolute !important;
-    display: none;
-  }
-
-  #owner-navbar .dropdown:hover > .dropdown-menu {
-    display: block !important;
-  }
-}
-
-/* ------------------------------------------------------
-   MOBILE MENU
--------------------------------------------------------*/
-@media (max-width: 768px) {
-  /* Remove desktop margins on mobile */
-  .navbar-header {
-    margin-left: 0 !important;
-  }
-
-  .navbar-nav.navbar-right {
-    margin-right: 0 !important;
-  }
-
-  /* Make menu items readable */
-  .navbar-nav li a {
-    padding: 10px 15px !important;
-    font-size: 14px !important;
-  }
-
-  /* Dropdown full width */
-  .navbar-nav .dropdown-menu {
-    position: static !important;
-    width: 100% !important;
-  }
-
-  /* Mobile menu background */
-  #owner-navbar {
-    background: #0e7ac4 !important;
-  }
-
-  /* Hamburger visible */
-  .navbar-toggle {
-    display: block !important;
-    margin-right: 10px !important;
-  }
-
-  /* MENU CLOSED */
-  #owner-navbar.collapse {
-    display: none !important;
-  }
-
-  /* MENU OPEN */
-  #owner-navbar.collapse.in {
-    display: block !important;
-    height: auto !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-
-  /* No flicker */
-  #owner-navbar.collapsing {
-    height: auto !important;
-    display: block !important;
-    transition: none !important;
-  }
-}
-
-/* dropdown background always blue */
-.navbar-custom .dropdown-menu {
-  background-color: #0e7ac4 !important;
-}
-/* Dropdown items normal state */
-.navbar-custom .dropdown-menu > li > a {
-  background-color: transparent !important;
-  color: white !important;
-}
-/* Hover green */
-.navbar-custom .dropdown-menu > li > a:hover {
-  background-color: #18bc9c !important;
-  color: white !important;
-}
-/* Active in dropdown should NOT turn white/green */
-.navbar-custom .dropdown-menu > li.active > a {
-  background-color: transparent !important;
-  color: white !important;
-}
-
-/* ------------------------------------------------------
-   MOBILE DROPDOWN ANIMATION (STRONG OVERRIDE)
--------------------------------------------------------*/
-@media (max-width: 768px) {
-  /* Force dropdowns to be collapsible */
-  #owner-navbar .dropdown-menu {
-    position: static !important;
-    width: 100% !important;
-
-    max-height: 0 !important;
-    opacity: 0 !important;
-    overflow: hidden !important;
-
-    transition:
-      max-height 0.4s ease,
-      opacity 0.3s ease !important;
-  }
-
-  /* When React adds .open */
-  #owner-navbar .dropdown.open > .dropdown-menu {
-    max-height: 400px !important; /* enough for all items */
-    opacity: 1 !important;
-  }
 }
 
 /* -----------------------------------------
@@ -571,7 +361,6 @@ label.input-label {
   }
 }
 
-/* MOBILE TABLE */
 /* MOBILE TABLE */
 @media (max-width: 768px) {
   /* OUTER WRAPPER */
@@ -1779,5 +1568,976 @@ body.react-datepicker-open {
   /* Add gap under the header */
   .navbar.navbar-custom {
     margin-bottom: 25px !important;
+  }
+}
+
+/* ---------------------------------
+   BROSTER BUTTONS
+   --------------------------------- */
+.btn.btn-primary {
+  background: #0e7ac4 !important;
+  border: none !important;
+  border-radius: 6px;
+
+  padding: 8px 16px;
+
+  position: relative;
+  overflow: hidden;
+
+  /* Premium smooth animation */
+  transition:
+    transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.26s ease,
+    background-color 0.25s ease;
+}
+
+/* Gentle highlight border (very subtle) */
+.btn.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+}
+
+/* Micro-shine */
+.btn.btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.02)
+  );
+
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  pointer-events: none;
+}
+
+/* --------------------------------------------
+   HOVER — Premium Lift + Clean Glow
+-------------------------------------------- */
+.btn.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 14px rgba(14, 122, 196, 0.32),
+    0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.btn.btn-primary:hover::after {
+  opacity: 0.35;
+}
+
+/* Subtle ripple effect */
+.btn.btn-primary:hover {
+  background: #0f86d4 !important; /* +2% brighter */
+}
+
+/* --------------------------------------------
+   ACTIVE / PRESS — realistic push
+-------------------------------------------- */
+.btn.btn-primary:active:not(:disabled) {
+  transform: translateY(0px) scale(0.97);
+  box-shadow:
+    0 2px 6px rgba(14, 122, 196, 0.4),
+    0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* --------------------------------------------
+   DISABLED — elegant fade
+-------------------------------------------- */
+.btn.btn-primary:disabled {
+  opacity: 0.55;
+  transform: none;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Fade-in animation on component mount */
+.btn.btn-primary {
+  animation: brosterBtnFade 0.3s ease-out;
+}
+
+@keyframes brosterBtnFade {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Disabled buttons - red */
+.btn.btn-primary:disabled {
+  background: #d9534f !important; /* Bootstrap danger red */
+  opacity: 1 !important; /* Make fully visible */
+  cursor: not-allowed;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* subtle texture for disabled red */
+.btn.btn-primary:disabled::after {
+  opacity: 0.15 !important;
+}
+
+/* ---------------------------------
+   BROSTER DELETE BUTTON (RED)
+--------------------------------- */
+.btn.btn-danger {
+  background: #d9534f !important; /* Broster red */
+  border: none !important;
+  border-radius: 6px;
+
+  padding: 8px 16px;
+
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.26s ease,
+    background-color 0.25s ease;
+}
+
+/* Shine layer */
+.btn.btn-danger::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.02)
+  );
+
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  pointer-events: none;
+}
+
+/* Hover */
+.btn.btn-danger:hover:not(:disabled) {
+  background: #e4605b !important;
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 14px rgba(217, 83, 79, 0.32),
+    0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.btn.btn-danger:hover::after {
+  opacity: 0.35;
+}
+
+/* Pressed */
+.btn.btn-danger:active:not(:disabled) {
+  transform: translateY(0px) scale(0.97);
+  box-shadow:
+    0 2px 6px rgba(217, 83, 79, 0.45),
+    0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Disabled */
+.btn.btn-danger:disabled {
+  background: #b94441 !important;
+  opacity: 0.65 !important;
+  cursor: not-allowed;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* ---------------------------------
+   BROSTER CANCEL BUTTON (DEFAULT)
+--------------------------------- */
+.btn.btn-default {
+  background: #f5f5f5 !important;
+  color: #333 !important;
+  border: 1px solid #ccc !important;
+  border-radius: 6px;
+
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    background-color 0.22s ease;
+}
+
+/* Hover */
+.btn.btn-default:hover:not(:disabled) {
+  background: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Pressed */
+.btn.btn-default:active:not(:disabled) {
+  transform: scale(0.97);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+}
+
+/* Disabled */
+.btn.btn-default:disabled {
+  background: #e6e6e6 !important;
+  color: #999 !important;
+  transform: none;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   BROSTER NOTIFICATION BAR ANIMATIONS & STYLES
+============================================================ */
+
+/* Base wrapper */
+.alert {
+  animation: brosterNotifyIn 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 8px;
+  padding: 12px 18px;
+  margin-top: 12px;
+
+  position: relative;
+  overflow: hidden;
+
+  /* Smooth exit support */
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+
+/* INFO STYLE */
+.alert-info {
+  background: linear-gradient(135deg, #eaf6ff 0%, #f3faff 100%) !important;
+  color: #0e7ac4 !important;
+  border-left: 5px solid #0e7ac4 !important;
+  box-shadow: 0 4px 14px rgba(14, 122, 196, 0.12);
+}
+
+/* ERROR STYLE */
+.alert-danger {
+  background: linear-gradient(135deg, #ffe9e9 0%, #fff4f4 100%) !important;
+  color: #d9534f !important;
+  border-left: 5px solid #d9534f !important;
+  box-shadow: 0 4px 14px rgba(217, 83, 79, 0.12);
+}
+
+/* ============================================================
+   ENTER ANIMATION — Slide + Fade + Soft Pop
+============================================================ */
+@keyframes brosterNotifyIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.97);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(2px) scale(1.01);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ============================================================
+   PREMIUM SHINE EFFECT
+============================================================ */
+.alert::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.38),
+    transparent 70%
+  );
+
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.alert:hover::after {
+  opacity: 0.28;
+}
+
+/* ============================================================
+   SOFT HOVER MOVEMENT — Premium touch
+============================================================ */
+.alert:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================================
+   AUTO CLOSE (used dynamically)
+============================================================ */
+.alert.hide {
+  opacity: 0 !important;
+  transform: translateY(-12px) scale(0.96) !important;
+}
+
+/* ------------------------------------
+   INPUT — premium Broster field styling
+------------------------------------- */
+.mini-picker-input {
+  border-radius: 6px !important;
+  transition: all 0.25s ease;
+  border: 1px solid #d0d0d0 !important;
+  background: #fff;
+}
+
+.mini-picker-input:focus {
+  border-color: #0e7ac4 !important;
+  box-shadow:
+    0 3px 10px rgba(14, 122, 196, 0.18),
+    0 0 0 2px rgba(14, 122, 196, 0.15);
+  transform: translateY(-1px);
+}
+
+/* ------------------------------------
+   PANEL — glass-style, softer elevation
+------------------------------------- */
+.mini-picker-panel {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  border-radius: 8px !important;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+
+  padding: 8px 10px;
+  min-width: 120px;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.15),
+    0 2px 5px rgba(0, 0, 0, 0.08);
+
+  animation: miniPopOpen 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+
+  position: absolute !important;
+  z-index: 999999 !important;
+  pointer-events: auto;
+}
+
+@keyframes miniPopOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ------------------------------------
+   ROWS — cleaner layout
+------------------------------------- */
+.mini-picker-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.mini-picker-row span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ------------------------------------
+   BUTTONS — modern square arrows
+------------------------------------- */
+.mini-picker-btn {
+  width: 34px;
+  height: 28px;
+
+  border-radius: 6px;
+  border: 1px solid #c7c7c7;
+
+  background: linear-gradient(180deg, #fafafa, #f0f0f0);
+  font-size: 12px;
+  font-weight: bold;
+
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+
+  cursor: pointer;
+  transition:
+    background 0.22s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
+}
+
+.mini-picker-btn:hover {
+  background: #0e7ac4;
+  color: white;
+  border-color: #0c6aa8;
+  box-shadow:
+    0 3px 10px rgba(14, 122, 196, 0.28),
+    0 1px 3px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.mini-picker-btn:active {
+  transform: scale(0.92);
+  box-shadow: none;
+}
+
+/* ------------------------------------
+   GRID LAYOUT — clean 2-column structure
+------------------------------------- */
+/* 6 items in one grid */
+.mini-picker-grid {
+  display: grid !important;
+
+  /* 2 columns (hour | minute) */
+  grid-template-columns: 1fr 1fr;
+
+  /* 3 rows (up | label | down) */
+  grid-template-rows: auto auto auto;
+
+  column-gap: 26px;
+  row-gap: 4px;
+
+  justify-items: center;
+  align-items: center;
+
+  padding: 4px 0; /* reduce popup height */
+}
+
+/* Hour column */
+.mini-picker-grid button:nth-of-type(1) {
+  grid-row: 1;
+  grid-column: 1;
+}
+.mini-picker-grid span:nth-of-type(1) {
+  grid-row: 2;
+  grid-column: 1;
+}
+.mini-picker-grid button:nth-of-type(2) {
+  grid-row: 3;
+  grid-column: 1;
+}
+
+/* Minute column */
+.mini-picker-grid button:nth-of-type(3) {
+  grid-row: 1;
+  grid-column: 2;
+}
+.mini-picker-grid span:nth-of-type(2) {
+  grid-row: 2;
+  grid-column: 2;
+}
+.mini-picker-grid button:nth-of-type(4) {
+  grid-row: 3;
+  grid-column: 2;
+}
+
+/* ---------------------------------------------------------
+   DRAG HANDLE — premium visuals for shift cell drag handle
+---------------------------------------------------------- */
+.shift-cell-handle {
+  width: 12px;
+  height: 12px;
+
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffffff 15%, #0e7ac4 80%);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 0 3px rgba(255, 255, 255, 0.35);
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+
+  cursor: grab;
+}
+
+.shift-cell-handle:hover {
+  background: radial-gradient(circle at 30% 30%, #ffffff 10%, #1a8ae0 85%);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.28),
+    0 0 8px rgba(14, 122, 196, 0.45);
+  transform: scale(1.25);
+}
+
+.shift-cell-handle:active {
+  cursor: grabbing;
+  transform: scale(0.85);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    inset 0 0 4px rgba(0, 0, 0, 0.35);
+}
+
+/* ============================================================
+   BROSTER INFO BUTTON
+============================================================ */
+.btn.btn-info {
+  background: linear-gradient(135deg, #17a2b8, #1cc3d6) !important;
+  border: none !important;
+  border-radius: 10px;
+
+  color: white !important;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+
+  position: relative;
+  overflow: hidden;
+
+  padding: 10px 20px;
+
+  transform: translateZ(0);
+  transition:
+    transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+/* ----------------------------------------
+   PREMIUM SHINE STREAK (animated on hover)
+----------------------------------------- */
+.btn.btn-info::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 80%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.35) 45%,
+    rgba(255, 255, 255, 0) 100%
+  );
+
+  transform: skewX(-20deg);
+  transition: 0.6s ease;
+  pointer-events: none;
+}
+
+/* ----------------------------------------
+   GLOSS OVERLAY - subtle texture
+----------------------------------------- */
+.btn.btn-info::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  background: radial-gradient(
+    circle at 30% 20%,
+    rgba(255, 255, 255, 0.22),
+    transparent 55%
+  );
+
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+/* ----------------------------------------
+   HOVER — float, glow, streak motion
+----------------------------------------- */
+.btn.btn-info:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.015);
+
+  background: linear-gradient(135deg, #1ab6cd, #22d0e6) !important;
+
+  box-shadow:
+    0 10px 20px rgba(23, 162, 184, 0.35),
+    0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.btn.btn-info:hover::before {
+  left: 120%; /* Shine streak travels across button */
+}
+
+.btn.btn-info:hover::after {
+  opacity: 0.35;
+}
+
+/* ----------------------------------------
+   ACTIVE — crisp press, subtle bounce
+----------------------------------------- */
+.btn.btn-info:active:not(:disabled) {
+  transform: translateY(0px) scale(0.96);
+
+  box-shadow:
+    0 3px 6px rgba(23, 162, 184, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ----------------------------------------
+   DISABLED — clean + minimal
+----------------------------------------- */
+.btn.btn-info:disabled {
+  opacity: 0.55;
+  transform: none;
+  box-shadow: none !important;
+}
+
+/* ============================================================
+   NOT FOUND PANEL
+============================================================ */
+
+/* Main panel: deeper shadows, smoother cinematic entrance */
+.panel.panel-danger {
+  border-radius: 12px !important;
+  overflow: hidden;
+  background: #ffffff;
+
+  animation: nfSlideIn 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.18),
+    0 6px 14px rgba(217, 83, 79, 0.25);
+}
+
+@keyframes nfSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-18px) scale(0.94);
+    filter: blur(3px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(2px) scale(1.015);
+    filter: blur(0);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ============================================================
+   HEADER — gradient, gloss, refined typography
+============================================================ */
+.panel-danger > .panel-heading {
+  background: linear-gradient(135deg, #d84a46, #d9534f) !important;
+  color: #fff !important;
+
+  padding: 18px 14px;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.4px;
+
+  box-shadow:
+    inset 0 -2px 6px rgba(0, 0, 0, 0.25),
+    inset 0 1px 3px rgba(255, 255, 255, 0.25);
+}
+
+/* Warning triangle icon — pulsating glow */
+.panel-danger .panel-heading .fa-exclamation-triangle {
+  animation: nfWarningPulse 1.6s ease-in-out infinite;
+  text-shadow:
+    0 0 6px rgba(255, 255, 255, 0.55),
+    0 0 12px rgba(255, 255, 255, 0.35);
+}
+
+@keyframes nfWarningPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+}
+
+/* ============================================================
+   PANEL BODY — subtle fade, smoother spacing
+============================================================ */
+.panel-danger .panel-body {
+  background: #ffffff;
+  padding: 32px 24px !important;
+  animation: nfBodyFade 0.55s ease-out;
+}
+
+@keyframes nfBodyFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Text styling */
+.panel-danger p {
+  font-size: 15.5px;
+  color: #333;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ============================================================
+   STAGGERED TEXT ENTRANCE
+============================================================ */
+.panel-danger .row.row-padding-top-1 .col-md-12 {
+  animation: nfText1 0.7s ease-out;
+}
+
+@keyframes nfText1 {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.panel-danger .row:nth-of-type(2) .col-md-12 {
+  animation: nfText2 0.95s ease-out;
+}
+
+@keyframes nfText2 {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   SYSTEM ERROR PANEL
+============================================================ */
+
+/* Main panel animation + improved depth */
+.panel.panel-danger {
+  border-radius: 12px !important;
+  overflow: hidden;
+  background: #fff;
+
+  animation: sysErrSlideIn 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.18),
+    0 6px 14px rgba(217, 83, 79, 0.28);
+}
+
+@keyframes sysErrSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-18px) scale(0.94);
+    filter: blur(3px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(2px) scale(1.015);
+    filter: blur(0);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ============================================================
+   HEADER — deeper color, soft gloss, refined typography
+============================================================ */
+.panel-danger > .panel-heading {
+  background: linear-gradient(135deg, #d8423e, #d9534f) !important;
+  color: #fff !important;
+
+  padding: 18px 14px;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.3px;
+
+  box-shadow:
+    inset 0 -2px 6px rgba(0, 0, 0, 0.25),
+    inset 0 1px 3px rgba(255, 255, 255, 0.28);
+}
+
+/* Animated icon pulse + slight glow */
+.panel-danger .panel-heading .fa-exclamation-triangle {
+  animation: sysErrPulse 1.4s ease-in-out infinite;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes sysErrPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+}
+
+/* ============================================================
+   BODY — smoother fade, cleaner layout
+============================================================ */
+.panel-danger .panel-body {
+  background: #fff;
+  padding: 32px 24px !important;
+  animation: sysErrBodyFade 0.6s ease-out;
+}
+
+@keyframes sysErrBodyFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Clean text styling */
+.panel-danger p {
+  font-size: 15.5px;
+  color: #333;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ============================================================
+   TEXT BLOCK STAGGER ANIMATIONS
+============================================================ */
+.panel-danger .row.row-padding-top-1 {
+  animation: sysErrText1 0.7s ease-out;
+}
+
+@keyframes sysErrText1 {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.panel-danger .row:nth-of-type(2) {
+  animation: sysErrText2 0.95s ease-out;
+}
+
+@keyframes sysErrText2 {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================================================
+   Root layout Smoothness + Background
+===================================================== */
+.owner-layout {
+  min-height: 100vh;
+  color: #0b1220;
+
+  /* Layered background (not a boring gradient)
+  background:
+    radial-gradient(
+      1200px 600px at 10% -10%,
+      rgba(99, 102, 241, 0.08),
+      transparent 40%
+    ),
+    radial-gradient(
+      900px 500px at 90% 0%,
+      rgba(14, 165, 233, 0.06),
+      transparent 45%
+    ),
+    #f8fafc; */
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* =====================================================
+   Content — full-bleed, intentional
+===================================================== */
+.owner-content {
+  width: 100%;
+  min-height: calc(100vh - 4rem);
+  margin-top: 4rem;
+
+  animation: ownerEnter 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+/* Desktop header offset */
+@media (min-width: 768px) {
+  .owner-content {
+    margin-top: 3.25rem;
+  }
+}
+
+/* =====================================================
+   Optional inner width control
+===================================================== */
+.owner-inner {
+  max-width: 1480px;
+  margin-inline: auto;
+}
+
+/* =====================================================
+   Subtle section separation without cards
+===================================================== */
+.owner-content section {
+  position: relative;
+}
+
+.owner-content section::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 0, 0, 0.04),
+    transparent
+  );
+}
+
+/* =====================================================
+   Motion — smooth fade + pop on load
+===================================================== */
+@keyframes ownerEnter {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }

@@ -12,7 +12,7 @@ export default function ShiftCell({
 }) {
   return (
     <div
-      className="shift-cell"
+      className="shift-cell shift-cell-box"
       style={{
         position: "relative",
         padding: 4,
@@ -26,6 +26,7 @@ export default function ShiftCell({
 
       {/* DRAG HANDLE (only this triggers dragging) */}
       <div
+        className="shift-cell-handle"
         onMouseDown={(e) => {
           e.stopPropagation();
           onDragStart(w, d, shiftIndex);

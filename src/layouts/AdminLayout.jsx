@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import UniversalModal from "../components/UniversalModal";
-
+import { useNavigate } from "react-router-dom";
 /**
  * AdminLayout
  * Used by:
@@ -16,6 +16,7 @@ export default function AdminLayout({ title = "B-ROSTER", children }) {
   document.title = title;
 
   const [showLogout, setShowLogout] = useState(false);
+  const navigate = useNavigate();
 
   /** Close modal when pressing ESC */
   useEffect(() => {
@@ -26,14 +27,20 @@ export default function AdminLayout({ title = "B-ROSTER", children }) {
     return () => window.removeEventListener("keydown", handler);
   }, []);
 
+  /** When user clicks "Logout" */
+  const handleLogout = () => {
+    setShowLogout(false);
+    navigate("/admin/login"); // Redirect
+  };
+
   return (
-    <div>
+    <div lassName="owner-layout">
       {/* HEADER — clicking logout button opens modal */}
       <Header onLogoutClick={() => setShowLogout(true)} />
 
       {/* MAIN CONTENT */}
       <div
-        className="container-fluid"
+        className="container-fluid owner-content"
         style={{
           marginTop: window.innerWidth < 768 ? "110px" : "70px",
         }}
@@ -55,9 +62,7 @@ export default function AdminLayout({ title = "B-ROSTER", children }) {
         cancelColor="btn-default"
         iconClass="fa fa-sign-out"
         onCancel={() => setShowLogout(false)}
-        onConfirm={() => {
-          window.location.href = "/admin/logout";
-        }}
+        onConfirm={handleLogout}
       />
     </div>
   );

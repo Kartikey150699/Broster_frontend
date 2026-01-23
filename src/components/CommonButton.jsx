@@ -1,3 +1,4 @@
+// src/components/CommonButton.jsx
 import React from "react";
 
 export default function CommonButton({
@@ -5,12 +6,15 @@ export default function CommonButton({
   label,
   onClick,
   size = "md",
+  color = "primary",
   className = "",
   disabled = false,
   style = {},
 }) {
   const sizeClass =
     size === "sm" ? "btn-sm" : size === "lg" ? "btn-lg" : "btn-md";
+
+  const colorClass = color === "danger" ? "btn-danger" : "btn-primary";
 
   return (
     <button

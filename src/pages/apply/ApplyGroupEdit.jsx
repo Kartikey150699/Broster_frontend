@@ -103,6 +103,8 @@ export default function ApplyGroupEdit() {
   const handleUpdate = () => {
     setInfoMessages(["（テスト）承認グループを更新しました。"]);
     console.log("UPDATED PAYLOAD:", { groupName, rows });
+
+    setTimeout(() => navigate("/apply-group/list"), 2000);
   };
 
   // =============================
@@ -114,7 +116,7 @@ export default function ApplyGroupEdit() {
     console.log("DELETED GROUP ID:", applyGroupId);
 
     // redirect after short delay
-    setTimeout(() => navigate("/apply-group/list"), 1200);
+    setTimeout(() => navigate("/apply-group/list"), 2000);
   };
 
   return (

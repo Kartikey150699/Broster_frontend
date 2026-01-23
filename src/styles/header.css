@@ -1,0 +1,426 @@
+.navbar-custom {
+  background: #0e7ac4;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  border: none;
+}
+.navbar-custom a:focus {
+  outline: none;
+}
+.navbar-custom .navbar-brand {
+  color: white;
+}
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .navbar-brand:focus,
+.navbar-custom .navbar-brand:active,
+.navbar-custom .navbar-brand.active {
+  color: white;
+}
+.navbar-custom .navbar-nav {
+  letter-spacing: 1px;
+}
+.navbar-custom .navbar-nav li a {
+  color: white;
+}
+.navbar-custom .navbar-nav li a:hover {
+  color: #18bc9c;
+  outline: none;
+}
+.navbar-custom .navbar-nav li a:focus,
+.navbar-custom .navbar-nav li a:active {
+  color: white;
+}
+.navbar-custom .navbar-nav li.active a {
+  color: white;
+  background: #18bc9c;
+}
+.navbar-custom .navbar-nav li.active a:hover,
+.navbar-custom .navbar-nav li.active a:focus,
+.navbar-custom .navbar-nav li.active a:active {
+  color: white;
+  background: #18bc9c;
+}
+.navbar-custom .navbar-toggle {
+  color: white;
+  text-transform: uppercase;
+  font-size: 10px;
+  border-color: white;
+}
+.navbar-custom .navbar-toggle:hover,
+.navbar-custom .navbar-toggle:focus {
+  background-color: #18bc9c;
+  color: white;
+  border-color: #18bc9c;
+}
+@media (min-width: 768px) {
+  .navbar-custom {
+    -webkit-transition: padding 0.3s;
+    -moz-transition: padding 0.3s;
+    transition: padding 0.3s;
+  }
+  .navbar-custom .navbar-brand {
+    font-size: 2em;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  .navbar-custom.affix {
+    padding: 10px 0;
+  }
+  .navbar-custom.affix .navbar-brand {
+    font-size: 1.5em;
+  }
+}
+/* Reduce icon–text spacing for all menu items */
+.navbar-custom .navbar-nav > li > a > i.fa-fw {
+  margin-right: 2px !important;
+  width: auto !important;
+}
+
+/* Force dropdown menu background to match header */
+.navbar-custom .dropdown-menu {
+  background-color: #0e7ac4 !important;
+  border: none;
+}
+
+/* Dropdown text color */
+.navbar-custom .dropdown-menu > li > a {
+  color: white !important;
+}
+
+/* Hover color */
+.navbar-custom .dropdown-menu > li > a:hover {
+  background-color: #18bc9c !important;
+  color: white !important;
+}
+
+/* GLOBAL RESPONSIVE RULES */
+
+/* Make the container scale on all screens */
+.responsive-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* Generic table scroll for mobile */
+.responsive-table-wrapper {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+/* Sticky table header */
+.table-sticky th {
+  position: sticky;
+  top: 0;
+  background: #f5f5f5;
+  z-index: 5;
+}
+
+/* Inputs expand automatically */
+.input-full {
+  width: 100%;
+}
+
+/* Mobile-first buttons */
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Fixed header responsiveness */
+.header-responsive {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0e7ac4;
+  padding: 10px 20px;
+  flex-wrap: wrap;
+}
+
+/* Make header vertical on small screens */
+@media (max-width: 768px) {
+  .header-responsive {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Responsive modal */
+.modal-dialog-responsive {
+  width: 95%;
+  max-width: 380px;
+  margin: 10vh auto;
+}
+
+/* ------------------------------------------------------
+   Global Responsiveness
+-------------------------------------------------------*/
+@media (min-width: 769px) {
+  #owner-navbar {
+    display: block !important;
+    height: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* #owner-navbar .dropdown:hover > .dropdown-menu {
+    display: block !important;
+  } */
+}
+
+/* ------------------------------------------------------
+   MOBILE MENU
+-------------------------------------------------------*/
+@media (max-width: 768px) {
+  /* Remove desktop margins on mobile */
+  .navbar-header {
+    margin-left: 0 !important;
+  }
+
+  .navbar-nav.navbar-right {
+    margin-right: 0 !important;
+  }
+
+  /* Make menu items readable */
+  .navbar-nav li a {
+    padding: 10px 15px !important;
+    font-size: 14px !important;
+  }
+
+  /* Dropdown full width */
+  .navbar-nav .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+  }
+
+  /* Mobile menu background */
+  #owner-navbar {
+    background: #0e7ac4 !important;
+  }
+
+  /* Hamburger visible */
+  .navbar-toggle {
+    display: block !important;
+    margin-right: 10px !important;
+  }
+
+  .auth-page .navbar-toggle {
+    display: none !important;
+  }
+
+  /* MENU CLOSED */
+  #owner-navbar.collapse {
+    display: none !important;
+  }
+
+  /* MENU OPEN */
+  #owner-navbar.collapse.in {
+    display: block !important;
+    height: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* No flicker */
+  #owner-navbar.collapsing {
+    height: auto !important;
+    display: block !important;
+    transition: none !important;
+  }
+}
+
+/* dropdown background always blue */
+.navbar-custom .dropdown-menu {
+  background-color: #0e7ac4 !important;
+}
+/* Dropdown items normal state */
+.navbar-custom .dropdown-menu > li > a {
+  background-color: transparent !important;
+  color: white !important;
+}
+/* Hover green */
+.navbar-custom .dropdown-menu > li > a:hover {
+  background-color: #18bc9c !important;
+  color: white !important;
+}
+/* Active in dropdown should NOT turn white/green */
+.navbar-custom .dropdown-menu > li.active > a {
+  background-color: transparent !important;
+  color: white !important;
+}
+
+/* ------------------------------------------------------
+   MOBILE DROPDOWN ANIMATION (STRONG OVERRIDE)
+-------------------------------------------------------*/
+@media (max-width: 768px) {
+  /* Force dropdowns to be collapsible */
+  #owner-navbar .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+
+    max-height: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+
+    transition:
+      max-height 0.4s ease,
+      opacity 0.3s ease !important;
+  }
+
+  /* When React adds .open */
+  #owner-navbar .dropdown.open > .dropdown-menu {
+    max-height: 400px !important; /* enough for all items */
+    opacity: 1 !important;
+  }
+}
+
+/* Premium hover underline (desktop only) */
+@media (min-width: 769px) {
+  .navbar-custom .navbar-nav > li > a {
+    position: relative;
+  }
+
+  .navbar-custom .navbar-nav > li > a::after {
+    content: "";
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #18bc9c;
+    border-radius: 2px;
+    transform: translateX(-50%);
+    transition: width 0.25s ease;
+  }
+
+  .navbar-custom .navbar-nav > li > a:hover::after,
+  .navbar-custom .navbar-nav > li.active > a::after {
+    width: 60%;
+  }
+}
+
+.navbar-custom .navbar-brand:hover {
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+@media (min-width: 769px) {
+  .navbar-custom {
+    backdrop-filter: blur(6px);
+  }
+}
+
+/* =========================================================
+   GLASS EFFECT
+========================================================= */
+
+@media (min-width: 769px) {
+  .navbar-custom {
+    background: #0e7ac4 !important;
+    backdrop-filter: blur(10px) saturate(130%);
+    -webkit-backdrop-filter: blur(10px) saturate(130%);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.25s ease;
+  }
+
+  .navbar-custom:hover {
+    background: #0e7ac4 !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+  }
+
+  /* Minimal text shadow — readable */
+  .navbar-custom .navbar-nav > li > a {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+    transition: text-shadow 0.2s ease;
+  }
+
+  .navbar-custom .navbar-nav > li > a:hover {
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.35);
+  }
+
+  /* Underline glow softened */
+  .navbar-custom .navbar-nav > li > a::after {
+    box-shadow: 0 0 4px rgba(24, 188, 156, 0.35);
+  }
+
+  /* Brand logo soft glow */
+  .navbar-custom .navbar-brand {
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.25);
+  }
+
+  .navbar-custom .navbar-brand:hover {
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.35);
+    transform: scale(1.03);
+  }
+
+  /* Dropdown soft glass effect (blur + glow) */
+  .navbar-custom .dropdown-menu {
+    background: rgba(14, 122, 196, 0.9) !important;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transform: translateY(4px);
+    opacity: 0;
+    transition: all 0.2s ease-out !important;
+  }
+
+  .navbar-custom .dropdown.open > .dropdown-menu {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Hamburger glow */
+@media (min-width: 769px) {
+  .navbar-custom .navbar-toggle:hover {
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.25);
+  }
+}
+
+/* ============================================================
+   PC DROPDOWN ANIMATION
+============================================================ */
+@media (min-width: 769px) {
+  /* Disable Bootstrap dropdown behavior */
+  #owner-navbar .dropdown-menu {
+    display: block !important; /* always block, but visually hidden */
+  }
+}
+
+@media (min-width: 769px) {
+  /* Animation base state */
+  #owner-navbar .dropdown-menu {
+    opacity: 0;
+    transform: translateY(12px);
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+      opacity 0.22s ease-out,
+      transform 0.22s ease-out,
+      visibility 0s linear 0.22s,
+      pointer-events 0s linear 0.22s;
+  }
+
+  /* When visible (hover or click-open) */
+  #owner-navbar .dropdown:hover > .dropdown-menu,
+  #owner-navbar .dropdown.open > .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0px);
+    visibility: visible;
+    pointer-events: auto;
+
+    transition-delay: 0s;
+  }
+}

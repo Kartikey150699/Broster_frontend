@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import UniversalModal from "../components/UniversalModal";
@@ -27,13 +26,13 @@ export default function OwnerLayout({ title = "B-ROSTER", children }) {
   };
 
   return (
-    <div>
+    <div className="owner-layout">
       {/* HEADER (Logout button triggers modal) */}
       <Header onLogoutClick={() => setShowLogout(true)} />
 
       {/* MAIN CONTENT */}
       <div
-        className="container-fluid"
+        className="container-fluid owner-content"
         style={{
           marginTop: window.innerWidth < 768 ? "110px" : "70px",
         }}

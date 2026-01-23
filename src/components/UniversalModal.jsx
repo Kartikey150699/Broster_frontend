@@ -1,15 +1,16 @@
+import { useState } from "react";
+
 export default function UniversalModal({
   visible,
-  mode = "confirm", // "confirm" | "details"
+  mode = "confirm",
 
   title = "確認",
   message = "",
   targetName,
   targetId,
 
-  detailList = [], // for mode="details"
+  detailList = [],
 
-  // Buttons (confirm mode)
   confirmText = "OK",
   cancelText = "キャンセル",
   confirmColor = "btn-danger",
@@ -21,26 +22,24 @@ export default function UniversalModal({
   onConfirm,
   hideCancel = false,
 }) {
+  const [closing, setClosing] = useState(false);
+
   if (!visible) return null;
 
+  // CLOSING ANIMATION HANDLER
+  const handleCancel = () => {
+    setClosing(true); // Start closing animation
+
+    setTimeout(() => {
+      setClosing(false); // Reset
+      onCancel(); // Actually close modal
+    }, 250); // Must match CSS animation duration
+  };
+
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        background: "rgba(0,0,0,0.45)",
-        zIndex: 2000,
-      }}
-    >
+    <div className={`universal-modal-overlay ${closing ? "closing" : ""}`}>
       <div
-        className="modal-dialog"
-        style={{
-          width: mode === "details" ? "420px" : "380px",
-          margin: "160px auto",
-        }}
+        className={`modal-dialog universal-modal-animate ${closing ? "closing" : ""}`}
       >
         <div
           className="modal-content"
@@ -62,7 +61,7 @@ export default function UniversalModal({
             <button
               type="button"
               className="close"
-              onClick={onCancel}
+              onClick={handleCancel}
               style={{ color: "white", opacity: 1 }}
             >
               ×
@@ -163,24 +162,22 @@ export default function UniversalModal({
               borderTop: "1px solid #eee",
             }}
           >
-            {/* DETAILS MODE - ONLY CLOSE */}
             {mode === "details" && (
               <button
                 className="btn btn-default"
-                onClick={onCancel}
+                onClick={handleCancel}
                 style={{ width: "120px" }}
               >
                 閉じる
               </button>
             )}
 
-            {/* CONFIRM MODE - NORMAL BUTTONS */}
             {mode === "confirm" && (
               <>
                 {!hideCancel && (
                   <button
                     className={`btn ${cancelColor}`}
-                    onClick={onCancel}
+                    onClick={handleCancel}
                     style={{ width: "100px" }}
                   >
                     {cancelText}

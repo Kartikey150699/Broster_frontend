@@ -42,7 +42,11 @@ export default function MiniTimePicker({ value, onChange, onSelect }) {
   };
 
   return (
-    <div ref={ref} style={{ position: "relative", display: "inline-block" }}>
+    <div
+      ref={ref}
+      className="mini-picker-wrap"
+      style={{ position: "relative", display: "inline-block" }}
+    >
       <input
         type="text"
         value={time}
@@ -57,12 +61,13 @@ export default function MiniTimePicker({ value, onChange, onSelect }) {
           if (onChange) onChange(time);
         }}
         placeholder="--:--"
-        className="form-control"
+        className="form-control mini-picker-input"
         style={{ width: 70, textAlign: "center" }}
       />
 
       {open && (
         <div
+          className="mini-picker-panel"
           style={{
             position: "absolute",
             top: "34px",
@@ -75,24 +80,37 @@ export default function MiniTimePicker({ value, onChange, onSelect }) {
             zIndex: 999,
           }}
         >
-          {/* 時間（時） */}
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <button onClick={() => adjustTime("h", +1)}>▲</button>
+          {/* TIME */}
+          <div className="mini-picker-grid">
+            {/* Hour */}
+            <button
+              className="mini-picker-btn"
+              onClick={() => adjustTime("h", +1)}
+            >
+              ▲
+            </button>
             <span>時</span>
-            <button onClick={() => adjustTime("h", -1)}>▼</button>
-          </div>
+            <button
+              className="mini-picker-btn"
+              onClick={() => adjustTime("h", -1)}
+            >
+              ▼
+            </button>
 
-          {/* 時間（分） */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginTop: 6,
-            }}
-          >
-            <button onClick={() => adjustTime("m", +1)}>▲</button>
+            {/* Minute */}
+            <button
+              className="mini-picker-btn"
+              onClick={() => adjustTime("m", +1)}
+            >
+              ▲
+            </button>
             <span>分</span>
-            <button onClick={() => adjustTime("m", -1)}>▼</button>
+            <button
+              className="mini-picker-btn"
+              onClick={() => adjustTime("m", -1)}
+            >
+              ▼
+            </button>
           </div>
         </div>
       )}

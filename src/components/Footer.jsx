@@ -1,16 +1,21 @@
-export default function OwnerFooter() {
+export default function OwnerFooter({ hideLoginInfo = false }) {
   return (
     <footer className="footer" id="footer">
       <div className="footer-below">
         <div className="container">
           <div className="row">
-            {/* Left side text (login info) */}
-            <div
-              className="col-lg-8 text-left"
-              style={{ paddingLeft: "171px" }}
-            >
-              <i className="fa fa-user fa-fw"></i> ログイン中
-            </div>
+            {/* LEFT SIDE — hide only when hideLoginInfo = true */}
+            {!hideLoginInfo && (
+              <div
+                className="col-lg-8 text-left"
+                style={{ paddingLeft: "171px" }}
+              >
+                <i className="fa fa-user fa-fw"></i> ログイン中
+              </div>
+            )}
+
+            {/* When hidden, keep spacing so layout stays stable */}
+            {hideLoginInfo && <div className="col-lg-8"></div>}
 
             {/* Right side copyright */}
             <div
@@ -23,7 +28,7 @@ export default function OwnerFooter() {
                 rel="noreferrer"
                 style={{ color: "white" }}
               >
-                © 2023 IFNET v1.4.19
+                © 2026 IFNET v2.0.1
               </a>
             </div>
           </div>

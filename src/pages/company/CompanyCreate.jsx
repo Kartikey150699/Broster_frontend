@@ -105,7 +105,7 @@ export default function CompanyCreate() {
       setInfoMessages(["会社を登録しました。"]);
       setErrorMessages([]);
 
-      setTimeout(() => navigate("/status/show"), 1500);
+      setTimeout(() => navigate("/status/list"), 1500);
     } catch (err) {
       setErrorMessages(["登録に失敗しました。"]);
       setInfoMessages([]);
@@ -439,7 +439,7 @@ export default function CompanyCreate() {
               type="primary"
               size="md"
               style={{ marginLeft: 10 }}
-              onClick={() => (window.location.href = "/status/show")}
+              onClick={() => (window.location.href = "/status/list")}
             />
           </div>
         </div>
