@@ -125,7 +125,7 @@ export default function AdminLogin() {
                     </label>
                     <input
                       type="password"
-                      placeholder="パスワド"
+                      placeholder="••••••••••"
                       className="form-control input-animated"
                       style={{ width: "65%" }}
                       value={password}
@@ -190,11 +190,13 @@ export default function AdminLogin() {
             <p>
               当サービスは貴社独自の出退勤ルールをシステムに搭載させることが可能です。
               <br />
-              お問い合わせは{" "}
-              <a href="http://www.ifnt.co.jp" target="_blank">
-                こちら
-              </a>
-              からご連絡ください。
+              <strong>
+                お問い合わせは{" "}
+                <a href="http://www.ifnt.co.jp" target="_blank">
+                  こちら
+                </a>
+                からご連絡ください。
+              </strong>
             </p>
           </article>
         </section>
