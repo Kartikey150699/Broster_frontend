@@ -271,7 +271,7 @@ export default function OwnerHeader({ onLogoutClick, hideMenu = false }) {
                 {drop === "setting" && (
                   <ul className="dropdown-menu" style={{ display: "block" }}>
                     <li>
-                      <Link to="/password/change">
+                      <Link to="/admin/password-change">
                         <i className="fa fa-user fa-fw"></i> パスワード変更
                       </Link>
                     </li>

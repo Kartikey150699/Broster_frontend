@@ -40,6 +40,9 @@ import WorkResultView from "../pages/workResult/WorkResultView";
 import WorkResultEdit from "../pages/workResult/WorkResultEdit";
 import SystemError from "../pages/error/SystemError";
 import NotFound from "../pages/error/NotFound";
+import PasswordChange from "../pages/admin/PasswordChange";
+import EmployeeLogin from "../pages/auth/EmployeeLogin";
+import StampShow from "../pages/stamp/StampShow";
 
 // ========================================================
 //   Application Routes
@@ -61,6 +64,9 @@ export default function AppRoutes() {
 
         {/* ADMIN EDIT */}
         <Route path="/admin/edit/:companyId/:adminId" element={<AdminEdit />} />
+
+        {/* PASSWORD CHANGE */}
+        <Route path="/admin/password-change" element={<PasswordChange />} />
 
         {/* APPLY GROUP LIST */}
         <Route path="/apply-group/list" element={<ApplyGroupList />} />
@@ -94,6 +100,9 @@ export default function AppRoutes() {
 
         {/* EMPLOYEE EDIT */}
         <Route path="/employee/edit/:companyId/:groupId/:employeeId" element={<EmployeeEdit />}/>
+
+        {/* EMPLOYEE LOGIN */}
+        <Route path="/employee/login" element={<EmployeeLogin />} />
 
         {/* SHIFT LIST */}
         <Route path="/shift/list" element={<ShiftList />} />
@@ -139,6 +148,9 @@ export default function AppRoutes() {
 
         {/* SUMMARY ATTENDANCE */}
         <Route path="/summary/show" element={<SummaryAttendance />} />
+
+        {/* STAMP SHOW */}
+        <Route path="/employee/stamp/show" element={<StampShow />} />
 
         {/* WORK PLAN LIST */}
         <Route path="/workPlan/list" element={<WorkPlanList />} />
