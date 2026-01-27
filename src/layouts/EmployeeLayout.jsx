@@ -1,10 +1,18 @@
 import { useState, useEffect } from "react";
 import EmployeeHeader from "../components/EmployeeHeader";
+import EmployeeHeaderTwo from "../components/EmployeeHeaderTwo";
 import Footer from "../components/Footer";
 import UniversalModal from "../components/UniversalModal";
 import { useNavigate } from "react-router-dom";
 
-export default function EmployeeLayout({ title = "B-ROSTER", children }) {
+export default function EmployeeLayout({
+  title = "B-ROSTER",
+  children,
+  headerType = "two",
+  companyId,
+  groupId,
+  employeeId,
+}) {
   document.title = title;
 
   const [showLogout, setShowLogout] = useState(false);
@@ -25,8 +33,22 @@ export default function EmployeeLayout({ title = "B-ROSTER", children }) {
 
   return (
     <div className="owner-layout">
-      {/* MINIMAL EMPLOYEE HEADER */}
-      <EmployeeHeader onLogoutClick={() => setShowLogout(true)} />
+      {/* HEADER SWITCH */}
+      {headerType === "one" ? (
+        <EmployeeHeader
+          onLogoutClick={() => setShowLogout(true)}
+          companyId={companyId}
+          groupId={groupId}
+          employeeId={employeeId}
+        />
+      ) : (
+        <EmployeeHeaderTwo
+          onLogoutClick={() => setShowLogout(true)}
+          companyId={companyId}
+          groupId={groupId}
+          employeeId={employeeId}
+        />
+      )}
 
       {/* CONTENT */}
       <div

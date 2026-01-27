@@ -43,6 +43,7 @@ import NotFound from "../pages/error/NotFound";
 import PasswordChange from "../pages/admin/PasswordChange";
 import EmployeeLogin from "../pages/auth/EmployeeLogin";
 import StampShow from "../pages/stamp/StampShow";
+import ApplyRequest from "../pages/apply/ApplyRequest";
 
 // ========================================================
 //   Application Routes
@@ -136,6 +137,9 @@ export default function AppRoutes() {
 
         {/* APPLY EDIT */}
         <Route path="/apply/edit/:requestId" element={<ApplyEdit />} />
+
+        {/* APPLY REQUEST */}
+        <Route path="/stamp/applyRequest/:companyId/:groupId/:employeeId" element={<ApplyRequest />} />
 
         {/* STATUS LIST */}
         <Route path="/status/list" element={<StatusList />} />

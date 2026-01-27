@@ -2879,3 +2879,267 @@ body.react-datepicker-open {
 body.modal-open {
   overflow: hidden !important;
 }
+
+/* ================================================================
+   Employee Page Clock
+================================================================ */
+.clock-glass-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.clock-glass {
+  font-size: 72px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #0e7ac4;
+
+  padding: 22px 45px;
+  border-radius: 20px;
+
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+
+  background: rgba(255, 255, 255, 0.45); /* transparent frosted */
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    inset 0 0 30px rgba(255, 255, 255, 0.15);
+
+  animation: glassFadeUp 0.8s ease-out;
+}
+
+/* Clock icon styling */
+.clock-glass i {
+  margin-right: 12px;
+  opacity: 0.9;
+}
+
+@keyframes glassFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .clock-glass {
+    font-size: 52px;
+    padding: 16px 28px;
+    border-radius: 16px;
+  }
+}
+
+/* ================================
+   MODAL
+================================ */
+.stamp-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ================================
+   MODAL BOX
+================================ */
+.stamp-modal {
+  background: #fff;
+  width: 480px;
+  max-width: 92%;
+  border-radius: 12px;
+  padding: 0;
+  outline: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  animation: modalFade 0.25s ease-out;
+}
+
+@keyframes modalFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ================================
+   HEADER
+================================ */
+.stamp-modal-header {
+  background: #0e7ac4;
+  color: white;
+  padding: 6px 20px;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stamp-modal-header h3 {
+  color: white !important;
+  margin: 0;
+  font-size: 20px;
+}
+
+.stamp-close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 26px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ================================
+   EMPLOYEE INFO
+================================ */
+.stamp-info-block {
+  padding: 18px 22px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.stamp-id {
+  font-size: 20px;
+  font-weight: 600;
+  color: #444;
+}
+
+/* ================================
+   CLOCK DISPLAY
+================================ */
+.stamp-clock-display {
+  text-align: center;
+  font-size: 65px;
+  font-weight: 800;
+  color: #0e7ac4;
+  margin-top: 10px;
+}
+
+/* Name under clock */
+.stamp-name-display {
+  text-align: center;
+  margin-top: 6px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Divider */
+.stamp-divider {
+  width: 85%;
+  margin: 14px auto;
+  height: 1px;
+  background: #e0e0e0;
+}
+
+/* ================================
+   BUTTON GRID
+================================ */
+.stamp-btn-section {
+  padding: 15px 25px 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px; /* Slightly tighter gap for a cleaner look */
+}
+
+/* BUTTONS BASE */
+.stamp-btn {
+  font-family:
+    "Inter",
+    -apple-system,
+    sans-serif; /* Clean modern font */
+  font-size: 18px;
+  font-weight: 600;
+  padding: 16px 0;
+  border-radius: 12px; /* Smoother rounding */
+  color: white;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+
+  /* Flex centering for icons and text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Modern Depth Effects */
+  transition: all 0.2s ease;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.stamp-btn i {
+  margin-right: 10px;
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+/* COLORS WITH SUBTLE GRADIENTS */
+.stamp-btn.start {
+  background: linear-gradient(135deg, #0e7ac4 0%, #0c69a8 100%);
+}
+.stamp-btn.end {
+  background: linear-gradient(135deg, #d9534f 0%, #c9302c 100%);
+}
+.stamp-btn.break {
+  background: linear-gradient(135deg, #f0ad4e 0%, #ec971f 100%);
+}
+.stamp-btn.apply {
+  background: linear-gradient(135deg, #5bc0de 0%, #31b0d5 100%);
+}
+
+/* INTERACTION EFFECTS */
+.stamp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  filter: brightness(1.05);
+}
+
+.stamp-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  filter: brightness(0.95);
+}
+
+/* MOBILE FIX */
+@media (max-width: 480px) {
+  .stamp-modal {
+    width: 92%;
+  }
+  .stamp-clock-display {
+    font-size: 48px;
+    letter-spacing: -1px;
+  }
+  .stamp-name-display {
+    font-size: 20px;
+  }
+
+  .stamp-btn {
+    font-size: 17px;
+    padding: 14px 0;
+    border-radius: 10px;
+  }
+
+  .stamp-btn-section {
+    gap: 12px;
+    padding: 10px 15px 25px;
+  }
+}
