@@ -1,15 +1,14 @@
 import { useState, useEffect, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import EmployeeLayout from "../../layouts/EmployeeLayout";
+import { useNavigate } from "react-router-dom";
+import AuthLayout from "../../layouts/AuthLayout";
 import CommonButton from "../../components/CommonButton";
 
-export default function EmployeeLogin() {
-  const { employeeId: paramEmployeeId } = useParams();
+export default function SharedLogin() {
   const navigate = useNavigate();
   const idRef = useRef(null);
 
   const [form, setForm] = useState({
-    employeeId: paramEmployeeId || "",
+    employeeId: "",
     password: "",
   });
 
@@ -24,26 +23,22 @@ export default function EmployeeLogin() {
   };
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const temp = [];
-  if (!form.employeeId) temp.push("従業員IDを入力してください。");
-  if (!form.password) temp.push("Passwordを入力してください。");
+    const temp = [];
+    if (!form.employeeId) temp.push("IDを入力してください。");
+    if (!form.password) temp.push("Passwordを入力してください。");
 
-  setErrors(temp);
+    setErrors(temp);
 
-  if (temp.length === 0) {
-    // TODO: After API login success, set values
-    const companyId = localStorage.getItem("companyId");
-    const groupId = localStorage.getItem("groupId");
-    const employeeId = form.employeeId;
-
-    navigate(`/stamp/history/${companyId}/${groupId}/${employeeId}`);
-  }
-};
+    if (temp.length === 0) {
+      // TODO: API call
+      navigate("/employee/stamp/show");
+    }
+  };
 
   return (
-    <EmployeeLayout title="従業員ログイン" headerType="">
+    <AuthLayout title="ログイン">
       <div className="row row-padding-top-1">
         <div className="col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
           <form className="form-horizontal" onSubmit={handleSubmit}>
@@ -53,7 +48,7 @@ export default function EmployeeLogin() {
                 className="panel-heading text-center"
                 style={{ backgroundColor: "#0E7AC4", color: "#fff" }}
               >
-                <b>従業員ログイン</b>
+                <b>ログイン</b>
               </div>
 
               {/* BODY */}
@@ -61,7 +56,7 @@ export default function EmployeeLogin() {
                 {/* ID FIELD */}
                 <div className="form-group">
                   <div className="col-sm-4">
-                    <label className="input-label">従業員ID</label>
+                    <label className="input-label">ID</label>
                   </div>
                   <div className="col-sm-8">
                     <input
@@ -110,13 +105,9 @@ export default function EmployeeLogin() {
                 </div>
               </div>
             </div>
-
-            <div className="text-center">
-              ※勤務申請履歴を見る場合はご自身の従業員IDでログインして下さい。
-            </div>
           </form>
         </div>
       </div>
-    </EmployeeLayout>
+    </AuthLayout>
   );
 }

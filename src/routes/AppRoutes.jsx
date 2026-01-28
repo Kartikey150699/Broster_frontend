@@ -41,9 +41,11 @@ import WorkResultEdit from "../pages/workResult/WorkResultEdit";
 import SystemError from "../pages/error/SystemError";
 import NotFound from "../pages/error/NotFound";
 import PasswordChange from "../pages/admin/PasswordChange";
-import EmployeeLogin from "../pages/auth/EmployeeLogin";
+import SharedLogin from "../pages/auth/SharedLogin";
 import StampShow from "../pages/stamp/StampShow";
 import ApplyRequest from "../pages/apply/ApplyRequest";
+import EmployeeLogin from "../pages/auth/EmployeeLogin";
+import ApplyRequestHistory from "../pages/stamp/ApplyRequestHistory";
 
 // ========================================================
 //   Application Routes
@@ -102,8 +104,11 @@ export default function AppRoutes() {
         {/* EMPLOYEE EDIT */}
         <Route path="/employee/edit/:companyId/:groupId/:employeeId" element={<EmployeeEdit />}/>
 
+        {/* SHARED LOGIN */}
+        <Route path="/employee/login" element={<SharedLogin />} />
+
         {/* EMPLOYEE LOGIN */}
-        <Route path="/employee/login" element={<EmployeeLogin />} />
+        <Route path="/stamp/login/:employeeId" element={<EmployeeLogin />} />
 
         {/* SHIFT LIST */}
         <Route path="/shift/list" element={<ShiftList />} />
@@ -155,6 +160,9 @@ export default function AppRoutes() {
 
         {/* STAMP SHOW */}
         <Route path="/employee/stamp/show" element={<StampShow />} />
+
+        {/* APPLY REQUEST HISTORY */}
+        <Route path="/stamp/history/:companyId/:groupId/:employeeId" element={<ApplyRequestHistory />} />
 
         {/* WORK PLAN LIST */}
         <Route path="/workPlan/list" element={<WorkPlanList />} />

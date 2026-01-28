@@ -45,7 +45,7 @@ export default function EmployeeHeaderTwo({
                 style={{ cursor: "pointer" }}
               >
                 <i
-                  className="fa fa-home fa-fw"
+                  className="fa fa-file fa-fw"
                   style={{ marginRight: "2px" }}
                 ></i>
                 勤務申請
@@ -60,8 +60,8 @@ export default function EmployeeHeaderTwo({
                     </Link>
                   </li>
                   <li>
-                    <Link to="/group/list">
-                      <i className="fa fa-home fa-fw"></i> 申請履歴
+                    <Link to="/stamp/login/000002">
+                      <i className="fa fa-file fa-fw"></i> 申請履歴
                     </Link>
                   </li>
                 </ul>
