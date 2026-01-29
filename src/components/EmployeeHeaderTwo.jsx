@@ -60,7 +60,7 @@ export default function EmployeeHeaderTwo({
                     </Link>
                   </li>
                   <li>
-                    <Link to="/stamp/login/000002">
+                    <Link to="/stamp/login/000002?redirect=history">
                       <i className="fa fa-file fa-fw"></i> 申請履歴
                     </Link>
                   </li>
@@ -90,7 +90,7 @@ export default function EmployeeHeaderTwo({
               {drop === "setting" && (
                 <ul className="dropdown-menu" style={{ display: "block" }}>
                   <li>
-                    <Link to="/admin/password-change">
+                    <Link to="/stamp/login/000002?redirect=password">
                       <i className="fa fa-user fa-fw"></i> パスワード変更
                     </Link>
                   </li>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import EmployeeLayout from "../../layouts/EmployeeLayout";
 import CommonButton from "../../components/CommonButton";
 
@@ -7,6 +7,9 @@ export default function EmployeeLogin() {
   const { employeeId: paramEmployeeId } = useParams();
   const navigate = useNavigate();
   const idRef = useRef(null);
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const redirect = params.get("redirect"); // "history" or "password"
 
   const [form, setForm] = useState({
     employeeId: paramEmployeeId || "",
@@ -24,23 +27,34 @@ export default function EmployeeLogin() {
   };
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const temp = [];
-  if (!form.employeeId) temp.push("従業員IDを入力してください。");
-  if (!form.password) temp.push("Passwordを入力してください。");
+    const temp = [];
+    if (!form.employeeId) temp.push("従業員IDを入力してください。");
+    if (!form.password) temp.push("Passwordを入力してください。");
 
-  setErrors(temp);
+    setErrors(temp);
+    if (temp.length > 0) return;
 
-  if (temp.length === 0) {
-    // TODO: After API login success, set values
+    // login OK
     const companyId = localStorage.getItem("companyId");
     const groupId = localStorage.getItem("groupId");
     const employeeId = form.employeeId;
 
-    navigate(`/stamp/history/${companyId}/${groupId}/${employeeId}`);
-  }
-};
+    // detect redirect from query parameter
+    const location = window.location;
+    const params = new URLSearchParams(location.search);
+    const redirect = params.get("redirect"); // "history" or "password"
+
+    if (redirect === "history") {
+      navigate(`/stamp/history/${companyId}/${groupId}/${employeeId}`);
+    } else if (redirect === "password") {
+      navigate(`/stamp/passChange/${companyId}/${groupId}/${employeeId}`);
+    } else {
+      // default fallback
+      navigate(`/stamp/show`);
+    }
+  };
 
   return (
     <EmployeeLayout title="従業員ログイン" headerType="">

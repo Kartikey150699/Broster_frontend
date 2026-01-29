@@ -46,6 +46,8 @@ import StampShow from "../pages/stamp/StampShow";
 import ApplyRequest from "../pages/apply/ApplyRequest";
 import EmployeeLogin from "../pages/auth/EmployeeLogin";
 import ApplyRequestHistory from "../pages/stamp/ApplyRequestHistory";
+import EmployeePasswordChange from "../pages/employee/EmployeePasswordChange";
+import EmployeePasswordReissue from "../pages/employee/EmployeePasswordReissue";
 
 // ========================================================
 //   Application Routes
@@ -103,6 +105,12 @@ export default function AppRoutes() {
 
         {/* EMPLOYEE EDIT */}
         <Route path="/employee/edit/:companyId/:groupId/:employeeId" element={<EmployeeEdit />}/>
+
+        {/* EMPLOYEE PASSWORD CHANGE */}
+        <Route path="/stamp/passChange/:companyId/:groupId/:employeeId" element={<EmployeePasswordChange />} />
+
+        {/* EMPLOYEE PASSWORD REISSUE */}
+        <Route path="/stamp/passReissue" element={<EmployeePasswordReissue />} />
 
         {/* SHARED LOGIN */}
         <Route path="/employee/login" element={<SharedLogin />} />
